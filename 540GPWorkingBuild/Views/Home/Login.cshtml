@@ -4,10 +4,10 @@
     ViewBag.Title = "Login";
 }
 
-@using (Html.BeginForm("Index", "Menu", FormMethod.Post))
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
 {
     <fieldset>
-        <legend>Employee Login</legend>
+        <legend>Mvc Simple Login Application Demo</legend>
 
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)

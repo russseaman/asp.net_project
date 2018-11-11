@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "540GPWorkingBuild", "540GPWorkingBuild\540GPWorkingBuild.csproj", "{939D1033-49D4-41D6-83A3-2CB37733F197}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "540WorkingBuild", "540GPWorkingBuild\540WorkingBuild.csproj", "{939D1033-49D4-41D6-83A3-2CB37733F197}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
