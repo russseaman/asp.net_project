@@ -116,6 +116,7 @@ namespace _540GPWorkingBuild.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(category).State = EntityState.Modified;
+                category.Active = 1;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
