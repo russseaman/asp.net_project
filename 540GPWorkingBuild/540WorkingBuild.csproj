@@ -313,6 +313,9 @@
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\Categories\LowPermission.cshtml" />
+    <Content Include="Views\Reports\StoreReport.cshtml" />
+    <Content Include="Views\Reports\EmployeeReport.cshtml" />
+    <Content Include="Views\Reports\ProductReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
