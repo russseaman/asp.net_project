@@ -32,6 +32,11 @@ namespace _540GPWorkingBuild.Controllers
             return View();
         }
 
+        public ActionResult FillerTest()
+        {
+            return View();
+        }
+
         // GET: Reports/Details/5
         public ActionResult Details(int id)
         {
