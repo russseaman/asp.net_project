@@ -1,0 +1,68 @@
+﻿@model _540GPWorkingBuild.Models.MusciToolkitDBEntities
+@{
+    ViewBag.Title = "Store Reports";
+}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>jQuery UI Datepicker - Default functionality</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $("#datepicker").datepicker();
+    });
+</script>
+
+<h2>Store Reports</h2>
+<p>Please select from one of the following</p>
+<hr />
+
+<p>Date: <input type="text" id="datepicker"></p>
+
+<div class="form-group">
+    @Html.Label(" ")
+    <div class="col-md-10">
+        @Html.DropDownList("Month", new List<SelectListItem>
+   {
+       new SelectListItem{ Text = "January", Value = "January"},
+       new SelectListItem{ Text = "February", Value = "February"},
+       new SelectListItem{ Text = "March", Value = "March"},
+       new SelectListItem{ Text = "April", Value = "April"},
+       new SelectListItem{ Text = "May", Value = "May"},
+       new SelectListItem{ Text = "June", Value = "June"},
+       new SelectListItem{ Text = "July", Value = "July"},
+       new SelectListItem{ Text = "August", Value = "August"},
+       new SelectListItem{ Text = "September", Value = "September"},
+       new SelectListItem{ Text = "October", Value = "October"},
+       new SelectListItem{ Text = "November", Value = "Novemeber"},
+       new SelectListItem{ Text = "December", Value = "December"},
+   }, "Select a Month")
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.Label(" ")
+    <div class="col-md-10">
+        @Html.DropDownList("Quarter", new List<SelectListItem>
+   {
+       new SelectListItem{ Text = "Q1", Value = "Q1"},
+       new SelectListItem{ Text = "Q2", Value = "Q2"},
+       new SelectListItem{ Text = "Q3", Value = "Q3"},
+       new SelectListItem{ Text = "Q4", Value = "Q4"},
+   }, "Select a Quarter")
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.Label(" ")
+    <div class="col-md-10">
+        @Html.DropDownList("Year", new List<SelectListItem>
+   {
+       new SelectListItem{ Text = "Fiscal '19", Value = "FY19"},
+
+   }, "Select a Year")
+    </div>
+</div>

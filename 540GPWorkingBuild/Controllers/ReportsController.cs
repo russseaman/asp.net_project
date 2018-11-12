@@ -14,6 +14,24 @@ namespace _540GPWorkingBuild.Controllers
             return View();
         }
 
+        public ActionResult StoreReport()
+        {
+
+            return View();
+        }
+
+        public ActionResult EmployeeReport()
+        {
+
+            return View();
+        }
+
+        public ActionResult ProductReport()
+        {
+
+            return View();
+        }
+
         // GET: Reports/Details/5
         public ActionResult Details(int id)
         {
