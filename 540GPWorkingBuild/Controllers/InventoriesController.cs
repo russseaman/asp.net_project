@@ -52,9 +52,10 @@ namespace _540GPWorkingBuild.Controllers
         {
             if (ModelState.IsValid)
             {
+                inventory.Active = 1;
                 db.Inventories.Add(inventory);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Products");
             }
 
             ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "Category1", inventory.CategoryID);
@@ -120,6 +121,22 @@ namespace _540GPWorkingBuild.Controllers
             return RedirectToAction("Index");
         }
 
+
+        public ActionResult Products()
+        {
+            return View();
+
+        }
+
+
+        public ActionResult ViewProducts()
+        {
+            var inventories = db.Inventories.Include(i => i.Category);
+            return View(inventories.ToList());
+        }
+
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -128,5 +145,10 @@ namespace _540GPWorkingBuild.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+
     }
+
+
 }
