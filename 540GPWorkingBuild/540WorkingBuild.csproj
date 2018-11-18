@@ -316,6 +316,8 @@
     <Content Include="Views\Reports\StoreReport.cshtml" />
     <Content Include="Views\Reports\EmployeeReport.cshtml" />
     <Content Include="Views\Reports\ProductReport.cshtml" />
+    <Content Include="Views\Inventories\Products.cshtml" />
+    <Content Include="Views\Inventories\ViewProducts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

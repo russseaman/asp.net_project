@@ -1,28 +1,13 @@
-﻿@model IEnumerable<_540GPWorkingBuild.Models.Inventory>
-
+﻿
 @{
-    ViewBag.Title = "Inventory";
+    ViewBag.Title = "ViewProducts";
 }
 
-<h2>Inventory Management</h2>
-<p>Inventory Management/PO - <b>Written by Gray</b></p>
-<h3>Requirements</h3>
-<ul>
-    <li>Create landing page based from mockup</li>
-    <li>View, add delete, and edit products</li>
-    <li>Manage Purchase Orders</li>
-    <li>Keep track of inventory in real-time</li>
-    <li>Reference SRS/Proposal/Mockups for complete guidelines and functionality</li>
-</ul>
+@model IEnumerable<_540GPWorkingBuild.Models.Inventory>
 
-<ul>
-    <li>  @Html.ActionLink("Categories", "Index", "Categories", new { @class = "landing-page" }, null)</li>
-    <li>  @Html.ActionLink("Product Management", "Products", "Inventories", new { @class = "landing-page" }, null)</li>
-</ul>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<h2>View All Products</h2>
+
 <table class="table">
     <tr>
         <th>
@@ -82,3 +67,4 @@
     }
 
 </table>
+

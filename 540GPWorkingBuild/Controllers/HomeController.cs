@@ -4,10 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace _540GPWorkingBuild.Controllers
 {
+
+
+
     public class HomeController : Controller
     {
+
         public ActionResult Index()
         {
             return View();
@@ -31,6 +36,8 @@ namespace _540GPWorkingBuild.Controllers
 
         public ActionResult Login()
         {
+            Session["EmpLoginError"] = "";
+            Session["PassLoginError"] = "";
             return View();
         }
 
@@ -46,9 +53,24 @@ namespace _540GPWorkingBuild.Controllers
                     if (obj != null)
                     {
                         Session["UserID"] = obj.EmployeeID.ToString();
-                        Session["UserName"] = obj.Password.ToString();
                         Session["UserRole"] = obj.EmployeeRole.EmpRole.ToString();
+                        Session["EmpLoginError"] = "";
+                        Session["PassLoginError"] = "";
                         return RedirectToAction("Menu");
+                    }
+                    else
+                    {
+                        Models.Employee a = db.Employees.Find(e.EmployeeID);
+                        if (a == null)
+                        {
+                            Session["EmpLoginError"] = "Invalid employee ID";
+                            Session["PassLoginError"] = "";
+                        }
+                        else
+                        { 
+                            Session["PassLoginError"] = "Invalid password";
+                            Session["EmpLoginError"] = "";
+                        }
                     }
                 }
             }
@@ -63,6 +85,7 @@ namespace _540GPWorkingBuild.Controllers
             }
             else
             {
+                Session["EmpLoginError"] = "Invalid employee ID";
                 return RedirectToAction("Login");
             }
         }
@@ -70,6 +93,8 @@ namespace _540GPWorkingBuild.Controllers
 
         public ActionResult Logout()
         {
+            Session["UserID"] = null;
+            Session["UserRole"] = null;
             return View();
         }
 
