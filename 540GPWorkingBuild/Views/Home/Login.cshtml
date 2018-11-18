@@ -21,7 +21,7 @@
             <tr>
                 <td>@Html.LabelFor(a => a.EmployeeID)</td>
                 <td>@Html.TextBoxFor(a => a.EmployeeID)</td>
-                <td>@Html.ValidationMessageFor(a => a.EmployeeID)</td>
+                <td>@Html.ValidationMessageFor(a => a.EmployeeID, Session["EmpLoginError"].ToString())</td>
             </tr>
             <tr>
                 <td>
@@ -31,7 +31,7 @@
                     @Html.PasswordFor(a => a.Password)
                 </td>
                 <td>
-                    @Html.ValidationMessageFor(a => a.Password)
+                    @Html.ValidationMessageFor(a => a.Password, Session["PassLoginError"].ToString())
                 </td>
             </tr>
             <tr>
