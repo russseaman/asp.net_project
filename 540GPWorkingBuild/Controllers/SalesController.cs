@@ -21,6 +21,16 @@ namespace _540GPWorkingBuild.Controllers
             return View(sales.ToList());
         }
 
+        public ActionResult Return()
+        {
+            return View();
+        }
+
+        public ActionResult TransactionLookup()
+        {
+            return View();
+        }
+
         // GET: Sales/Details/5
         public ActionResult Details(int? id)
         {
@@ -36,8 +46,8 @@ namespace _540GPWorkingBuild.Controllers
             return View(sale);
         }
 
-        // GET: Sales/Create
-        public ActionResult Create()
+        // GET: Sales/NewSale
+        public ActionResult NewSale()
         {
             ViewBag.CustomerID = new SelectList(db.Customers, "CustomerID", "FirstName");
             ViewBag.EmployeeID = new SelectList(db.Employees, "EmployeeID", "FirstName");
