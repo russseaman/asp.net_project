@@ -1,4 +1,4 @@
-﻿
+﻿@model _540GPWorkingBuild.Models.Inventory
 @{
      ViewBag.Title = "NewSale";
 }
@@ -6,6 +6,28 @@
 <h2>New Sale</h2>
 
 <p>
+     <div style='text-align:right;'>
      @Html.ActionLink("Add/Lookup Customer", "Index", "Customers", new { @class = "cust-landing-page" }, null)
+     </div>
 </p>
+
+<hr style="border:0px;border-top:1px solid black;width:1150px;" />
+
+@using (Html.BeginForm())
+{
+     @Html.AntiForgeryToken()
+
+     <div class="form-horizontal">
+          <hr />
+          @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+          <div class="form-group">
+              @Html.LabelFor(model => model.ProductID, htmlAttributes: new { @class = "control-label col-md-2" })
+              <div class="col-md-10">
+                   @Html.EditorFor(model => model.ProductID, new { htmlAttributes = new { @class = "form-control" } })
+                   @Html.ValidationMessageFor(model => model.ProductID, "", new { @class = "text-danger" })
+              </div>
+          </div>
+     </div>
+}
+
 
