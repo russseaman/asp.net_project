@@ -25,6 +25,8 @@ namespace _540GPWorkingBuild.Models
         public int CustomerID { get; set; }
         [Display(Name ="First Name")]
         public string FirstName { get; set; }
+        [Display(Name ="Customer Name")]
+        public string CustFirstName { get; set; } // For Sales/Index page
         [Display(Name ="Last Name")]
         public string LastName { get; set; }
         [Display(Name ="Address ID")]

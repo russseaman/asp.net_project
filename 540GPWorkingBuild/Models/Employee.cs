@@ -24,6 +24,8 @@ namespace _540GPWorkingBuild.Models
         public int EmployeeID { get; set; }
         [Display(Name ="First Name")]
         public string FirstName { get; set; }
+        [Display(Name ="Employee Name")]
+        public string EmpFirstName { get; set; } // For Sales/Index page
         [Display(Name ="Last Name")]
         public string LastName { get; set; }
         [Display(Name ="Hire Date")]
