@@ -44,6 +44,7 @@ namespace _540GPWorkingBuild.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PurchaseOrderItem> PurchaseOrderItems { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [Display(Name ="Sale Items")]
         public virtual ICollection<SaleItem> SaleItems { get; set; }
     }
 }
