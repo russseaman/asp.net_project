@@ -21,6 +21,7 @@ namespace _540GPWorkingBuild.Models
             this.SaleItems = new HashSet<SaleItem>();
         }
     
+        [Display(Name ="Transaction ID")]
         public int SaleID { get; set; }
         public Nullable<int> CustomerID { get; set; }
         public int EmployeeID { get; set; }

@@ -17,8 +17,7 @@ namespace _540GPWorkingBuild.Controllers
         // GET: Sales
         public ActionResult Index()
         {
-            var sales = db.Sales.Include(s => s.Customer).Include(s => s.Employee);
-            return View(sales.ToList());
+            return View();
         }
 
         public ActionResult Return()
@@ -28,7 +27,8 @@ namespace _540GPWorkingBuild.Controllers
 
         public ActionResult TransactionLookup()
         {
-            return View();
+            var sales = db.Sales.Include(s => s.Customer).Include(s => s.Employee);
+            return View(sales.ToList());
         }
 
         // GET: Sales/Details/5
@@ -59,13 +59,13 @@ namespace _540GPWorkingBuild.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SaleID,CustomerID,EmployeeID,SaleDate")] Sale sale)
+        public ActionResult NewSale([Bind(Include = "SaleID,CustomerID,EmployeeID,SaleDate")] Sale sale)
         {
             if (ModelState.IsValid)
             {
                 db.Sales.Add(sale);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("NewSale");
             }
 
             ViewBag.CustomerID = new SelectList(db.Customers, "CustomerID", "FirstName", sale.CustomerID);
