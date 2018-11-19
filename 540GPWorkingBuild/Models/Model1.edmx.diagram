@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8da26d046a594b64bc8e9db21e3b343b" Name="Diagram1">
+        <EntityTypeShape EntityType="MusicToolKitDBModel.Address" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicToolKitDBModel.Category" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicToolKitDBModel.Customer" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicToolKitDBModel.Employee" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicToolKitDBModel.EmployeeRole" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicToolKitDBModel.Inventory" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicToolKitDBModel.PurchaseOrder" Width="1.5" PointX="5.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicToolKitDBModel.PurchaseOrderItem" Width="1.5" PointX="7.5" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicToolKitDBModel.Sale" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicToolKitDBModel.SaleItem" Width="1.5" PointX="7.5" PointY="5.375" IsExpanded="true" />
+        <AssociationConnector Association="MusicToolKitDBModel.FK_Customer_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicToolKitDBModel.FK_Employee_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicToolKitDBModel.FK_Inventory_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicToolKitDBModel.FK_Sale_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicToolKitDBModel.FK_Employee_EmployeeRole" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicToolKitDBModel.FK_Sale_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicToolKitDBModel.FK_PurchaseOrderItems_Inventory" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicToolKitDBModel.FK_SaleItems_Inventory" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicToolKitDBModel.FK_PurchaseOrderItems_PurchaseOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="MusicToolKitDBModel.FK_SaleItems_Sale" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
