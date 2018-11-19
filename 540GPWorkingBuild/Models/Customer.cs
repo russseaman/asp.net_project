@@ -11,8 +11,9 @@ namespace _540GPWorkingBuild.Models
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class Customer
+     using System.ComponentModel.DataAnnotations;
+
+     public partial class Customer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Customer()
@@ -20,11 +21,18 @@ namespace _540GPWorkingBuild.Models
             this.Sales = new HashSet<Sale>();
         }
     
+        [Display(Name ="Customer ID")]
         public int CustomerID { get; set; }
+        [Display(Name ="First Name")]
         public string FirstName { get; set; }
+        //[Display(Name ="Customer Name")]
+        //public string CustFirstName { get; set; } // For Sales/Index page
+        [Display(Name ="Last Name")]
         public string LastName { get; set; }
+        [Display(Name ="Address ID")]
         public int AddressID { get; set; }
         public string Email { get; set; }
+        [Display(Name ="Phone Number")]
         public string PhoneNum { get; set; }
         public int Active { get; set; }
     

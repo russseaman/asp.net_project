@@ -11,8 +11,9 @@ namespace _540GPWorkingBuild.Models
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class PurchaseOrder
+     using System.ComponentModel.DataAnnotations;
+
+     public partial class PurchaseOrder
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PurchaseOrder()
@@ -21,6 +22,7 @@ namespace _540GPWorkingBuild.Models
         }
     
         public int PurchaseOrderID { get; set; }
+        [Display(Name ="Order Date")]
         public System.DateTime OrderDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
