@@ -55,7 +55,7 @@ namespace _540GPWorkingBuild.Controllers
             {
                 db.SaleItems.Add(saleItem);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("TransactionLookupView", "SaleDetails");
             }
 
             ViewBag.ProductID = new SelectList(db.Inventories, "ProductID", "ProductID", saleItem.ProductID);

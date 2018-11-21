@@ -65,7 +65,7 @@ namespace _540GPWorkingBuild.Controllers
             {
                 db.Sales.Add(sale);
                 db.SaveChanges();
-                return RedirectToAction("Create", "SaleItems", new { @class = "saleitem-create-page" });
+                return RedirectToAction("Create", "SaleItems");
             }
 
             ViewBag.CustomerID = new SelectList(db.Customers, "CustomerID", "FirstName", sale.CustomerID);
