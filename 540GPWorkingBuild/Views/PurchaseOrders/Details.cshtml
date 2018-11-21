@@ -1,0 +1,87 @@
+﻿
+@model _540GPWorkingBuild.Controllers.PurchaseOrdersController.poWithItems
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PurchaseOrder</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            Purchase Order ID
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.p.PurchaseOrderID)
+        </dd>
+        <dt>
+            Date
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.p.dateStr)
+        </dd>
+
+        <dt>
+            Total ($)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.p.totalPrice)
+        </dd>
+
+    </dl>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            Product ID
+        </th>
+        <th>
+            Product Name
+        </th>
+        <th>
+            Net Price ea
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            Net price (line total)
+        </th>
+        <th></th>
+    </tr>
+
+        @foreach (var item in Model.itemList)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Inventory.ProductID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Inventory.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Inventory.NetPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.totalPrice)
+
+            </td>
+            <td>
+                Return
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.p.PurchaseOrderID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
