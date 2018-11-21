@@ -14,6 +14,11 @@ namespace _540GPWorkingBuild.Controllers
     {
         private MusciToolkitDBEntities db = new MusciToolkitDBEntities();
 
+        public double calcTotalCost(PurchaseOrderItem p)
+        {
+            return (double)p.Quantity * (double)p.Inventory.NetPrice;
+        }
+
         // GET: PurchaseOrderItems
         public ActionResult Index()
         {
@@ -53,6 +58,19 @@ namespace _540GPWorkingBuild.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                // Instantiate foreign key fields
+                _540GPWorkingBuild.Models.Inventory inv;
+                inv = db.Inventories.Find(Int32.Parse(Request["ProductID"]));
+                purchaseOrderItem.Inventory = inv;
+                _540GPWorkingBuild.Models.PurchaseOrder po;
+                po = db.PurchaseOrders.Find(Int32.Parse(Request["PurchaseOrderID"]));
+                purchaseOrderItem.PurchaseOrder = po;
+                // Acquire totalPrice attribute
+                //var qty = (double)purchaseOrderItem.Quantity;
+                //var netp = (double)inv.NetPrice;
+                //purchaseOrderItem.totalPrice = qty * netp;
+                // Add to DB
                 db.PurchaseOrderItems.Add(purchaseOrderItem);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -61,6 +79,11 @@ namespace _540GPWorkingBuild.Controllers
             ViewBag.ProductID = new SelectList(db.Inventories, "ProductID", "Name", purchaseOrderItem.ProductID);
             ViewBag.PurchaseOrderID = new SelectList(db.PurchaseOrders, "PurchaseOrderID", "PurchaseOrderID", purchaseOrderItem.PurchaseOrderID);
             return View(purchaseOrderItem);
+        }
+
+        public ActionResult Update(PurchaseOrderItem x)
+        {
+            return RedirectToAction("Index");
         }
 
         // GET: PurchaseOrderItems/Edit/5

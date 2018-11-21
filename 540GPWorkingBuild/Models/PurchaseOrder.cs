@@ -11,7 +11,7 @@ namespace _540GPWorkingBuild.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class PurchaseOrder
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,7 +19,7 @@ namespace _540GPWorkingBuild.Models
         {
             this.PurchaseOrderItems = new HashSet<PurchaseOrderItem>();
         }
-    
+
         public int PurchaseOrderID { get; set; }
         public System.DateTime OrderDate { get; set; }
         public string dateStr { get { return OrderDate.Date.ToShortDateString(); } }

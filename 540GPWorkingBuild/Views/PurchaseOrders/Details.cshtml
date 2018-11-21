@@ -56,7 +56,7 @@
     </tr>
 
         @foreach (var item in Model.itemList)
-    {
+        {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Inventory.ProductID)
@@ -72,7 +72,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.totalPrice)
-
             </td>
             <td>
                 Return
