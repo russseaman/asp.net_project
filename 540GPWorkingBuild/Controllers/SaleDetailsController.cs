@@ -32,7 +32,46 @@ namespace _540GPWorkingBuild.Controllers
                     SaleVMList.Add(objsvm);
                }
 
+               return View(SaleVMList.OrderByDescending(x => x.SaleID).Take(5).ToList());
+          }
+
+          public ActionResult AddPurchaseItem()
+          {
+               ViewBag.ProductID = new SelectList(db.Inventories, "ProductID", "ProductID");
+               ViewBag.SaleID = new SelectList(db.Sales, "SaleID", "SaleID");
+
+               List<SaleVM> SaleVMList = new List<SaleVM>();
+               var itemList = (from inv in db.Inventories
+                               join saleItem in db.SaleItems on inv.ProductID equals saleItem.ProductID
+                               select new { inv.ProductID, inv.Name, saleItem.Quantity, inv.SalePrice }).ToList();
+
+               foreach (var item in itemList)
+               {
+                    SaleVM saleVM = new SaleVM();
+                    saleVM.ProductID = item.ProductID;
+                    saleVM.Name = item.Name;
+                    saleVM.SIQuantity = item.Quantity;
+                    saleVM.SalePrice = item.SalePrice;
+                    SaleVMList.Add(saleVM);
+               }
+
                return View(SaleVMList);
+          }
+
+          [HttpPost]
+          [ValidateAntiForgeryToken]
+          public ActionResult AddPurchaseItem([Bind(Include = "ProductID,Name,SIQuantity,SalePrice")] SaleVM saleVM)
+          {
+               if (ModelState.IsValid)
+               {
+                    db.SaleVMs.Add(saleVM);
+                    db.SaveChanges();
+                    return RedirectToAction("AddPurchaseItem");
+               }
+
+               ViewBag.ProductID = new SelectList(db.Inventories, "ProductID", "ProductID", saleVM.ProductID);
+               ViewBag.SaleID = new SelectList(db.Sales, "SaleID", "SaleID", saleVM.SaleID);
+               return View(saleVM);
           }
      }
 }
