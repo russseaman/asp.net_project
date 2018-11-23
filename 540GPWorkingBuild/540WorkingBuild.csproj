@@ -332,6 +332,7 @@
     <Content Include="Views\SaleItems\Edit.cshtml" />
     <Content Include="Views\SaleItems\Index.cshtml" />
     <Content Include="Views\SaleDetails\TransactionLookupView.cshtml" />
+    <Content Include="Views\SaleDetails\AddPurchaseItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
