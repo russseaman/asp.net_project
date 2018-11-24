@@ -35,6 +35,12 @@ namespace _540GPWorkingBuild.Controllers
 
                 var ansPO = db.PurchaseOrders.SingleOrDefault(x => x.PurchaseOrderID == givenID);
                 var ansList = db.PurchaseOrderItems.Where(x => x.PurchaseOrderID == givenID);
+                // Declare total line price for each PurchaseOrderItem in the list.. Shoutout to Luke!!
+                foreach (var each in ansList)
+                {
+                    double currLineCost = (double)each.Quantity * (double)each.Inventory.NetPrice;
+                    each.totalPrice = currLineCost;
+                }
                 var ans = new poWithItems(ansPO, ansList);
                 poTotalSet(ans);
                 return ans;

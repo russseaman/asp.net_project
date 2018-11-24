@@ -19,6 +19,11 @@ namespace _540GPWorkingBuild.Controllers
             return (double)p.Quantity * (double)p.Inventory.NetPrice;
         }
 
+        public ActionResult Debug()
+        {
+            return View();
+        }
+
         // GET: PurchaseOrderItems
         public ActionResult Index()
         {
@@ -44,7 +49,8 @@ namespace _540GPWorkingBuild.Controllers
         // GET: PurchaseOrderItems/Create
         public ActionResult Create()
         {
-            ViewBag.ProductID = new SelectList(db.Inventories, "ProductID", "Name");
+            // Third param is shown in the drop down
+            ViewBag.ProductID = new SelectList(db.Inventories, "ProductID", "ProductID");
             ViewBag.PurchaseOrderID = new SelectList(db.PurchaseOrders, "PurchaseOrderID", "PurchaseOrderID");
             return View();
         }
@@ -58,22 +64,45 @@ namespace _540GPWorkingBuild.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 // Instantiate foreign key fields
+
+                // Instantiate foreign key field for Inventory
+                PurchaseOrderItem ans;
+                ans = purchaseOrderItem;
+
                 _540GPWorkingBuild.Models.Inventory inv;
-                inv = db.Inventories.Find(Int32.Parse(Request["ProductID"]));
-                purchaseOrderItem.Inventory = inv;
+                inv = db.Inventories.Find(Int32.Parse(Request["ProductID"].ToString()));
+                ans.Inventory = inv;
+
+                if (inv == null)
+                {
+                    Session["invnull"] = "yes";
+                }
+                else
+                {
+                    Session["invnull"] = "no";
+                }
+
+                //Instantiate foreign key for PurchaseOrder
                 _540GPWorkingBuild.Models.PurchaseOrder po;
-                po = db.PurchaseOrders.Find(Int32.Parse(Request["PurchaseOrderID"]));
-                purchaseOrderItem.PurchaseOrder = po;
-                // Acquire totalPrice attribute
-                //var qty = (double)purchaseOrderItem.Quantity;
-                //var netp = (double)inv.NetPrice;
-                //purchaseOrderItem.totalPrice = qty * netp;
-                // Add to DB
-                db.PurchaseOrderItems.Add(purchaseOrderItem);
+                po = db.PurchaseOrders.Find(Int32.Parse(Request["PurchaseOrderID"].ToString()));
+                ans.PurchaseOrder = po;
+
+                Session["productid"] = Request["ProductID"].ToString();
+                Session["poid"] = Request["PurchaseOrderID"].ToString();
+
+                // NECESSARY
+                db.PurchaseOrderItems.Add(ans);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+
+
+
+
+
+                // RETURN OPTIONS
+                //return RedirectToAction("Index");
+                return RedirectToAction("Debug");
             }
 
             ViewBag.ProductID = new SelectList(db.Inventories, "ProductID", "Name", purchaseOrderItem.ProductID);
