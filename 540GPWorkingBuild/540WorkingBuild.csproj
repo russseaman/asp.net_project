@@ -160,6 +160,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoriesController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Controllers\SaleDetailsController.cs" />
+    <Compile Include="Controllers\SaleItemsController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -216,6 +218,7 @@
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\EmployeeRolesController.cs" />
     <Compile Include="Controllers\AddressesController.cs" />
+    <Compile Include="ViewModels\SaleVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -323,6 +326,12 @@
     <Content Include="Views\Sales\NewSale.cshtml" />
     <Content Include="Views\Inventories\Products.cshtml" />
     <Content Include="Views\Inventories\ViewProducts.cshtml" />
+    <Content Include="Views\SaleItems\Create.cshtml" />
+    <Content Include="Views\SaleItems\Delete.cshtml" />
+    <Content Include="Views\SaleItems\Details.cshtml" />
+    <Content Include="Views\SaleItems\Edit.cshtml" />
+    <Content Include="Views\SaleItems\Index.cshtml" />
+    <Content Include="Views\SaleDetails\TransactionLookupView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
