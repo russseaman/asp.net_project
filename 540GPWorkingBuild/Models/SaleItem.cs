@@ -9,18 +9,20 @@
 
 namespace _540GPWorkingBuild.Models
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class SaleItem
-    {
-        public int SaleItemID { get; set; }
-        public int ProductID { get; set; }
-        public int Quantity { get; set; }
-        public int Returned { get; set; }
-        public int SaleID { get; set; }
-    
-        public virtual Inventory Inventory { get; set; }
-        public virtual Sale Sale { get; set; }
-    }
+     using System;
+     using System.Collections.Generic;
+
+     public partial class SaleItem
+     {
+          public int SaleItemID { get; set; }
+          public int ProductID { get; set; }
+          public int Quantity { get; set; }
+          public int Returned { get; set; }
+          public int SaleID { get; set; }
+
+          //public double totalSalePrice { get { return (double)Quantity * (double)Inventory.SalePrice; } }
+
+          public virtual Inventory Inventory { get; set; }
+          public virtual Sale Sale { get; set; }
+     }
 }
