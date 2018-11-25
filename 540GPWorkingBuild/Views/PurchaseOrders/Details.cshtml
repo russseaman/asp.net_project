@@ -34,8 +34,30 @@
         </dd>
 
         <div>
-        @if ( (Model.itemList.Any()) && (Model.itemList.First().Received == Model.itemList.First().Quantity)){@Html.ActionLink("Return Purchase Order", "Return", "PurchaseOrders")}
-        @if ( !(Model.itemList.Any()) || (Model.itemList.First().Received != Model.itemList.First().Quantity)) {@Html.ActionLink("Cancel Purchase Order", "Cancel", "PurchaseOrders")}
+            <p>
+
+            </p>
+        </div>
+
+        <div>
+        @if ( (Model.itemList.Any()) && (Model.itemList.First().Received == Model.itemList.First().Quantity)){@Html.ActionLink("Return Purchase Order", "Return", "PurchaseOrders", new { id=Model.p.PurchaseOrderID })}
+        @if ( !(Model.itemList.Any()) || (Model.itemList.First().Received != Model.itemList.First().Quantity)) {@Html.ActionLink("Cancel Purchase Order", "Cancel", "PurchaseOrders", new { id = Model.p.PurchaseOrderID })}
+        </div>
+
+        <div>
+            <p>
+                
+            </p>
+        </div>
+
+        <div>
+            @if ((Model.itemList.Any()) && (Model.itemList.First().Received != Model.itemList.First().Quantity)){@Html.ActionLink("Receive Purchase Order", "Receive", "PurchaseOrders", new { id = Model.p.PurchaseOrderID }, null)}
+        </div>
+        
+        <div>
+            <p>
+
+            </p>
         </div>
 
         <div>
@@ -83,7 +105,8 @@
                 @Html.DisplayFor(modelItem => item.totalPrice)
             </td>
             <td>
-                Return
+                @if ((Model.itemList.Any()) && (Model.itemList.First().Received == Model.itemList.First().Quantity)){@Html.ActionLink("Return Item", "Return", "PurchaseOrders", new { id = Model.p.PurchaseOrderID })}
+                @if (!(Model.itemList.Any()) || (Model.itemList.First().Received != Model.itemList.First().Quantity)){@Html.ActionLink("Cancel Item", "Cancel", "PurchaseOrders", new { id = Model.p.PurchaseOrderID })}
             </td>
         </tr>
     }

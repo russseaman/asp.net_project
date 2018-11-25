@@ -168,6 +168,35 @@ namespace _540GPWorkingBuild.Controllers
             return RedirectToAction("Index");
         }
 
+
+
+
+
+        // RECEIVE PURCHASE ORDER
+        public ActionResult Receive(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            poWithItems entireOrder = getOrderWithItems((int)id, db);
+            if (entireOrder == null)
+            {
+                return HttpNotFound();
+            }
+
+            foreach (var line in entireOrder.itemList)
+            {
+                line.Inventory.Quantity += line.Quantity;
+                line.Received = line.Quantity;
+            }
+            db.SaveChanges();
+            return RedirectToAction("Details", new { id = entireOrder.p.PurchaseOrderID });
+        }
+
+
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
