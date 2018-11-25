@@ -40,8 +40,8 @@
         </div>
 
         <div>
-        @if ( (Model.itemList.Any()) && (Model.itemList.First().Received == Model.itemList.First().Quantity)){@Html.ActionLink("Return Purchase Order", "Return", "PurchaseOrders", new { id=Model.p.PurchaseOrderID })}
-        @if ( !(Model.itemList.Any()) || (Model.itemList.First().Received != Model.itemList.First().Quantity)) {@Html.ActionLink("Cancel Purchase Order", "Cancel", "PurchaseOrders", new { id = Model.p.PurchaseOrderID })}
+        @if ( (Model.itemList.Any()) && (Model.itemList.First().Received == Model.itemList.First().Quantity)){@Html.ActionLink("Return Purchase Order", "Return", "PurchaseOrders", new { id=Model.p.PurchaseOrderID }, null)}
+        @if ( !(Model.itemList.Any()) || (Model.itemList.First().Received != Model.itemList.First().Quantity)) {@Html.ActionLink("Cancel Purchase Order", "Cancel", "PurchaseOrders", new { id = Model.p.PurchaseOrderID }, null)}
         </div>
 
         <div>
@@ -61,7 +61,8 @@
         </div>
 
         <div>
-            @Html.ActionLink("Add item", "Create", "PurchaseOrderItems")
+            @if (!(Model.itemList.Any()) || (Model.itemList.First().Received != Model.itemList.First().Quantity)){@Html.ActionLink("Add Item", "Create", "PurchaseOrderItems")}
+            
         </div>
     </dl>
 
@@ -105,8 +106,8 @@
                 @Html.DisplayFor(modelItem => item.totalPrice)
             </td>
             <td>
-                @if ((Model.itemList.Any()) && (Model.itemList.First().Received == Model.itemList.First().Quantity)){@Html.ActionLink("Return Item", "Return", "PurchaseOrders", new { id = Model.p.PurchaseOrderID })}
-                @if (!(Model.itemList.Any()) || (Model.itemList.First().Received != Model.itemList.First().Quantity)){@Html.ActionLink("Cancel Item", "Cancel", "PurchaseOrders", new { id = Model.p.PurchaseOrderID })}
+                @if ((Model.itemList.Any()) && (Model.itemList.First().Received == Model.itemList.First().Quantity)){@Html.ActionLink("Return Item", "Return", "PurchaseOrders", new { id = Model.p.PurchaseOrderID }, null)}
+                @if (!(Model.itemList.Any()) || (Model.itemList.First().Received != Model.itemList.First().Quantity)){@Html.ActionLink("Cancel Item", "Cancel", "PurchaseOrders", new { id = Model.p.PurchaseOrderID }, null)}
             </td>
         </tr>
     }

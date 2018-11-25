@@ -195,6 +195,24 @@ namespace _540GPWorkingBuild.Controllers
         }
 
 
+        // CANCEL A PURCHASE ORDER (bring it to a state of never having existed)
+        public ActionResult Cancel(int? id)
+        {
+            poWithItems entireOrder = getOrderWithItems((int)id, db);
+            foreach (var item in entireOrder.itemList)
+            {
+                db.PurchaseOrderItems.Remove(item);
+            }
+            db.PurchaseOrders.Remove(entireOrder.p);
+            db.SaveChanges();
+
+            //PurchaseOrder purchaseOrder = db.PurchaseOrders.Find(id);
+            //db.PurchaseOrders.Remove(purchaseOrder);
+            //db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
 
 
         protected override void Dispose(bool disposing)
