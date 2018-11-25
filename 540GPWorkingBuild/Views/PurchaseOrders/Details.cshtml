@@ -8,7 +8,7 @@
 <h2>Purchase Order Details</h2>
 
 <div>
-    <h4>PurchaseOrder</h4>
+
     <hr />
     <dl class="dl-horizontal">
 
@@ -33,6 +33,14 @@
             @Html.DisplayFor(model => model.p.totalPrice)
         </dd>
 
+        <div>
+        @if ( (Model.itemList.Any()) && (Model.itemList.First().Received == Model.itemList.First().Quantity)){@Html.ActionLink("Return Purchase Order", "Return", "PurchaseOrders")}
+        @if ( !(Model.itemList.Any()) || (Model.itemList.First().Received != Model.itemList.First().Quantity)) {@Html.ActionLink("Cancel Purchase Order", "Cancel", "PurchaseOrders")}
+        </div>
+
+        <div>
+            @Html.ActionLink("Add item", "Create", "PurchaseOrderItems")
+        </div>
     </dl>
 
 </div>

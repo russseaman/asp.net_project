@@ -82,7 +82,7 @@ namespace _540GPWorkingBuild.Controllers
                 return HttpNotFound();
             }
             var x = getOrderWithItems((int)id, db);
-            //return View(purchaseOrder);
+            Session["currPo"] = x.p.PurchaseOrderID.ToString();
             return View(x);
         }
 

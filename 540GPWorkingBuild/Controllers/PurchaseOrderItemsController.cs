@@ -74,22 +74,16 @@ namespace _540GPWorkingBuild.Controllers
                 inv = db.Inventories.Find(Int32.Parse(Request["ProductID"].ToString()));
                 ans.Inventory = inv;
 
-                if (inv == null)
-                {
-                    Session["invnull"] = "yes";
-                }
-                else
-                {
-                    Session["invnull"] = "no";
-                }
 
                 //Instantiate foreign key for PurchaseOrder
                 _540GPWorkingBuild.Models.PurchaseOrder po;
-                po = db.PurchaseOrders.Find(Int32.Parse(Request["PurchaseOrderID"].ToString()));
+                po = db.PurchaseOrders.Find(Int32.Parse(Session["currPo"].ToString()));
                 ans.PurchaseOrder = po;
 
-                Session["productid"] = Request["ProductID"].ToString();
-                Session["poid"] = Request["PurchaseOrderID"].ToString();
+                //Session["productid"] = Request["ProductID"].ToString();
+                //Session["poid"] = Request["PurchaseOrderID"].ToString();
+
+      
 
                 // NECESSARY
                 db.PurchaseOrderItems.Add(ans);
@@ -102,7 +96,8 @@ namespace _540GPWorkingBuild.Controllers
 
                 // RETURN OPTIONS
                 //return RedirectToAction("Index");
-                return RedirectToAction("Debug");
+                //return RedirectToAction("Debug");
+                return RedirectToAction("Details", "PurchaseOrders", new { id = po.PurchaseOrderID.ToString() });
             }
 
             ViewBag.ProductID = new SelectList(db.Inventories, "ProductID", "Name", purchaseOrderItem.ProductID);
