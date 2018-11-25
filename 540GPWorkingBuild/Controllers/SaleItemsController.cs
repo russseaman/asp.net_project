@@ -39,16 +39,11 @@ namespace _540GPWorkingBuild.Controllers
           // GET: SaleItems/Create
           public ActionResult Create()
           {
-               //System.Diagnostics.Debug.WriteLine("This one?");
                ViewBag.ProductID = new SelectList(db.Inventories, "ProductID", "ProductID");
                ViewBag.SaleID = new SelectList(db.Sales, "SaleID", "SaleID");
-               var activeSaleItems = new List<SaleItem>();
+
                var allSaleItems = db.SaleItems.ToList();
-               foreach (SaleItem si in allSaleItems)
-               {
-                    activeSaleItems.Add(si);
-               }
-               return View(activeSaleItems);
+               return View(allSaleItems);
           }
 
 
@@ -59,14 +54,13 @@ namespace _540GPWorkingBuild.Controllers
           [HttpPost]
           public ActionResult Create([Bind(Include = "SaleItemID,ProductID,Quantity,Returned,SaleID")] SaleItem saleItem)
           {
-               //System.Diagnostics.Debug.WriteLine("Or this one?");
                if (ModelState.IsValid)
                {
                     db.SaleItems.Add(saleItem);
                     db.SaveChanges();
                     return RedirectToAction("Create");
                }
-               //System.Diagnostics.Debug.WriteLine("What about here?");
+
                ViewBag.ProductID = new SelectList(db.Inventories, "ProductID", "ProductID", saleItem.ProductID);
                ViewBag.SaleID = new SelectList(db.Sales, "SaleID", "SaleID", saleItem.SaleID);
                return View(saleItem);

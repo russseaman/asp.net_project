@@ -26,5 +26,10 @@ namespace _540GPWorkingBuild.ViewModels
           public decimal SalePrice { get; set; } // Inventory
           public int IQuantity { get; set; } // Inventory
           public string Name { get; set; } // Inventory
+
+          public double TotalPrice { get; set; }
+          public int TotalItems { get; set; }
+
+          //public double TotalPrice { get { return (double)SIQuantity * (double)SalePrice; } }
      }
 }

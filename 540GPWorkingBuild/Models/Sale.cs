@@ -28,7 +28,7 @@ namespace _540GPWorkingBuild.Models
           [Display(Name = "Sale Date")]
           public System.DateTime SaleDate { get; set; }
           public string saleDateString { get { return SaleDate.Date.ToShortDateString(); } }
-          //public double totalSalePrice { get; set; }
+          
 
           public virtual Customer Customer { get; set; }
           public virtual Employee Employee { get; set; }

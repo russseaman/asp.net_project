@@ -25,12 +25,6 @@ namespace _540GPWorkingBuild.Controllers
                return View();
           }
 
-          public ActionResult TransactionLookup()
-          {
-               var sales = db.Sales.Include(s => s.Customer).Include(s => s.Employee);
-               return View(sales.ToList());
-          }
-
           // GET: Sales/Details/5
           public ActionResult Details(int? id)
           {
@@ -50,17 +44,18 @@ namespace _540GPWorkingBuild.Controllers
           public ActionResult NewSale()
           {
                Sale s = new Sale();
-               //return NewSale(s);
+
                ViewBag.CustomerID = new SelectList(db.Customers, "CustomerID", "FirstName");
                ViewBag.EmployeeID = new SelectList(db.Employees, "EmployeeID", "FirstName");
+
                return View(s);
           }
 
           // POST: Sales/Create
           // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
           // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-          [HttpPost]
           [ValidateAntiForgeryToken]
+          [HttpPost]
           public ActionResult NewSale([Bind(Include = "SaleID,CustomerID,EmployeeID,SaleDate")] Sale sale)
           {
                if (ModelState.IsValid)
@@ -68,6 +63,7 @@ namespace _540GPWorkingBuild.Controllers
                     sale.SaleDate = DateTime.Now;
                     db.Sales.Add(sale);
                     db.SaveChanges();
+                    Session["Current SaleID"] = sale.SaleID;
                     return RedirectToAction("Create", "SaleItems");
                }
 
