@@ -215,6 +215,28 @@ namespace _540GPWorkingBuild.Controllers
             return RedirectToAction("Index");
         }
 
+        // Returns total price of a purchase order
+        // given a purchase order ID
+        public double getTotalPrice(int id)
+        {
+            poWithItems x = getOrderWithItems(id, db);
+            return x.p.totalPrice;
+        }
+
+        public string getStatus(int id)
+        {
+            poWithItems x = getOrderWithItems(id, db);
+            if (!(x.itemList.Any()))
+            {
+                return "OPEN";
+            }
+            if (x.itemList.First().Received == 0)
+            {
+                return "OPEN";
+            }
+            return "CLOSED";
+        }
+
 
         /*
         public ActionResult updateItem(int q)
