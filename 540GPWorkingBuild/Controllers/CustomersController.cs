@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services;
 using _540GPWorkingBuild.Models;
 
 namespace _540GPWorkingBuild.Controllers
@@ -14,8 +15,9 @@ namespace _540GPWorkingBuild.Controllers
     {
         private MusciToolkitDBEntities db = new MusciToolkitDBEntities();
 
-        // GET: Customers
-        public ActionResult Index()
+
+    // GET: Customers
+    public ActionResult Index()
         {
             var customers = db.Customers.Include(c => c.Address);
             return View(customers.ToList());
@@ -128,5 +130,7 @@ namespace _540GPWorkingBuild.Controllers
             }
             base.Dispose(disposing);
         }
+
+
     }
 }

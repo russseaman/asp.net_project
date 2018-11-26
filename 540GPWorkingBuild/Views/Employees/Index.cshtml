@@ -18,6 +18,27 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<div>
+    <p>
+        <input class="searchBox" type="text" id="CustIDSearch" placeholder="CustomerID">
+        <input class="searchBox" type="text" id="PhoneNumSearch" placeholder="Phone Number">
+    </p>
+    <p>
+        <input class="searchBox" type="text" id="FirstNameAuto" placeholder="First Name">
+        <input class="searchBox" type="text" id="LastNameAuto" placeholder="Last Name">
+    </p>
+    @Html.ActionLink("Search", "Search")
+</div>
+
+<script>
+    $(document).ready(function ()
+    {
+        $('$AutoComplete').autocomplete(
+            {
+                source.'@Url.Action("GetAutoComplete", "FirstNameAuto")'
+            });
+    })
+</script>
 <table class="table">
     <tr>
         <th>
