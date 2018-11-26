@@ -11,8 +11,9 @@ namespace _540GPWorkingBuild.Models
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class Employee
+     using System.ComponentModel.DataAnnotations;
+
+     public partial class Employee
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Employee()
@@ -20,11 +21,18 @@ namespace _540GPWorkingBuild.Models
             this.Sales = new HashSet<Sale>();
         }
     
+        [Display(Name ="Employee ID")]
         public int EmployeeID { get; set; }
+        [Display(Name ="First Name")]
         public string FirstName { get; set; }
+        [Display(Name ="Employee Name")]
+        public string EmpFirstName { get; set; } // For Sales/Index page
+        [Display(Name ="Last Name")]
         public string LastName { get; set; }
+        [Display(Name ="Hire Date")]
         public System.DateTime HireDate { get; set; }
         public int RoleID { get; set; }
+        [Display(Name ="Phone Number")]
         public string PhoneNum { get; set; }
         public int AddressID { get; set; }
         public string Email { get; set; }
@@ -32,6 +40,7 @@ namespace _540GPWorkingBuild.Models
         public int Active { get; set; }
     
         public virtual Address Address { get; set; }
+        [Display(Name ="Employee Role")]
         public virtual EmployeeRole EmployeeRole { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sale> Sales { get; set; }

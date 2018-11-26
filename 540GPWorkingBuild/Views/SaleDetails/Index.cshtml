@@ -1,0 +1,18 @@
+﻿@model IEnumerable<_540GPWorkingBuild.ViewModels.SaleVM>
+
+@{
+     ViewBag.Title = "Sales";
+}
+
+<h2>Sales Home Page</h2>
+<p>Sales and Returns - <b>Written by Luke</b></p>
+
+<p>
+     @Html.ActionLink("New Sale", "NewSaleView")
+</p>
+<p>
+     @Html.ActionLink("Return", "Return")
+</p>
+<p>
+     @Html.ActionLink("Transaction Lookup", "TransactionLookupView")
+</p>

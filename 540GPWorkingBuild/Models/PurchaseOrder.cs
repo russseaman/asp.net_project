@@ -11,21 +11,20 @@ namespace _540GPWorkingBuild.Models
 {
     using System;
     using System.Collections.Generic;
+     using System.ComponentModel.DataAnnotations;
 
-    public partial class PurchaseOrder
+     public partial class PurchaseOrder
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PurchaseOrder()
         {
             this.PurchaseOrderItems = new HashSet<PurchaseOrderItem>();
         }
-
+    
         public int PurchaseOrderID { get; set; }
+        [Display(Name ="Order Date")]
         public System.DateTime OrderDate { get; set; }
-        public string dateStr { get { return OrderDate.Date.ToShortDateString(); } }
-        public double totalPrice { get; set; }
-        public bool isReceived { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PurchaseOrderItem> PurchaseOrderItems { get; set; }
     }

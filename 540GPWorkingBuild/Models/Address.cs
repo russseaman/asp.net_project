@@ -11,8 +11,9 @@ namespace _540GPWorkingBuild.Models
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class Address
+     using System.ComponentModel.DataAnnotations;
+
+     public partial class Address
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Address()
@@ -22,10 +23,13 @@ namespace _540GPWorkingBuild.Models
         }
     
         public int AddressID { get; set; }
+        [Display(Name ="Street Address")]
         public string StreetAddress { get; set; }
+        [Display(Name ="Apartment Number")]
         public string AptNumber { get; set; }
         public string City { get; set; }
         public string State { get; set; }
+        [Display(Name ="Zip Code")]
         public string ZipCode { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
