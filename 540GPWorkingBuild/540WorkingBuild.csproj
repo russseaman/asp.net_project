@@ -51,10 +51,21 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Azure.Management.Cdn, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.Management.Cdn.4.0.2-preview\lib\net452\Microsoft.Azure.Management.Cdn.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Rest.ClientRuntime, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Rest.ClientRuntime.2.3.17\lib\net452\Microsoft.Rest.ClientRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Rest.ClientRuntime.Azure, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Rest.ClientRuntime.Azure.3.3.18\lib\net452\Microsoft.Rest.ClientRuntime.Azure.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -157,6 +168,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\CustomerSearchController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoriesController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
@@ -322,6 +334,7 @@
     <Content Include="Views\Reports\EmployeeReport.cshtml" />
     <Content Include="Views\Reports\ProductReport.cshtml" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Content Include="Views\Sales\Return.cshtml" />
     <Content Include="Views\Sales\TransactionLookup.cshtml" />
     <Content Include="Views\Sales\NewSale.cshtml" />
@@ -335,14 +348,23 @@
     <Content Include="Views\SaleDetails\TransactionLookupView.cshtml" />
 =======
 
+=======
+>>>>>>> 33cdf2eddad47b34c4257d89509e4a89326da5ba
     <Content Include="Views\Sales\Return.cshtml" />
     <Content Include="Views\Sales\TransactionLookup.cshtml" />
     <Content Include="Views\Sales\NewSale.cshtml" />
-
     <Content Include="Views\Inventories\Products.cshtml" />
     <Content Include="Views\Inventories\ViewProducts.cshtml" />
+<<<<<<< HEAD
 
 >>>>>>> development
+=======
+    <Content Include="Views\CustomerSearch\Create.cshtml" />
+    <Content Include="Views\CustomerSearch\Delete.cshtml" />
+    <Content Include="Views\CustomerSearch\Details.cshtml" />
+    <Content Include="Views\CustomerSearch\Edit.cshtml" />
+    <Content Include="Views\CustomerSearch\Index.cshtml" />
+>>>>>>> 33cdf2eddad47b34c4257d89509e4a89326da5ba
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
