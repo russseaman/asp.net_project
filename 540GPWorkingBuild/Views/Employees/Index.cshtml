@@ -1,42 +1,14 @@
 ﻿@model IEnumerable<_540GPWorkingBuild.Models.Employee>
 
 @{
-    ViewBag.Title = "Employees";
+    ViewBag.Title = "Index";
 }
 
-<h2>Employees</h2>
-<p>Customer/Employee Management - <b>Written by Russ</b></p>
-<h3>Requirements</h3>
-<ul>
-    <li>Create landing page based from mockup</li>
-    <li>View, add, delete, and edit customers</li>
-    <li>View, add, delete, and edit employees</li>
-    <li>Access historical reports based on customer’s purchase history</li>
-    <li>Reference SRS/Proposal/Mockups for complete guidelines and functionality</li>
-</ul>
+<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<h3>Employee Lookup</h3>
-<p>Please lookup an employee by inputing one of the search fields below:</p>
-<div>
-    <div>
-        <p>
-            <input class="searchBox ui-autocomplete" type="search" placeholder="Customer ID" data-autocomplete="@Url.Action("AutoComplete", "CustID")" />
-            <input class="searchBox ui-autocomplete" type="search" placeholder="Phone Number" data-autocomplete="@Url.Action("AutoComplete","PhoneNumSearch")" />
-        </p>
-    </div>
-    <div>
-        <p>
-
-            <input class="searchBox ui-autocomplete" type="search" placeholder="First Name" data-autocomplete="@Url.Action("AutoComplete", "CustFirst")" />
-            <input class="searchBox ui-autocomplete" type="search" placeholder="Last Name" data-autocomplete="@Url.Action("AutoComplete","CustLast")" />
-        </p>
-    </div>
-</div>
-<input type="button" class="button btn-info" value="Submit" onclick="location.href='@Url.Action("")'" />
-
 <table class="table">
     <tr>
         <th>
@@ -55,16 +27,21 @@
             @Html.DisplayNameFor(model => model.Email)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Address.StreetAddress)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EmployeeRole)
+            @Html.DisplayNameFor(model => model.EmployeeRole.EmpRole)
         </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
+@foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.FirstName)
@@ -82,17 +59,23 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Active)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Address.StreetAddress)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.EmployeeRole.EmpRole)
         </td>
         <td>
-            <input type="button" class="btn btn-info" value="Edit" onclick="location.href='@Url.Action("edit", new { id = item.EmployeeID})'" />
-            <input type="button" class="btn btn-info" value="Details" onclick="location.href='@Url.Action("Details", new { id = item.EmployeeID})'" />
-            <input type="button" class="btn btn-info" value="Delete" onclick="location.href='@Url.Action("Delete", new { id = item.EmployeeID})'" />
+            @Html.ActionLink("Edit", "Edit", new { id=item.EmployeeID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EmployeeID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EmployeeID })
         </td>
     </tr>
-      }
+}
 
 </table>

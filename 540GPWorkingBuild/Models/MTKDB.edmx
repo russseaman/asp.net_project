@@ -405,16 +405,6 @@
           <NavigationProperty Name="Inventory" Relationship="Self.FK_SaleItems_Inventory" FromRole="SaleItems" ToRole="Inventory" />
           <NavigationProperty Name="Sale" Relationship="Self.FK_SaleItems_Sale" FromRole="SaleItems" ToRole="Sale" />
         </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <Association Name="FK_Customer_Address">
           <End Role="Address" Type="Self.Address" Multiplicity="1" />
           <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
@@ -546,7 +536,6 @@
           <EntitySet Name="PurchaseOrderItems" EntityType="Self.PurchaseOrderItem" />
           <EntitySet Name="Sales" EntityType="Self.Sale" />
           <EntitySet Name="SaleItems" EntityType="Self.SaleItem" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <AssociationSet Name="FK_Customer_Address" Association="Self.FK_Customer_Address">
             <End Role="Address" EntitySet="Addresses" />
             <End Role="Customer" EntitySet="Customers" />

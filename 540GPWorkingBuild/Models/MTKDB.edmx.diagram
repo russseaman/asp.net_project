@@ -15,7 +15,6 @@
         <EntityTypeShape EntityType="MusciToolkitDBModel.PurchaseOrderItem" Width="1.5" PointX="7.5" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MusciToolkitDBModel.Sale" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MusciToolkitDBModel.SaleItem" Width="1.5" PointX="7.5" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MusciToolkitDBModel.sysdiagram" Width="1.5" PointX="5.75" PointY="2.625" IsExpanded="true" />
         <AssociationConnector Association="MusciToolkitDBModel.FK_Customer_Address" ManuallyRouted="false" />
         <AssociationConnector Association="MusciToolkitDBModel.FK_Employee_Address" ManuallyRouted="false" />
         <AssociationConnector Association="MusciToolkitDBModel.FK_Inventory_Category" ManuallyRouted="false" />

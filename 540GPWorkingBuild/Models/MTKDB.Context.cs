@@ -35,6 +35,5 @@ namespace _540GPWorkingBuild.Models
         public virtual DbSet<PurchaseOrderItem> PurchaseOrderItems { get; set; }
         public virtual DbSet<Sale> Sales { get; set; }
         public virtual DbSet<SaleItem> SaleItems { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

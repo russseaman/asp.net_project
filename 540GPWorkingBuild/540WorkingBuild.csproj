@@ -157,6 +157,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoriesController.cs" />
     <Compile Include="Controllers\PurchaseOrderItemsController.cs" />
@@ -211,11 +212,7 @@
     <Compile Include="Models\SaleItem.cs">
       <DependentUpon>MTKDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>MTKDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\EmployeeRolesController.cs" />
     <Compile Include="Controllers\AddressesController.cs" />
     <Compile Include="ViewModels\SaleVM.cs" />
@@ -276,11 +273,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Employees\Create.cshtml" />
-    <Content Include="Views\Employees\Delete.cshtml" />
-    <Content Include="Views\Employees\Details.cshtml" />
-    <Content Include="Views\Employees\Edit.cshtml" />
-    <Content Include="Views\Employees\Index.cshtml" />
     <Content Include="Views\EmployeeRoles\Create.cshtml" />
     <Content Include="Views\EmployeeRoles\Delete.cshtml" />
     <Content Include="Views\EmployeeRoles\Details.cshtml" />
@@ -336,6 +328,11 @@
     <Content Include="Views\PurchaseOrderItems\Index.cshtml" />
     <Content Include="Views\PurchaseOrderItems\Debug.cshtml" />
     <Content Include="Views\PurchaseOrderItems\ReturnItem.cshtml" />
+    <Content Include="Views\Employees\Create.cshtml" />
+    <Content Include="Views\Employees\Delete.cshtml" />
+    <Content Include="Views\Employees\Details.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

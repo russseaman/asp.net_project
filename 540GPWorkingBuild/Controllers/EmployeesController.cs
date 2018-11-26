@@ -3,35 +3,33 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using _540GPWorkingBuild.Models;
 
-namespace _540GPWorkingBuild.Views
+namespace _540GPWorkingBuild.Controllers
 {
     public class EmployeesController : Controller
     {
         private MusciToolkitDBEntities db = new MusciToolkitDBEntities();
 
-        public ActionResult Index()
-        {
-            var employee = db.Employees.Include(e => e.Address).Include(e => e.EmployeeRole);
-            return View(employee.ToList());
-        }
-        
-
         // GET: Employees
-
+        public async Task<ActionResult> Index()
+        {
+            var employees = db.Employees.Include(e => e.Address).Include(e => e.EmployeeRole);
+            return View(await employees.ToListAsync());
+        }
 
         // GET: Employees/Details/5
-        public ActionResult Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
+            Employee employee = await db.Employees.FindAsync(id);
             if (employee == null)
             {
                 return HttpNotFound();
@@ -52,12 +50,12 @@ namespace _540GPWorkingBuild.Views
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmployeeID,FirstName,LastName,HireDate,RoleID,PhoneNum,AddressID,Email,Password,Active")] Employee employee)
+        public async Task<ActionResult> Create([Bind(Include = "EmployeeID,FirstName,LastName,HireDate,RoleID,PhoneNum,AddressID,Email,Password,Active")] Employee employee)
         {
             if (ModelState.IsValid)
             {
                 db.Employees.Add(employee);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
@@ -67,13 +65,13 @@ namespace _540GPWorkingBuild.Views
         }
 
         // GET: Employees/Edit/5
-        public ActionResult Edit(int? id)
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
+            Employee employee = await db.Employees.FindAsync(id);
             if (employee == null)
             {
                 return HttpNotFound();
@@ -88,12 +86,12 @@ namespace _540GPWorkingBuild.Views
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EmployeeID,FirstName,LastName,HireDate,RoleID,PhoneNum,AddressID,Email,Password,Active")] Employee employee)
+        public async Task<ActionResult> Edit([Bind(Include = "EmployeeID,FirstName,LastName,HireDate,RoleID,PhoneNum,AddressID,Email,Password,Active")] Employee employee)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(employee).State = EntityState.Modified;
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             ViewBag.AddressID = new SelectList(db.Addresses, "AddressID", "StreetAddress", employee.AddressID);
@@ -102,13 +100,13 @@ namespace _540GPWorkingBuild.Views
         }
 
         // GET: Employees/Delete/5
-        public ActionResult Delete(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
+            Employee employee = await db.Employees.FindAsync(id);
             if (employee == null)
             {
                 return HttpNotFound();
@@ -119,11 +117,11 @@ namespace _540GPWorkingBuild.Views
         // POST: Employees/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Employee employee = db.Employees.Find(id);
+            Employee employee = await db.Employees.FindAsync(id);
             db.Employees.Remove(employee);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
