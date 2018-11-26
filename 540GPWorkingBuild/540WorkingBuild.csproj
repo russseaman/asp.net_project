@@ -321,6 +321,7 @@
     <Content Include="Views\Reports\StoreReport.cshtml" />
     <Content Include="Views\Reports\EmployeeReport.cshtml" />
     <Content Include="Views\Reports\ProductReport.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Sales\Return.cshtml" />
     <Content Include="Views\Sales\TransactionLookup.cshtml" />
     <Content Include="Views\Sales\NewSale.cshtml" />
@@ -332,6 +333,16 @@
     <Content Include="Views\SaleItems\Edit.cshtml" />
     <Content Include="Views\SaleItems\Index.cshtml" />
     <Content Include="Views\SaleDetails\TransactionLookupView.cshtml" />
+=======
+
+    <Content Include="Views\Sales\Return.cshtml" />
+    <Content Include="Views\Sales\TransactionLookup.cshtml" />
+    <Content Include="Views\Sales\NewSale.cshtml" />
+
+    <Content Include="Views\Inventories\Products.cshtml" />
+    <Content Include="Views\Inventories\ViewProducts.cshtml" />
+
+>>>>>>> development
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
