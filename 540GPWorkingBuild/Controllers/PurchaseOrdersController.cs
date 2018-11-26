@@ -38,17 +38,8 @@ namespace _540GPWorkingBuild.Controllers
                 // Declare total line price for each PurchaseOrderItem in the list.. Shoutout to Luke!!
                 foreach (var each in ansList)
                 {
-                    // Set total line cost
-                    if ((each.PurchaseOrder.isReceived))
-                    {
-                        double currLineCost = (double)each.Quantity * (double)each.Inventory.NetPrice;
-                        each.totalPrice = currLineCost;
-                    }
-                    else
-                    {
-                        double currLineCost = ((double)each.Quantity * (double)each.Inventory.NetPrice) - ((double)each.qtyReturned * (double)each.Inventory.NetPrice);
-                        each.totalPrice = currLineCost;
-                    }
+                    double currLineCost = (double)each.Quantity * (double)each.Inventory.NetPrice;
+                    each.totalPrice = currLineCost;
                 }
                 db.SaveChanges();
                 var ans = new poWithItems(ansPO, ansList);
@@ -63,16 +54,8 @@ namespace _540GPWorkingBuild.Controllers
             double ans = 0;
             foreach(var line in allItems)
             {
-                if (line.PurchaseOrder.isReceived)
-                {
-                    double lineTotal = line.Quantity * (double)line.Inventory.NetPrice;
-                    ans += lineTotal;
-                }
-                else
-                {
-                    double lineTotal = (line.Quantity * (double)line.Inventory.NetPrice) - ((double)line.qtyReturned * (double)line.Inventory.NetPrice);
-                    ans += lineTotal;
-                }
+                double lineTotal = line.Quantity * (double)line.Inventory.NetPrice;
+                ans += lineTotal;
             }
             x.p.totalPrice = ans;
             return;
@@ -207,9 +190,9 @@ namespace _540GPWorkingBuild.Controllers
             foreach (var line in entireOrder.itemList)
             {
                 line.Inventory.Quantity += line.Quantity;
-                line.Received = line.Quantity;
+                // Set receieved to 'true'
+                line.Received = 1;
             }
-            entireOrder.p.isReceived = true;
             db.SaveChanges();
             return RedirectToAction("Details", new { id = entireOrder.p.PurchaseOrderID });
         }

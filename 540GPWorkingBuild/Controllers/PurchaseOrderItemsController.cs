@@ -226,6 +226,17 @@ namespace _540GPWorkingBuild.Controllers
             }
         }
 
+
+
+        // CANCEL PURCHASE ORDER ITEM (as if the item never existed)
+        public ActionResult Cancel(int? id)
+        {
+            var x = db.PurchaseOrderItems.Find((int)id);
+            db.PurchaseOrderItems.Remove(x);
+            db.SaveChanges();
+            return RedirectToAction("Details", "PurchaseOrders", new { area = Session["currPo"].ToString() });
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
