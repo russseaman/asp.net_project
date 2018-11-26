@@ -1,0 +1,52 @@
+﻿@model IEnumerable<_540GPWorkingBuild.ViewModels.SaleVM>
+@{
+     ViewBag.Title = "CheckoutView";
+}
+
+<h2>CheckoutView</h2>
+
+<p style="text-align:left;">
+     Thanks for shopping with us
+     <span style="float:right;">864-864-8644</span>
+</p>
+<p style="text-align:left;">
+     Transaction ID: @Html.Name(Session["Current SaleID"].ToString())
+     <span style="float:right;">Date: </span>
+</p>
+<p>Employee ID: @Html.DisplayName(Session["UserID"].ToString())</p>
+
+<table class="table">
+     <tr>
+          <th>
+               @Html.DisplayNameFor(model => model.ProductID)
+          </th>
+          <th>
+               @Html.DisplayNameFor(model => model.Name)
+          </th>
+          <th>
+               @Html.DisplayNameFor(model => model.SIQuantity)
+          </th>
+          <th>
+               @Html.DisplayNameFor(model => model.SalePrice)
+          </th>
+          <th></th>
+     </tr>
+
+     @foreach (var item in Model.Where(x => x.SaleID == Int32.Parse(Session["Current SaleID"].ToString())))
+     {
+          <tr>
+               <td>
+                    @Html.DisplayFor(modelItem => item.ProductID)
+               </td>
+               <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+               </td>
+               <td>
+                    @Html.DisplayFor(modelItem => item.SIQuantity)
+               </td>
+               <td>
+                    @Html.DisplayFor(modelItem => item.TotalSalePrice)
+               </td>
+          </tr>
+     }
+</table>

@@ -21,13 +21,13 @@
                @Html.DisplayNameFor(model => model.SaleDate)
           </th>
           <th>
-               @Html.DisplayNameFor(model => model.SIQuantity)
+               @Html.DisplayNameFor(model => model.TotalSaleItems)
           </th>
           <th>
                @Html.DisplayNameFor(model => model.Returned)
           </th>
           <th>
-               @Html.DisplayNameFor(model => model.TotalPrice)
+               @Html.DisplayNameFor(model => model.TotalSalePrice)
           </th>
           <th></th>
      </tr>
@@ -48,7 +48,7 @@
                     @Html.DisplayFor(modelItem => item.SaleDate)
                </td>
                <td>
-                    @Html.DisplayFor(modelItem => item.SIQuantity)
+                    @Html.DisplayFor(modelItem => item.TotalSaleItems)
                </td>
                <td>
                     @if (item.Returned == 0)
@@ -57,7 +57,7 @@
                     {@Html.DisplayName("RETURNED")}
                </td>
                <td>
-                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                    @Html.DisplayFor(modelItem => item.TotalSalePrice)
                </td>
                <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.SaleID }) |
