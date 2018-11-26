@@ -16,17 +16,10 @@ namespace _540GPWorkingBuild.Views
 
         public ActionResult Index()
         {
-            return View();
+            var employee = db.Employees.Include(e => e.Address).Include(e => e.EmployeeRole);
+            return View(employee.ToList());
         }
         
-        [HttpPost]
-        public JsonResult GetCustFirstName(String CustFirst)
-        {
-            var FirstNames = (from fn in db.Customers
-                              where fn.FirstName.StartsWith(CustFirst)
-                              select new { fn.FirstName, fn.CustomerID });
-            return Json(FirstNames, JsonRequestBehavior.AllowGet);
-        }
 
         // GET: Employees
 

@@ -24,35 +24,33 @@
     <h3>Customer Lookup</h3>
     <p>Please lookup a customer by inputing one of the search fields below:</p>
     <div>
-        <div>
-            <p>
-                <form asp-controller="Customers" asp-action="Index">
-            <p>
-                Customer ID: <input type="text" name="SearchID">
-                <input type="submit" value="Filter" />
-            </p>
-            </form>
-            <input class="form-control autocomplete" type="search" placeholder="Customer ID" data-autocomplete="@Url.Action("SearchID", "CustID")" />
-            <input class="searchBox ui-autocomplete" type="search" placeholder="Phone Number" data-autocomplete="@Url.Action("AutoComplete","PhoneNumSearch")" />
-            </p>
-        </div>
-        <div>
-            <p>
-
-                <input class="searchBox ui-autocomplete" type="search" placeholder="First Name" data-autocomplete="@Url.Action("AutoComplete", "CustFirst")" />
-                <input class="searchBox ui-autocomplete" type="search" placeholder="Last Name" data-autocomplete="@Url.Action("AutoComplete","CustLast")" />
-            </p>
-        </div>
-    </div>
-    <input type="button" class="button btn-info" value="Submit" onclick="location.href='@Url.Action("")'" />
-    
-    <form asp-controller="Customers" asp-action="Index">
         <p>
-            Customer ID: <input type="text" name="SearchID">
-            <input type="submit" value="Filter" />
+            <span>
+                <input class="searchBox ui-autocomplete" type="search" placeholder="Customer ID" data-autocomplete="@Url.Action("SearchID", "CustID")" />
+                <input class="searchBox ui-autocomplete" type="search" placeholder="Phone Number" data-autocomplete="@Url.Action("AutoComplete","PhoneNumSearch")" />
+            </span>
         </p>
-    </form>
+        <p>
+            <Span>
+                <input class="searchBox ui-autocomplete" type="search" placeholder="First Name" data-autocomplete="@Url.Action("AutoComplete", "GetCustFirstName")" />
+                <input class="searchBox ui-autocomplete" type="search" placeholder="Last Name" data-autocomplete="@Url.Action("AutoComplete","CustLast")" />
+            </Span>
+        </p>
+    </div>
 }
+    <div id="search">
+        <asp:TextBox ID="txtSearchMaster" runat="server"></asp:TextBox>
+        <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" />
+    </div>
+    <div class="navbar-left" style="margin-top:8px;">
+        @using (Html.BeginForm("Index", "Customers", FormMethod.Get))
+        {
+            <ul class="nav navbar-nav">
+                <li>@Html.TextBox("id", ViewBag.CurrentFilter as string)</li>
+                <li><input type="submit" value="Customers" /></li>
+            </ul>
+        }
+    </div>
 
 <table class="table">
     <tr>
