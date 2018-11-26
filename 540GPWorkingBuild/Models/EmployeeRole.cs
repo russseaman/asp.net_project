@@ -11,9 +11,8 @@ namespace _540GPWorkingBuild.Models
 {
     using System;
     using System.Collections.Generic;
-     using System.ComponentModel.DataAnnotations;
-
-     public partial class EmployeeRole
+    
+    public partial class EmployeeRole
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public EmployeeRole()
@@ -22,7 +21,6 @@ namespace _540GPWorkingBuild.Models
         }
     
         public int RoleID { get; set; }
-        [Display(Name ="Employee Role")]
         public string EmpRole { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
