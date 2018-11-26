@@ -39,7 +39,7 @@ namespace _540GPWorkingBuild.Controllers
                 foreach (var each in ansList)
                 {
                     // Set total line cost
-                    if (each.qtyReturned == 0)
+                    if ((each.PurchaseOrder.isReceived))
                     {
                         double currLineCost = (double)each.Quantity * (double)each.Inventory.NetPrice;
                         each.totalPrice = currLineCost;
@@ -50,6 +50,7 @@ namespace _540GPWorkingBuild.Controllers
                         each.totalPrice = currLineCost;
                     }
                 }
+                db.SaveChanges();
                 var ans = new poWithItems(ansPO, ansList);
                 poTotalSet(ans);
                 return ans;
@@ -62,7 +63,7 @@ namespace _540GPWorkingBuild.Controllers
             double ans = 0;
             foreach(var line in allItems)
             {
-                if (line.qtyReturned == 0)
+                if (line.PurchaseOrder.isReceived)
                 {
                     double lineTotal = line.Quantity * (double)line.Inventory.NetPrice;
                     ans += lineTotal;
