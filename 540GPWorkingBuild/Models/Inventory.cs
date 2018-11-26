@@ -39,6 +39,7 @@ namespace _540GPWorkingBuild.Models
         [Required]
         public int CategoryID { get; set; }
         public int Active { get; set; }
+        public string dropdownStr { get { return Name + " [ID: " + ProductID.ToString() + "]"; } }
     
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

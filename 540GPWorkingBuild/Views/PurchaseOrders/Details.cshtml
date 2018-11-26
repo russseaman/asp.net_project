@@ -45,7 +45,7 @@
             </div>
         -->
         <div>
-            @if ((!(Model.itemList.Any())) || ((Model.itemList.Any()) && (Model.itemList.First().Received == 1))){@Html.ActionLink("Cancel Purchase Order", "Cancel", "PurchaseOrders", new { id = Model.p.PurchaseOrderID }, null)}
+            @if ((!(Model.itemList.Any())) || ((Model.itemList.Any()) && (Model.itemList.First().Received == 0))){@Html.ActionLink("Cancel Purchase Order", "Cancel", "PurchaseOrders", new { id = Model.p.PurchaseOrderID }, null)}
         </div>
         <div>
             <p>

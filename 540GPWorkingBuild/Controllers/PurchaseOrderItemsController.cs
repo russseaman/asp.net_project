@@ -50,7 +50,7 @@ namespace _540GPWorkingBuild.Controllers
         public ActionResult Create()
         {
             // Third param is shown in the drop down
-            ViewBag.ProductID = new SelectList(db.Inventories, "ProductID", "ProductID");
+            ViewBag.ProductID = new SelectList(db.Inventories, "ProductID", "dropdownStr");
             ViewBag.PurchaseOrderID = new SelectList(db.PurchaseOrders, "PurchaseOrderID", "PurchaseOrderID");
             return View();
         }
@@ -81,10 +81,6 @@ namespace _540GPWorkingBuild.Controllers
                 // Set initial received value to zero
                 ans.Received = 0;
 
-                // Set original quantity
-                //int original = Int32.Parse(Request["Quantity"].ToString());
-                //ans.origQty = original;
-
                 // Save database
                 db.PurchaseOrderItems.Add(ans);
                 db.SaveChanges();
@@ -93,7 +89,7 @@ namespace _540GPWorkingBuild.Controllers
                 return RedirectToAction("Details", "PurchaseOrders", new { id = po.PurchaseOrderID.ToString() });
             }
 
-            ViewBag.ProductID = new SelectList(db.Inventories, "ProductID", "Name", purchaseOrderItem.ProductID);
+            ViewBag.ProductID = new SelectList(db.Inventories, "ProductID", "dropdownStr", purchaseOrderItem.ProductID);
             ViewBag.PurchaseOrderID = new SelectList(db.PurchaseOrders, "PurchaseOrderID", "PurchaseOrderID", purchaseOrderItem.PurchaseOrderID);
             return View(purchaseOrderItem);
         }

@@ -11,11 +11,13 @@ namespace _540GPWorkingBuild.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class PurchaseOrderItem
     {
         public int POItemID { get; set; }
         public int ProductID { get; set; }
+       [Range(0, 9999999999999, ErrorMessage = "Quantity must be a postive number.")]
         public int Quantity { get; set; }
         public int Received { get; set; }
         public int PurchaseOrderID { get; set; }
