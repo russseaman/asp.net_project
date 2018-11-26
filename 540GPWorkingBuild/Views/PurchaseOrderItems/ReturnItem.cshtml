@@ -1,0 +1,20 @@
+﻿@model _540GPWorkingBuild.Models.PurchaseOrderItem
+
+@{
+    ViewBag.Title = "ReturnItem";
+}
+
+<h2>Return Item</h2>
+
+<h4>
+    Enter quantity to return:
+</h4>
+<form method="POST" action="ProcessReturn">
+
+    <input id="qty" name="qty" type="Text" />
+    <input value="Submit" type="Submit" />
+
+</form>
+<div>
+    @Html.Name(Session["POReturnError"].ToString())
+</div>

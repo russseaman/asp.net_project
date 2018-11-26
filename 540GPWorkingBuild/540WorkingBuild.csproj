@@ -159,6 +159,8 @@
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoriesController.cs" />
+    <Compile Include="Controllers\PurchaseOrderItemsController.cs" />
+    <Compile Include="Controllers\PurchaseOrdersController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -316,14 +318,23 @@
     <Content Include="Views\Reports\StoreReport.cshtml" />
     <Content Include="Views\Reports\EmployeeReport.cshtml" />
     <Content Include="Views\Reports\ProductReport.cshtml" />
-
     <Content Include="Views\Sales\Return.cshtml" />
     <Content Include="Views\Sales\TransactionLookup.cshtml" />
     <Content Include="Views\Sales\NewSale.cshtml" />
-
     <Content Include="Views\Inventories\Products.cshtml" />
     <Content Include="Views\Inventories\ViewProducts.cshtml" />
-
+    <Content Include="Views\PurchaseOrders\Create.cshtml" />
+    <Content Include="Views\PurchaseOrders\Delete.cshtml" />
+    <Content Include="Views\PurchaseOrders\Details.cshtml" />
+    <Content Include="Views\PurchaseOrders\Edit.cshtml" />
+    <Content Include="Views\PurchaseOrders\Index.cshtml" />
+    <Content Include="Views\PurchaseOrderItems\Create.cshtml" />
+    <Content Include="Views\PurchaseOrderItems\Delete.cshtml" />
+    <Content Include="Views\PurchaseOrderItems\Details.cshtml" />
+    <Content Include="Views\PurchaseOrderItems\Edit.cshtml" />
+    <Content Include="Views\PurchaseOrderItems\Index.cshtml" />
+    <Content Include="Views\PurchaseOrderItems\Debug.cshtml" />
+    <Content Include="Views\PurchaseOrderItems\ReturnItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
