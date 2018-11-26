@@ -218,6 +218,7 @@
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\EmployeeRolesController.cs" />
     <Compile Include="Controllers\AddressesController.cs" />
+    <Compile Include="ViewModels\SaleVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
