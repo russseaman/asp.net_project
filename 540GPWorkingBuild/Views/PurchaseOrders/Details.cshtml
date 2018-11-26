@@ -38,22 +38,15 @@
 
             </p>
         </div>
-
+        <!--
+            <div>
+                @if ((Model.itemList.Any()) && (Model.itemList.First().Received == Model.itemList.First().Quantity))
+                {@Html.ActionLink("Return Purchase Order", "Return", "PurchaseOrders", new { id = Model.p.PurchaseOrderID }, null)}
+            </div>
+        -->
         <div>
-        @if ( (Model.itemList.Any()) && (Model.itemList.First().Received == Model.itemList.First().Quantity)){@Html.ActionLink("Return Purchase Order", "Return", "PurchaseOrders", new { id=Model.p.PurchaseOrderID }, null)}
-        @if ( !(Model.itemList.Any()) || (Model.itemList.First().Received != Model.itemList.First().Quantity)) {@Html.ActionLink("Cancel Purchase Order", "Cancel", "PurchaseOrders", new { id = Model.p.PurchaseOrderID }, null)}
+            @if (!(Model.itemList.Any()) || (((Model.itemList.First().Received != Model.itemList.First().Quantity)) && Model.itemList.First().qtyReturned == 0)){@Html.ActionLink("Cancel Purchase Order", "Cancel", "PurchaseOrders", new { id = Model.p.PurchaseOrderID }, null)}
         </div>
-
-        <div>
-            <p>
-                
-            </p>
-        </div>
-
-        <div>
-            @if ((Model.itemList.Any()) && (Model.itemList.First().Received != Model.itemList.First().Quantity)){@Html.ActionLink("Receive Purchase Order", "Receive", "PurchaseOrders", new { id = Model.p.PurchaseOrderID }, null)}
-        </div>
-        
         <div>
             <p>
 
@@ -61,8 +54,19 @@
         </div>
 
         <div>
-            @if (!(Model.itemList.Any()) || (Model.itemList.First().Received != Model.itemList.First().Quantity)){@Html.ActionLink("Add Item", "Create", "PurchaseOrderItems")}
-            
+            @if (!(Model.p.isReceived)){@Html.ActionLink("Receive Purchase Order", "Receive", "PurchaseOrders", new { id = Model.p.PurchaseOrderID }, null)}
+        </div>
+
+        <div>
+            <p>
+
+            </p>
+        </div>
+
+        <div>
+            @if (!(Model.itemList.Any()) || Model.itemList.First().Received == 0)
+            {@Html.ActionLink("Add Item", "Create", "PurchaseOrderItems")}
+
         </div>
     </dl>
 
@@ -76,13 +80,16 @@
             Product Name
         </th>
         <th>
-            Net Price ea
+            Net Price (ea)
         </th>
         <th>
-            Quantity
+            Qty. [original]
         </th>
         <th>
-            Net price (line total)
+            Net price (line)
+        </th>
+        <th>
+            @if (Model.itemList.Any() && (Model.itemList.First().Received > 0)){@Html.Name("Qty. [returned]")}
         </th>
         <th></th>
     </tr>
@@ -106,8 +113,11 @@
                 @Html.DisplayFor(modelItem => item.totalPrice)
             </td>
             <td>
-                @if ((Model.itemList.Any()) && (Model.itemList.First().Received == Model.itemList.First().Quantity)){@Html.ActionLink("Return Item", "Return", "PurchaseOrders", new { id = Model.p.PurchaseOrderID }, null)}
-                @if (!(Model.itemList.Any()) || (Model.itemList.First().Received != Model.itemList.First().Quantity)){@Html.ActionLink("Cancel Item", "Cancel", "PurchaseOrders", new { id = Model.p.PurchaseOrderID }, null)}
+                @if (true){@Html.Name(item.qtyReturned.ToString())}
+            </td>
+            <td>
+                @if (item.Received > 0){@Html.ActionLink("Return Item", "Return", "PurchaseOrderItems", new { id = item.POItemID }, null)}
+                @if ((item.Received == 0)){@Html.ActionLink("Cancel Item", "Cancel", "PurchaseOrderItems", new { id = item.POItemID }, null)}
             </td>
         </tr>
     }

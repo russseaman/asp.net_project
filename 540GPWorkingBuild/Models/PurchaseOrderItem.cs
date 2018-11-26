@@ -20,7 +20,7 @@ namespace _540GPWorkingBuild.Models
         public int Received { get; set; }
         public int PurchaseOrderID { get; set; }
         public double totalPrice { get; set; }
-
+        public int qtyReturned { get { return Quantity - Received; } }
         
 
         public virtual Inventory Inventory { get; set; }

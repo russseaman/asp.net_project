@@ -30,7 +30,7 @@ namespace _540GPWorkingBuild.Controllers
         }
 
         // Get a poWithItems object based on a given purchase order ID and db instance
-        private poWithItems getOrderWithItems(int givenID, MusciToolkitDBEntities dbInstance)
+        public poWithItems getOrderWithItems(int givenID, MusciToolkitDBEntities dbInstance)
         {
 
                 var ansPO = db.PurchaseOrders.SingleOrDefault(x => x.PurchaseOrderID == givenID);
@@ -38,8 +38,17 @@ namespace _540GPWorkingBuild.Controllers
                 // Declare total line price for each PurchaseOrderItem in the list.. Shoutout to Luke!!
                 foreach (var each in ansList)
                 {
-                    double currLineCost = (double)each.Quantity * (double)each.Inventory.NetPrice;
-                    each.totalPrice = currLineCost;
+                    // Set total line cost
+                    if (each.qtyReturned == 0)
+                    {
+                        double currLineCost = (double)each.Quantity * (double)each.Inventory.NetPrice;
+                        each.totalPrice = currLineCost;
+                    }
+                    else
+                    {
+                        double currLineCost = ((double)each.Quantity * (double)each.Inventory.NetPrice) - ((double)each.qtyReturned * (double)each.Inventory.NetPrice);
+                        each.totalPrice = currLineCost;
+                    }
                 }
                 var ans = new poWithItems(ansPO, ansList);
                 poTotalSet(ans);
@@ -53,8 +62,16 @@ namespace _540GPWorkingBuild.Controllers
             double ans = 0;
             foreach(var line in allItems)
             {
-                double lineTotal = line.Quantity * (double)line.Inventory.NetPrice;
-                ans += lineTotal;
+                if (line.qtyReturned == 0)
+                {
+                    double lineTotal = line.Quantity * (double)line.Inventory.NetPrice;
+                    ans += lineTotal;
+                }
+                else
+                {
+                    double lineTotal = (line.Quantity * (double)line.Inventory.NetPrice) - ((double)line.qtyReturned * (double)line.Inventory.NetPrice);
+                    ans += lineTotal;
+                }
             }
             x.p.totalPrice = ans;
             return;
@@ -104,6 +121,7 @@ namespace _540GPWorkingBuild.Controllers
             if (ModelState.IsValid)
             {
                 purchaseOrder.OrderDate = DateTime.Now;
+                purchaseOrder.isReceived = false;
                 db.PurchaseOrders.Add(purchaseOrder);
                 db.SaveChanges();
             }
@@ -190,6 +208,7 @@ namespace _540GPWorkingBuild.Controllers
                 line.Inventory.Quantity += line.Quantity;
                 line.Received = line.Quantity;
             }
+            entireOrder.p.isReceived = true;
             db.SaveChanges();
             return RedirectToAction("Details", new { id = entireOrder.p.PurchaseOrderID });
         }
@@ -211,6 +230,26 @@ namespace _540GPWorkingBuild.Controllers
             //db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
+        /*
+        public ActionResult updateItem(int q)
+        {
+            int returnItemID = Int32.Parse(Session["POReturnItem"].ToString());
+            poWithItems entireOrder = getOrderWithItems(Int32.Parse(Session["currPo"].ToString()), db);
+            foreach (var item in entireOrder.itemList)
+            {
+                if (item.POItemID == returnItemID)
+                {
+                    item.Inventory.Quantity = item.Inventory.Quantity - q;
+                    item.Received = item.Received - q;
+                    db.SaveChanges();
+                    return RedirectToAction("Details", new { id = entireOrder.p.PurchaseOrderID });
+                }
+            }
+            return null;
+
+        }*/
 
 
 

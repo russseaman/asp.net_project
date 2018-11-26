@@ -64,12 +64,10 @@ namespace _540GPWorkingBuild.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Instantiate foreign key fields
 
                 // Instantiate foreign key field for Inventory
                 PurchaseOrderItem ans;
                 ans = purchaseOrderItem;
-
                 _540GPWorkingBuild.Models.Inventory inv;
                 inv = db.Inventories.Find(Int32.Parse(Request["ProductID"].ToString()));
                 ans.Inventory = inv;
@@ -80,23 +78,18 @@ namespace _540GPWorkingBuild.Controllers
                 po = db.PurchaseOrders.Find(Int32.Parse(Session["currPo"].ToString()));
                 ans.PurchaseOrder = po;
 
-                //Session["productid"] = Request["ProductID"].ToString();
-                //Session["poid"] = Request["PurchaseOrderID"].ToString();
+                // Set initial received value to zero
+                ans.Received = 0;
 
-      
+                // Set original quantity
+                //int original = Int32.Parse(Request["Quantity"].ToString());
+                //ans.origQty = original;
 
-                // NECESSARY
+                // Save database
                 db.PurchaseOrderItems.Add(ans);
                 db.SaveChanges();
 
-
-
-
-
-
-                // RETURN OPTIONS
-                //return RedirectToAction("Index");
-                //return RedirectToAction("Debug");
+                // Bounce user to the detail page for the purchase order
                 return RedirectToAction("Details", "PurchaseOrders", new { id = po.PurchaseOrderID.ToString() });
             }
 
@@ -169,6 +162,68 @@ namespace _540GPWorkingBuild.Controllers
             db.PurchaseOrderItems.Remove(purchaseOrderItem);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+
+
+        // RETURN ITEM 1/3
+        public ActionResult Return(int? id)
+        {
+            Session["POReturnItem"] = (int)id;
+            Session["POReturnError"] = "";
+            return RedirectToAction("ReturnItem");
+        }
+
+
+        // RETURN PURCHASE ORDER ITEM
+        public ActionResult ReturnItem()
+        {
+            
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult ProcessReturn()
+        {
+            bool xisvalid = true;
+            int quantityToReturn = -9999;
+            try
+            {
+                quantityToReturn = Int32.Parse(Request["qty"].ToString());
+            }
+            catch
+            {
+                xisvalid = false;
+            }
+            PurchaseOrderItem p = db.PurchaseOrderItems.Find(Int32.Parse(Session["POReturnItem"].ToString()));
+            if (p == null)
+            {
+                xisvalid = false;
+            }
+            else
+            {
+                int q = p.Quantity;
+                if ((quantityToReturn > q) || (quantityToReturn < 0))
+                {
+                    xisvalid = false;
+                }
+            }
+            if (xisvalid)
+            {
+                // Set quantity returned and adjust inventory level
+                p.Inventory.Quantity -= quantityToReturn;
+                p.Received -= quantityToReturn;
+                db.SaveChanges();
+                // Bounce back to detail page
+                Session["POReturnError"] = "";
+                return RedirectToAction("Details", "PurchaseOrders", new { id = Int32.Parse(Session["currPo"].ToString())});
+            }
+            else
+            {
+                Session["POReturnError"] = "Invalid return value";
+                return RedirectToAction("ReturnItem");
+            }
         }
 
         protected override void Dispose(bool disposing)

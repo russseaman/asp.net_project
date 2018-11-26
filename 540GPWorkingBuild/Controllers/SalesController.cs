@@ -47,7 +47,7 @@ namespace _540GPWorkingBuild.Controllers
         }
 
         // GET: Sales/NewSale
-        public ActionResult NewSale()
+        public ActionResult Create()
         {
             ViewBag.CustomerID = new SelectList(db.Customers, "CustomerID", "FirstName");
             ViewBag.EmployeeID = new SelectList(db.Employees, "EmployeeID", "FirstName");
