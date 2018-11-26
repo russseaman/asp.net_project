@@ -14,12 +14,22 @@ namespace _540GPWorkingBuild.Views
     {
         private MusciToolkitDBEntities db = new MusciToolkitDBEntities();
 
-        // GET: Employees
         public ActionResult Index()
         {
-            var employees = db.Employees.Include(e => e.Address).Include(e => e.EmployeeRole);
-            return View(employees.ToList());
+            return View();
         }
+        
+        [HttpPost]
+        public JsonResult GetCustFirstName(String CustFirst)
+        {
+            var FirstNames = (from fn in db.Customers
+                              where fn.FirstName.StartsWith(CustFirst)
+                              select new { fn.FirstName, fn.CustomerID });
+            return Json(FirstNames, JsonRequestBehavior.AllowGet);
+        }
+
+        // GET: Employees
+
 
         // GET: Employees/Details/5
         public ActionResult Details(int? id)
