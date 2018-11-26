@@ -36,5 +36,7 @@ namespace _540GPWorkingBuild.Models
         public virtual DbSet<Sale> Sales { get; set; }
         public virtual DbSet<SaleItem> SaleItems { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-    }
+
+          public System.Data.Entity.DbSet<_540GPWorkingBuild.ViewModels.SaleVM> SaleVMs { get; set; }
+     }
 }

@@ -4,8 +4,10 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services;
 using _540GPWorkingBuild.Models;
 
 namespace _540GPWorkingBuild.Controllers
@@ -14,11 +16,17 @@ namespace _540GPWorkingBuild.Controllers
     {
         private MusciToolkitDBEntities db = new MusciToolkitDBEntities();
 
-        // GET: Customers
-        public ActionResult Index()
+
+    // GET: Customers
+    public ActionResult Index()
         {
-            var customers = db.Customers.Include(c => c.Address);
-            return View(customers.ToList());
+            var Customers = db.Customers.Include(c => c.Address);
+
+            //if (!String.IsNullOrEmpty(fName))
+            //{
+            //    customers = customers.Where(c => c.CustomerName.Contains(fName));
+            //}
+            return View(Customers.ToList());
         }
 
         // GET: Customers/Details/5
@@ -128,5 +136,6 @@ namespace _540GPWorkingBuild.Controllers
             }
             base.Dispose(disposing);
         }
+
     }
 }

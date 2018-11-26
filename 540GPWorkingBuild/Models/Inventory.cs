@@ -29,9 +29,11 @@ namespace _540GPWorkingBuild.Models
         public string Description { get; set; }
         [Required]
         [Range(0, 9999999999999, ErrorMessage="Net price must be a postive number.")]
+        [Display(Name ="Net Price")]
         public decimal NetPrice { get; set; }
         [Required]
         [Range(0, 9999999999999, ErrorMessage = "Sale price must be a postive number.")]
+        [Display(Name ="Sale Price")]
         public decimal SalePrice { get; set; }
         [Required]
         [Range(0, 9999999999999, ErrorMessage = "Quantity must be a postive number.")]
@@ -45,6 +47,7 @@ namespace _540GPWorkingBuild.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PurchaseOrderItem> PurchaseOrderItems { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [Display(Name ="Sale Items")]
         public virtual ICollection<SaleItem> SaleItems { get; set; }
     }
 }
