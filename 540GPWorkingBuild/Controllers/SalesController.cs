@@ -56,7 +56,7 @@ namespace _540GPWorkingBuild.Controllers
           // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
           [ValidateAntiForgeryToken]
           [HttpPost]
-          public ActionResult NewSale([Bind(Include = "SaleID,CustomerID,EmployeeID,SaleDate")] Sale sale)
+          public ActionResult NewSale(Sale sale)
           {
                if (ModelState.IsValid)
                {

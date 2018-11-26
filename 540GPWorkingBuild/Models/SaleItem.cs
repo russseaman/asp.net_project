@@ -20,10 +20,14 @@ namespace _540GPWorkingBuild.Models
           public int Returned { get; set; }
           public int SaleID { get; set; }
 
+          //public double SIPrice { get; set; }
+          //public int SI { get; set; }
+          
           public double TotalSIPrice { get; set; }
           public int TotalSI { get; set; }
 
-          //public double totalSalePrice { get { return (double)Quantity * (double)Inventory.SalePrice; } }
+          //public double TotalSIPrice { get { return (double)Quantity * (double)Inventory.SalePrice; } }
+          //public int TotalSI { get { return TotalSI += Quantity; } }
 
           public virtual Inventory Inventory { get; set; }
           public virtual Sale Sale { get; set; }
