@@ -1,0 +1,95 @@
+﻿@model IEnumerable<_540GPWorkingBuild.ViewModels.SaleVM>
+@{
+     ViewBag.Title = "ReturnItemView";
+}
+
+<h2>ReturnItemView</h2>
+
+<p style="text-align:left;">
+     Thanks for shopping with us
+     <span style="float:right;">864-864-8644</span>
+</p>
+<p style="text-align:left;">
+     Transaction ID: @Html.DisplayNameFor(model => model.SaleID)
+     <span style="float:right;">Date: </span>
+</p>
+<p>Employee ID: @Html.DisplayName(Session["UserID"].ToString())</p>
+
+<table class="table">
+     <tr>
+          <th>
+               @Html.DisplayNameFor(model => model.SaleID)
+          </th>
+          <th>
+               @Html.DisplayNameFor(model => model.Name)
+          </th>
+          <th>
+               @Html.DisplayNameFor(model => model.SIQuantity)
+          </th>
+          <th>
+               @Html.DisplayNameFor(model => model.TotalSIPrice)
+          </th>
+          <th></th>
+     </tr>
+
+     @foreach (var item in Model)
+     {
+          <tr>
+               <td>
+                    @Html.DisplayFor(modelItem => item.SaleID)
+               </td>
+               <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+               </td>
+               <td>
+                    @Html.DisplayFor(modelItem => item.SIQuantity)
+               </td>
+               <td>
+                    @Html.DisplayFor(modelItem => item.TotalSIPrice)
+               </td>
+          </tr>
+     }
+</table>
+
+<table class="table">
+     <tr>
+          <th>
+               @Html.DisplayNameFor(model => model.CustomerID)
+          </th>
+          <th>
+               Rewards
+          </th>
+          <th></th>
+     </tr>
+
+     <tr>
+          <td>
+               @Html.DisplayFor(model => model.LastOrDefault().CustomerID)
+          </td>
+          <td>
+               None
+          </td>
+     </tr>
+</table>
+
+<table class="table">
+     <tr>
+          <th>
+               @Html.DisplayNameFor(model => model.TotalSaleItems)
+          </th>
+          <th>
+               @Html.DisplayNameFor(model => model.TotalSalePrice)
+          </th>
+          <th></th>
+     </tr>
+
+     <tr>
+          <td>
+               <!--Html.DisplayFor(model => model.LastOrDefault().TotalSaleItems)-->
+          </td>
+          <td>
+               <!--Html.DisplayFor(model => model.LastOrDefault().TotalSalePrice)-->
+          </td>
+     </tr>
+
+</table>

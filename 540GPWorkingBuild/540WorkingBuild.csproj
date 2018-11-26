@@ -334,6 +334,8 @@
     <Content Include="Views\SaleDetails\AddPurchaseView.cshtml" />
     <Content Include="Views\SaleDetails\Index.cshtml" />
     <Content Include="Views\SaleDetails\CheckoutView.cshtml" />
+    <Content Include="Views\SaleDetails\ReturnTransactionView.cshtml" />
+    <Content Include="Views\SaleDetails\ReturnItemView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

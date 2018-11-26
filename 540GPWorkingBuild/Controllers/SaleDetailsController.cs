@@ -125,7 +125,7 @@ namespace _540GPWorkingBuild.Controllers
                     objsvm.SaleDate = item.SaleDate;
                     objsvm.SIQuantity = item.Quantity;
                     objsvm.Returned = item.Returned;
-                    objsvm.TotalPrice = item.Quantity * (double)item.SalePrice;
+                    objsvm.TotalSalePrice = item.Quantity * (double)item.SalePrice;
                     SaleVMList.Add(objsvm);
                }
 
@@ -192,7 +192,7 @@ namespace _540GPWorkingBuild.Controllers
                     saleVM.CustomerID = si.Sale.CustomerID;
                     //saleVM.TotalSaleItems = 0;
                     //saleVM.TotalSalePrice = 0;
-                    saleVM.SaleID = si.SaleID; // changed
+                    saleVM.SaleID = si.Sale.SaleID; // changed
                     saleVM.ProductID = si.ProductID;
                     saleVM.SIQuantity = si.Quantity;
                     saleVM.Returned = si.Returned;
@@ -236,12 +236,37 @@ namespace _540GPWorkingBuild.Controllers
 
           public ActionResult CheckoutView()
           {
-
                return View();
           }
 
           public ActionResult Index()
           {
+               return View();
+          }
+
+          public ActionResult ReturnTransactionView()
+          {
+               return View();
+          }
+
+          [ValidateAntiForgeryToken]
+          [HttpPost]
+          public ActionResult ReturnTransactionView(SaleVM saleVM)
+          {
+               return View();
+          }
+
+          public ActionResult ReturnItemView()
+          {
+               SaleVM s = new SaleVM();
+               return View(s);
+          }
+
+          [ValidateAntiForgeryToken]
+          [HttpPost]
+          public ActionResult ReturnItemView(SaleVM saleVM)
+          {
+
                return View();
           }
      }
