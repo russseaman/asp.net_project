@@ -1,64 +1,70 @@
 ﻿@model IEnumerable<_540GPWorkingBuild.ViewModels.SaleVM>
 
 @{
-    ViewBag.Title = "Index";
+     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.SaleID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CustomerID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EmployeeID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SaleDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SIQuantity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Returned)
-        </th>
-        <th></th>
-    </tr>
+     <tr>
+          <th>
+               @Html.DisplayNameFor(model => model.SaleID)
+          </th>
+          <th>
+               @Html.DisplayNameFor(model => model.CustomerID)
+          </th>
+          <th>
+               @Html.DisplayNameFor(model => model.EmployeeID)
+          </th>
+          <th>
+               @Html.DisplayNameFor(model => model.SaleDate)
+          </th>
+          <th>
+               @Html.DisplayNameFor(model => model.TotalSaleItems)
+          </th>
+          <th>
+               @Html.DisplayNameFor(model => model.Returned)
+          </th>
+          <th>
+               @Html.DisplayNameFor(model => model.TotalSalePrice)
+          </th>
+          <th></th>
+     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.SaleID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CustomerID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmployeeID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SaleDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SIQuantity)
-        </td>
-        <td>
-             @if (item.Returned == 0){@Html.DisplayName("SOLD")}
-             @if (item.Returned != 0){@Html.DisplayName("RETURNED")}
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.SaleID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.SaleID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.SaleID })
-        </td>
-    </tr>
-}
+     @foreach (var item in Model)
+     {
+          <tr>
+               <td>
+                    @Html.DisplayFor(modelItem => item.SaleID)
+               </td>
+               <td>
+                    @Html.DisplayFor(modelItem => item.CustomerID)
+               </td>
+               <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeID)
+               </td>
+               <td>
+                    @Html.DisplayFor(modelItem => item.SaleDate)
+               </td>
+               <td>
+                    @Html.DisplayFor(modelItem => item.TotalSaleItems)
+               </td>
+               <td>
+                    @if (item.Returned == 0)
+                    {@Html.DisplayName("SOLD")}
+                    @if (item.Returned != 0)
+                    {@Html.DisplayName("RETURNED")}
+               </td>
+               <td>
+                    @Html.DisplayFor(modelItem => item.TotalSalePrice)
+               </td>
+               <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.SaleID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.SaleID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.SaleID })
+               </td>
+          </tr>
+     }
 
 </table>
