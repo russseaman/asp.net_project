@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Services;
@@ -17,9 +18,14 @@ namespace _540GPWorkingBuild.Controllers
 
 
     // GET: Customers
-    public ActionResult Index()
+    public ActionResult Index(int fName)
         {
-            var customers = db.Customers.Include(c => c.Address);
+            var custFirstName = db.Customers.Include(c => c.Address);
+
+            if (!String.IsNullOrEmpty(fName))
+            {
+                customers = customers.Where(c => c.CustomerName.Contains(fName));
+            }
             return View(customers.ToList());
         }
 
@@ -130,7 +136,6 @@ namespace _540GPWorkingBuild.Controllers
             }
             base.Dispose(disposing);
         }
-
 
     }
 }

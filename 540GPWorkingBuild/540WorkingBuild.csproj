@@ -168,6 +168,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\CustomerSearchController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoriesController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
@@ -334,6 +335,11 @@
     <Content Include="Views\Sales\NewSale.cshtml" />
     <Content Include="Views\Inventories\Products.cshtml" />
     <Content Include="Views\Inventories\ViewProducts.cshtml" />
+    <Content Include="Views\CustomerSearch\Create.cshtml" />
+    <Content Include="Views\CustomerSearch\Delete.cshtml" />
+    <Content Include="Views\CustomerSearch\Details.cshtml" />
+    <Content Include="Views\CustomerSearch\Edit.cshtml" />
+    <Content Include="Views\CustomerSearch\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

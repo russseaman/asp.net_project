@@ -11,7 +11,7 @@ namespace _540GPWorkingBuild.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Customer
     {
         internal bool IsDeleted;
@@ -22,7 +22,7 @@ namespace _540GPWorkingBuild.Models
         {
             this.Sales = new HashSet<Sale>();
         }
-    
+
         public int CustomerID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -30,11 +30,12 @@ namespace _540GPWorkingBuild.Models
         public string Email { get; set; }
         public string PhoneNum { get; set; }
         public int Active { get; set; }
-    
+
         public virtual Address Address { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sale> Sales { get; set; }
 
 
     }
+
 }
