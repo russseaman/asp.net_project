@@ -20,13 +20,13 @@ namespace _540GPWorkingBuild.Controllers
     // GET: Customers
     public ActionResult Index(int fName)
         {
-            var custFirstName = db.Customers.Include(c => c.Address);
+            //var custFirstName = db.Customers.Include(c => c.Address);
 
-            if (!String.IsNullOrEmpty(fName))
-            {
-                customers = customers.Where(c => c.CustomerName.Contains(fName));
-            }
-            return View(customers.ToList());
+            //if (!String.IsNullOrEmpty(fName))
+            //{
+            //    customers = customers.Where(c => c.CustomerName.Contains(fName));
+            //}
+            return View(Customer.ToList());
         }
 
         // GET: Customers/Details/5

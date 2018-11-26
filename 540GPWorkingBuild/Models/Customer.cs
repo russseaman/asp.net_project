@@ -11,14 +11,11 @@ namespace _540GPWorkingBuild.Models
 {
     using System;
     using System.Collections.Generic;
-<<<<<<< HEAD
+
      using System.ComponentModel.DataAnnotations;
 
-     public partial class Customer
-=======
-
     public partial class Customer
->>>>>>> 33cdf2eddad47b34c4257d89509e4a89326da5ba
+
     {
         internal bool IsDeleted;
         internal object CustomerName;
@@ -28,12 +25,12 @@ namespace _540GPWorkingBuild.Models
         {
             this.Sales = new HashSet<Sale>();
         }
-<<<<<<< HEAD
+
     
         [Display(Name ="Customer ID")]
-=======
 
->>>>>>> 33cdf2eddad47b34c4257d89509e4a89326da5ba
+
+
         public int CustomerID { get; set; }
         [Display(Name ="First Name")]
         public string FirstName { get; set; }
