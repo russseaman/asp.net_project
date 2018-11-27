@@ -15,20 +15,56 @@ namespace _540GPWorkingBuild.Controllers
     public class CustomersController : Controller
     {
         private MusciToolkitDBEntities db = new MusciToolkitDBEntities();
-
-
-    // GET: Customers
-    public ActionResult Index()
+    
+        // GET: Customers
+        public ActionResult Index(string option, string search)
         {
             var Customers = db.Customers.Include(c => c.Address);
+            List<Customer> CustList = db.Customers.Include(c => c.Address).ToList();
 
-            //if (!String.IsNullOrEmpty(fName))
-            //{
-            //    customers = customers.Where(c => c.CustomerName.Contains(fName));
-            //}
-            return View(Customers.ToList());
+            if (option == "CustomerID")
+            {
+                return View(db.Customers.Where(i => i.CustomerID.ToString() == search || search == null).ToList());
+            }
+            else if (option == "CustomerPhone")
+            {
+                return View(db.Customers.Where(i => i.PhoneNum.ToString() == search || search == null).ToList());
+            }
+            else if (option == "CustFirstName")
+            {
+                return View(db.Customers.Where(i => i.FirstName.ToString() == search || search == null).ToList());
+            }
+            else if (option == "CustLastName")
+            {
+                return View(db.Customers.Where(i => i.LastName.ToString() == search || search == null).ToList());
+            }
+            else
+            {
+                return View(Customers.ToList());
+            }
+
         }
-
+        //public ActionResult Search(string options, string search)
+        //{ 
+        //    if (options == "CustomerID") {
+        //        return View(db.Customers.Where(i => i.CustomerID.ToString() == search || search == null).ToList());   
+        //    }
+        //    else if (options == "CustomerPhone")
+        //    {
+        //        return View(db.Customers.Where(i => i.PhoneNum.ToString() == search || search == null).ToList());
+        //    }
+        //    else if (options == "CustFirstName")
+        //    {
+        //        return View(db.Customers.Where(i => i.FirstName.ToString() == search || search == null).ToList());
+        //    }
+        //    else if (options == "CustLastName")
+        //    {
+        //        return View(db.Customers.Where(i => i.LastName.ToString() == search || search == null).ToList());
+        //    }
+        //    else {
+        //        return View(Customers.ToList());
+        //    }
+        //}
         // GET: Customers/Details/5
         public ActionResult Details(int? id)
         {
@@ -127,6 +163,7 @@ namespace _540GPWorkingBuild.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
 
         protected override void Dispose(bool disposing)
         {
