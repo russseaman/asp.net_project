@@ -336,6 +336,7 @@
     <Content Include="Views\PurchaseOrderItems\Index.cshtml" />
     <Content Include="Views\PurchaseOrderItems\Debug.cshtml" />
     <Content Include="Views\PurchaseOrderItems\ReturnItem.cshtml" />
+    <Content Include="Views\Reports\ReturnReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

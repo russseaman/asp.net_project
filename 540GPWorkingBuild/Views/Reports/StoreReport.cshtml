@@ -3,18 +3,7 @@
     ViewBag.Title = "Store Reports";
 }
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>jQuery UI Datepicker - Default functionality</title>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-    $(function () {
-        $("#datepicker").datepicker();
-    });
-</script>
+
 
 <h2>Store Reports</h2>
 <p>Please select from one of the following</p>
@@ -25,7 +14,7 @@
 <div class="form-group">
     @Html.Label(" ")
     <div class="col-md-10">
-        @Html.DropDownList("Month", new List<SelectListItem>
+        @Html.DropDownList("DDlMonth", new List<SelectListItem>
    {
        new SelectListItem{ Text = "January", Value = "January"},
        new SelectListItem{ Text = "February", Value = "February"},
@@ -67,3 +56,9 @@
    }, "Select a Year")
     </div>
 </div>
+
+<form method="POST" action="ReturnReport">
+
+    <input value="Submit" type="Submit" />
+
+</form>
