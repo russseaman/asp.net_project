@@ -4,13 +4,12 @@
     ViewBag.Title = "Employees";
 }
 <div class="panel panel-default">
-    <div class="panel-heading"><h2>Employees</h2></div>
+    <div class="panel-heading"><h2>Employees</h2><input type="button" class="btn btn-info" value="Create New" onclick="location.href='@Url.Action("Create")'" /></div>
 
-    <div class="panel-heading">
+    <div class="panel-body">
         <h3>Employee Lookup</h3>
         <p>Lookup an employee by inputing one of the search fields below:</p>
-    </div>
-    <div class="panel-body">
+
         <p>
             @using (Html.BeginForm("Index", "Employees", FormMethod.Get))
             {
@@ -27,13 +26,12 @@
                 @Html.TextBox("search")
 
                 <input type="submit" class="btn btn-info" name="submit" value="Search" />
+                <input type="button" class="btn btn-info" value="Reset Search" onclick="location.href='@Url.Action("Index")'" />
             }
         </p>
 
     </div>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+
     <table class="table">
         <tr>
             <th>

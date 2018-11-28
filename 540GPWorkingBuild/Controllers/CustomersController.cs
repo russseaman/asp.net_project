@@ -48,6 +48,9 @@ namespace _540GPWorkingBuild.Controllers
         // GET: Customers/Details/5
         public ActionResult Details(int? id)
         {
+            var Customers = db.Customers.Include(s => s.Sales);
+            List<CustSales> CustList = db.Customers.Include(s => s.Sales).ToList();
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -58,6 +61,7 @@ namespace _540GPWorkingBuild.Controllers
                 return HttpNotFound();
             }
             return View(customer);
+            return View(CustSales);
         }
 
         // GET: Customers/Create

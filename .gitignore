@@ -241,6 +241,10 @@ FakesAssemblies/
 **/*.Server/ModelManifest.xml
 _Pvt_Extensions
 
+# ADDING PROJECT FILES TO GIT IGNORE
+540GPWorkingBuild/bin/540WorkingBuild.csproj
+540GPWorkingBuild/bin/540GPWorkingBuild.dll
+
 # Paket dependency manager
 .paket/paket.exe
 paket-files/

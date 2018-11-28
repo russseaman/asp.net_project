@@ -4,43 +4,34 @@
     ViewBag.Title = "Customer";
 }
 
-<h2>Customer</h2>
-<p>Customer/Employee Management - <b>Written by Russ</b></p>
-<h3>Requirements</h3>
-<ul>
-    <li>View, add, delete, and edit employees</li>
-    <li>Access historical reports based on customer’s purchase history</li>
-    <li>Reference SRS/Proposal/Mockups for complete guidelines and functionality</li>
-</ul>
-
 <div class="panel panel-default">
     <div class="panel-heading"><h2>Customers</h2> <input type="button" class="btn btn-info" value="Create New" onclick="location.href='@Url.Action("Create")'" /></div>
-        <div class="panel-body">
+    <div class="panel-body">
 
-            <h3>Customer Lookup</h3>
-            <p>Lookup a customer by inputing one of the search fields below:</p>
-    
-            <p>
+        <h3>Customer Lookup</h3>
+        <p>Lookup a customer by inputing one of the search fields below:</p>
 
-                @using (Html.BeginForm("Index", "Customers", FormMethod.Get))
-                {
-                    //the following are search options
+        <p>
 
-                    @Html.RadioButton("option", "CustomerID")
-                    <text>Customer ID</text>
-                    @Html.RadioButton("option", "CustomerPhone")
-                    <text>Customer Phone Number</text>
-                    @Html.RadioButton("option", "CustFirstName")
-                    <text>Customer First Name</text>
-                    @Html.RadioButton("option", "CustLastName")
-                    <text>Customer Last Name</text>
-                    @Html.TextBox("search")
-                    
-                    <input type="submit" class="btn btn-info" name="submit" value="Search" />
-                }
-               
-            </p>
-            <input type="button" class="btn btn-info" value="Reset Search" onclick="location.href='@Url.Action("Index")'" />
+            @using (Html.BeginForm("Index", "Customers", FormMethod.Get))
+            {
+
+                @Html.RadioButton("option", "CustomerID")
+                <text>Customer ID</text>
+                @Html.RadioButton("option", "CustomerPhone")
+                <text>Customer Phone Number</text>
+                @Html.RadioButton("option", "CustFirstName")
+                <text>Customer First Name</text>
+                @Html.RadioButton("option", "CustLastName")
+                <text>Customer Last Name</text>
+                @Html.TextBox("search")
+
+                <input type="submit" class="btn btn-info" name="submit" value="Search" />
+                <input type="button" class="btn btn-info" value="Reset Search" onclick="location.href='@Url.Action("Index")'" />
+            }
+
+        </p>
+
     </div>
 
     <table class="table">
@@ -64,7 +55,18 @@
                 @Html.DisplayNameFor(model => model.Address.StreetAddress)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Active)
+                
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Active <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="@Html.DisplayNameFor(model => model.Active)">Show Only Active</a></li>
+                        <li><a href="@Url.Action("CustDe-active", new {})">Show Only Active</a></li>
+                        <li><a href="@Url.Action("CustAll", new { })">Show All</a></li>
+                    </ul>
+                </div>
+
             </th>
             <th></th>
         </tr>
