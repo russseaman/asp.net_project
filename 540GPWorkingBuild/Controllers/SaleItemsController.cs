@@ -65,15 +65,17 @@ namespace _540GPWorkingBuild.Controllers
           {
                if (ModelState.IsValid)
                {
-                    SaleItem si;
-                    si = saleItem;
+                    SaleItem SI;
+                    SI = saleItem;
                     _540GPWorkingBuild.Models.Inventory inv;
-                    inv = db.Inventories.Find(si.ProductID);
-                    si.Inventory = inv;
+                    inv = db.Inventories.Find(SI.ProductID);
+                    SI.Inventory = inv;
                     _540GPWorkingBuild.Models.Sale s;
                     s = db.Sales.Find(Int32.Parse(Session["Current SaleID"].ToString()));
-                    si.Sale = s;
-                    db.SaleItems.Add(si);
+                    SI.Sale = s;
+                    SI.Returned = 0;
+                    SI.SaleID = s.SaleID; // added
+                    db.SaleItems.Add(SI);
                     db.SaveChanges();
                     return RedirectToAction("Create", new { id = s.SaleID.ToString() });
                }

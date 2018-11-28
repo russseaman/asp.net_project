@@ -11,6 +11,7 @@ namespace _540GPWorkingBuild.Models
 {
      using System;
      using System.Collections.Generic;
+     using System.ComponentModel.DataAnnotations;
 
      public partial class SaleItem
      {
@@ -20,14 +21,10 @@ namespace _540GPWorkingBuild.Models
           public int Returned { get; set; }
           public int SaleID { get; set; }
 
-          //public double SIPrice { get; set; }
-          //public int SI { get; set; }
-          
+          [Display(Name = "Sale Price")]
           public double TotalSIPrice { get; set; }
+          [Display(Name = "Items")]
           public int TotalSI { get; set; }
-
-          //public double TotalSIPrice { get { return (double)Quantity * (double)Inventory.SalePrice; } }
-          //public int TotalSI { get { return TotalSI += Quantity; } }
 
           public virtual Inventory Inventory { get; set; }
           public virtual Sale Sale { get; set; }

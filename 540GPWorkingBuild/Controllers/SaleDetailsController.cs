@@ -13,7 +13,14 @@ namespace _540GPWorkingBuild.Controllers
      {
           private MusciToolkitDBEntities db = new MusciToolkitDBEntities();
 
-          public class transactionList
+          //==============================================================
+          // THIS IS BY FAR THE MOST CANCEROUS THING I HAVE EVER FORMATTED
+          // VIEWERS BE WARNED
+          //==============================================================
+
+          //========================== BEGIN ATTEMPT 01 =================================\\
+
+          /*public class transactionList
           {
                public IEnumerable<SaleItem> itemList { get; private set; }
                public Sale s { get; private set; }
@@ -46,16 +53,75 @@ namespace _540GPWorkingBuild.Controllers
                     totalItems += item.Quantity;
                }
                return;
+          }*/
+
+          //========================== END ATTEMPT 01 =================================\\
+
+          // TRY THIS ONE
+          //------------------------
+          /*public class soWithItems
+          {
+               public IEnumerable<SaleItem> itemList { get; private set; }
+               public Sale s { get; private set; }
+
+               public soWithItems(Sale x, IEnumerable<SaleItem> y)
+               {
+                    s = x;
+                    itemList = y;
+               }
           }
 
+          public soWithItems getOrderWithItems(int givenID, MusciToolkitDBEntities dbInstance)
+          {
+               var ansSO = db.Sales.SingleOrDefault(x => x.SaleID == givenID);
+               var ansList = db.SaleItems.Where(x => x.SaleID == givenID);
+               foreach (var each in ansList)
+               {
+                    double currLineCost = (double)each.Quantity * (double)each.Inventory.SalePrice;
+                    each.TotalSIPrice = currLineCost;
+                    each.TotalSI += each.Quantity;
+               }
+               db.SaveChanges();
+               var ans = new soWithItems(ansSO, ansList);
+               soTotalSet(ans);
+               return ans;
+          }
 
-          /*public void updateSaleVM(SaleVM saleVM)
+          public void soTotalSet(soWithItems x)
+          {
+               var allItems = x.itemList;
+               double ans = 0;
+               int items = 0;
+               foreach (var line in allItems)
+               {
+                    double lineTotal = line.Quantity * (double)line.Inventory.SalePrice;
+                    ans += lineTotal;
+                    items += line.Quantity;
+               }
+               x.s.TotalSalePrice = ans;
+               x.s.TotalSaleItems = items;
+               return;
+          }*/
+
+          /*public double getTotalSalePrice(int id)
+          {
+               soWithItems x = getOrderWithItems(id, db);
+               return x.s.TotalSalePrice;
+          }
+
+          public int getTotalSaleItems(int id)
+          {
+               soWithItems x = getOrderWithItems(id, db);
+               return x.s.TotalSaleItems;
+          }*/
+
+          public void updateSaleVM(SaleVM saleVM)
           {
                List<SaleItem> SaleItemList = new List<SaleItem>();
                var allSaleItems = db.SaleItems.ToList();
                foreach (var saleItem in allSaleItems)
                {
-                    if (saleItem.SaleID == Int32.Parse(Session["Current SaleID"].ToString()))
+                    if (saleItem.Sale.SaleID == Int32.Parse(Session["Current SaleID"].ToString()))
                     {
                          SaleItemList.Add(saleItem);
                          saleVM.Returned = saleItem.Returned;
@@ -69,52 +135,29 @@ namespace _540GPWorkingBuild.Controllers
                {
                     totalItems += item.Quantity;
                     totalPrice += (item.Quantity * (double)item.Inventory.SalePrice);
-                    //saleVM.TotalItems = totalItems;
-                    //saleVM.TotalPrice = totalPrice;
-               }
-
-               saleVM.TotalItems = totalItems;
-               saleVM.TotalPrice = totalPrice;
-               return;
-          }*/
-
-          public void updateSaleVM(SaleVM saleVM)
-          {
-               List<SaleItem> SaleItemList = new List<SaleItem>();
-               var allSaleItems = db.SaleItems.ToList();
-               var saleItemList = db.SaleItems.Where(x => x.SaleID == Int32.Parse(Session["Current SaleID"].ToString()));
-               foreach (var saleItem in allSaleItems)
-               {
-                    if (saleItem.SaleID == Int32.Parse(Session["Current SaleID"].ToString()))
-                    {
-                         SaleItemList.Add(saleItem);
-                         saleVM.Returned = saleItem.Returned;
-                    }
-               }
-
-               int totalItems = 0;
-               double totalPrice = 0;
-
-               foreach (var item in SaleItemList)
-               {
-                    totalItems = item.Quantity;
-                    totalPrice = (item.Quantity * (double)item.Inventory.SalePrice);
-                    //saleVM.TotalItems = totalItems;
-                    //saleVM.TotalPrice = totalPrice;
+                    //saleVM.TotalSaleItems = totalItems;
+                    //saleVM.TotalSalePrice = totalPrice;
                }
 
                saleVM.TotalSaleItems = totalItems;
                saleVM.TotalSalePrice = totalPrice;
-               return;
           }
 
           // GET: SaleDetails
           public ActionResult TransactionLookupView()
           {
+               //========================== BEGIN ATTEMPT 02 =================================\\
+
+               // --------------------------------------------------------------------------------------------------------------
+               // Causes the Transaction Lookup to print the information for each sale item that is added to the cart
+               // as opposed to combining the items and displaying the total number of items and total price for one transaction
+               // --------------------------------------------------------------------------------------------------------------
+
                /*List<SaleVM> SaleVMList = new List<SaleVM>();
                var saleList = (from sale in db.Sales
-                               join saleItem in db.SaleItems on sale.SaleID equals saleItem.SaleID
+                               join saleItem in db.SaleItems on sale.SaleID equals saleItem.Sale.SaleID
                                select new { sale.SaleID, sale.CustomerID, sale.EmployeeID, sale.SaleDate, saleItem.Quantity, saleItem.Returned, saleItem.Inventory.SalePrice }).ToList();
+               
 
                foreach (var item in saleList)
                {
@@ -123,16 +166,26 @@ namespace _540GPWorkingBuild.Controllers
                     objsvm.CustomerID = item.CustomerID;
                     objsvm.EmployeeID = item.EmployeeID;
                     objsvm.SaleDate = item.SaleDate;
-                    objsvm.SIQuantity = item.Quantity;
+                    objsvm.TotalSaleItems = item.Quantity;
                     objsvm.Returned = item.Returned;
                     objsvm.TotalSalePrice = item.Quantity * (double)item.SalePrice;
                     SaleVMList.Add(objsvm);
                }
 
-               return View(SaleVMList.OrderByDescending(x => x.SaleID).Take(5).ToList());*/
+               return View(SaleVMList);*/
 
-               List<SaleVM> SaleVMList = new List<SaleVM>();
-               var allSales = db.Sales.ToList();
+               //========================== END ATTEMPT 02 ===================================\\
+
+               //========================== BEGIN ATTEMPT 03 =================================\\
+
+               // --------------------------------------------------------------------------------------------------------------
+               // Successfully combines duplicate Sale IDs into one transaction, but sets Total Items and Total Price to the
+               // same value for every transaction in the database
+               // --------------------------------------------------------------------------------------------------------------
+
+               //List<SaleVM> SaleVMList = new List<SaleVM>();
+
+               /*var allSales = db.Sales.ToList();
                var allSaleItems = db.SaleItems.ToList();
                foreach (Sale s in allSales)
                {
@@ -143,12 +196,31 @@ namespace _540GPWorkingBuild.Controllers
                     saleVM.SaleDate = s.SaleDate;
                     updateSaleVM(saleVM);
                     SaleVMList.Add(saleVM);
-               }
+               }*/
 
-               return View(SaleVMList.OrderByDescending(x => x.SaleID).Take(10).ToList());
+               /*List<soWithItems> soListComplete = new List<soWithItems>();
+               List<Sale> soList = db.Sales.ToList();
+               foreach (var item in soList)
+               {
+                    int currID = item.SaleID;
+                    soWithItems currItem = getOrderWithItems(currID, db);
+                    soListComplete.Add(currItem);
+               }*/
+
+               //return View(SaleVMList.OrderByDescending(x => x.SaleID).Take(10).ToList());
+
+               return View();
+
+               //========================== END ATTEMPT 03 ===================================\\
           }
 
-          public ActionResult NewSaleView()
+          ////////////////////////////////////////////////////////////////////////////////////////
+          //                                     IGNORE                                         //
+          ////////////////////////////////////////////////////////////////////////////////////////
+
+          // NO LONGER USED BECAUSE FIGURED OUT HOW TO USE ACCESS FROM WITHIN SALEITEMS CONTROLLER
+
+          /*(public ActionResult NewSaleView()
           {
                SaleVM s = new SaleVM();
 
@@ -268,6 +340,6 @@ namespace _540GPWorkingBuild.Controllers
           {
 
                return View();
-          }
+          }*/
      }
 }

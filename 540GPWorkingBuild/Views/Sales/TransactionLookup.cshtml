@@ -1,4 +1,4 @@
-﻿@model IEnumerable<_540GPWorkingBuild.Models.Sale>
+﻿@model IEnumerable<_540GPWorkingBuild.Controllers.SalesController.soWithItems>
 @{
     ViewBag.Title = "TransactionLookup";
 }
@@ -8,51 +8,63 @@
 <table class="table">
      <tr>
           <th>
-               @Html.DisplayNameFor(model => model.SaleID)
+               Transaction ID
           </th>
           <th>
-               @Html.DisplayNameFor(model => model.CustomerID)
+               Customer ID
           </th>
           <th>
-               @Html.DisplayNameFor(model => model.EmployeeID)
+               Employee ID
           </th>
           <th>
-               @Html.DisplayNameFor(model => model.SaleDate)
+               Sale Date
           </th>
           <th>
-               @Html.DisplayNameFor(model => model.TotalSaleItems)
+               Total Items
           </th>
           <th>
-               @Html.DisplayNameFor(model => model.TotalSalePrice)
+               Total Price
+          </th>
+          <th>
+               Status
           </th>
           <th></th>
      </tr>
 
      @foreach (var item in Model)
      {
+          double price = ((_540GPWorkingBuild.Controllers.SalesController)this.ViewContext.Controller).getTotalSalePrice(item.s.SaleID);
+          int items = ((_540GPWorkingBuild.Controllers.SalesController)this.ViewContext.Controller).getTotalSaleItems(item.s.SaleID);
+          string status = ((_540GPWorkingBuild.Controllers.SalesController)this.ViewContext.Controller).getStatus(item.s.SaleID);
           <tr>
                <td>
-                    @Html.DisplayFor(modelItem => item.SaleID)
+                    @Html.DisplayFor(modelItem => item.s.SaleID)
                </td>
                <td>
-                    @Html.DisplayFor(modelItem => item.CustomerID)
+                    @Html.DisplayFor(modelItem => item.s.CustomerID)
                </td>
                <td>
-                    @Html.DisplayFor(modelItem => item.EmployeeID)
+                    @Html.DisplayFor(modelItem => item.s.EmployeeID)
                </td>
                <td>
-                    @Html.DisplayFor(modelItem => item.SaleDate)
+                    @Html.DisplayFor(modelItem => item.s.SaleDate)
                </td>
                <td>
-                    @Html.DisplayFor(modelItem => item.TotalSaleItems)
+                    @Html.Name(items.ToString())
                </td>
                <td>
-                    @Html.DisplayFor(modelItem => item.TotalSalePrice)
+                    $@Html.Name(price.ToString())
                </td>
                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.SaleID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.SaleID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.SaleID })
+                    @if (item.s.Status != 0)
+                    {@Html.DisplayName("RETURNED")}
+                    @if (item.s.Status == 0)
+                    {@Html.DisplayName("SOLD")}
+               </td>
+               <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.s.SaleID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.s.SaleID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.s.SaleID })
                </td>
           </tr>
      }
