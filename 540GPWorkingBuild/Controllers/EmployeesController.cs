@@ -15,10 +15,31 @@ namespace _540GPWorkingBuild.Controllers
         private MusciToolkitDBEntities db = new MusciToolkitDBEntities();
 
         // GET: Employees
-        public ActionResult Index()
+        public ActionResult Index(string options, string search)
         {
-            var employees = db.Employees.Include(e => e.Address).Include(e => e.EmployeeRole);
-            return View(employees.ToList());
+            var Employees = db.Employees.Include(e => e.Address).Include(e => e.EmployeeRole);
+            List<Employee> EmpList = db.Employees.Include(e => e.Address).ToList();
+
+            if (options == "EmployeeID")
+            {
+                return View(db.Employees.Where(i => i.EmployeeID.ToString() == search || search == null).ToList());
+            }
+            else if (options == "EmployeePhone")
+            {
+                return View(db.Employees.Where(i => i.PhoneNum.ToString() == search || search == null).ToList());
+            }
+            else if (options == "EmpFirstName")
+            {
+                return View(db.Employees.Where(i => i.FirstName.ToString() == search || search == null).ToList());
+            }
+            else if (options == "EmpLastName")
+            {
+                return View(db.Employees.Where(i => i.LastName.ToString() == search || search == null).ToList());
+            }
+            else
+            {
+                return View(Employees.ToList());
+            }
         }
 
         // GET: Employees/Details/5

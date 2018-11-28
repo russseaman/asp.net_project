@@ -44,27 +44,7 @@ namespace _540GPWorkingBuild.Controllers
             }
 
         }
-        //public ActionResult Search(string options, string search)
-        //{ 
-        //    if (options == "CustomerID") {
-        //        return View(db.Customers.Where(i => i.CustomerID.ToString() == search || search == null).ToList());   
-        //    }
-        //    else if (options == "CustomerPhone")
-        //    {
-        //        return View(db.Customers.Where(i => i.PhoneNum.ToString() == search || search == null).ToList());
-        //    }
-        //    else if (options == "CustFirstName")
-        //    {
-        //        return View(db.Customers.Where(i => i.FirstName.ToString() == search || search == null).ToList());
-        //    }
-        //    else if (options == "CustLastName")
-        //    {
-        //        return View(db.Customers.Where(i => i.LastName.ToString() == search || search == null).ToList());
-        //    }
-        //    else {
-        //        return View(Customers.ToList());
-        //    }
-        //}
+
         // GET: Customers/Details/5
         public ActionResult Details(int? id)
         {
