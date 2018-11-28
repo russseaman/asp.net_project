@@ -26,6 +26,7 @@
         <AssociationConnector Association="MusciToolkitDBModel.FK_SaleItems_Inventory" ManuallyRouted="false" />
         <AssociationConnector Association="MusciToolkitDBModel.FK_PurchaseOrderItems_PurchaseOrder" ManuallyRouted="false" />
         <AssociationConnector Association="MusciToolkitDBModel.FK_SaleItems_Sale" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MusciToolkitDBModel.Report" Width="1.5" PointX="8.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

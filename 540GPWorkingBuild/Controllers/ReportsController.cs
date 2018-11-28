@@ -25,7 +25,7 @@ namespace _540GPWorkingBuild.Controllers
         public ActionResult StoreReport(FormCollection form)
         {
 
-            string val = form["MyList"];
+            string val = Request["DDlMonth"].ToString();
 
             ViewBag.pleaseWork = val;
 

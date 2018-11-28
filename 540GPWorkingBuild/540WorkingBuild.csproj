@@ -207,6 +207,9 @@
     <Compile Include="Models\PurchaseOrderItem.cs">
       <DependentUpon>MTKDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Report.cs">
+      <DependentUpon>MTKDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Sale.cs">
       <DependentUpon>MTKDB.tt</DependentUpon>
     </Compile>
