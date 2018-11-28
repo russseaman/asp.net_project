@@ -26,7 +26,15 @@
         <AssociationConnector Association="MusciToolkitDBModel.FK_SaleItems_Inventory" ManuallyRouted="false" />
         <AssociationConnector Association="MusciToolkitDBModel.FK_PurchaseOrderItems_PurchaseOrder" ManuallyRouted="false" />
         <AssociationConnector Association="MusciToolkitDBModel.FK_SaleItems_Sale" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="MusciToolkitDBModel.Report" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MusciToolkitDBModel.Report" Width="1.5" PointX="10.625" PointY="1" />
+        <EntityTypeShape EntityType="MusciToolkitDBModel.ReportDate" Width="1.5" PointX="8.375" PointY="16" />
+        <EntityTypeShape EntityType="MusciToolkitDBModel.ReportMonth" Width="1.5" PointX="8.375" PointY="1.5" />
+        <EntityTypeShape EntityType="MusciToolkitDBModel.ReportQuarter" Width="1.5" PointX="8.375" PointY="12.625" />
+        <EntityTypeShape EntityType="MusciToolkitDBModel.ReportYear" Width="1.5" PointX="8.375" PointY="18.375" />
+        <AssociationConnector Association="MusciToolkitDBModel.FK_Report_ReportDate" />
+        <AssociationConnector Association="MusciToolkitDBModel.FK_Report_ReportMonth" />
+        <AssociationConnector Association="MusciToolkitDBModel.FK_Report_ReportQuarter" />
+        <AssociationConnector Association="MusciToolkitDBModel.FK_Report_ReportYear" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -161,7 +161,6 @@
     <Compile Include="Controllers\InventoriesController.cs" />
     <Compile Include="Controllers\PurchaseOrderItemsController.cs" />
     <Compile Include="Controllers\PurchaseOrdersController.cs" />
-    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="Controllers\TestSaleController.cs" />
     <Compile Include="Controllers\TestSaleItemController.cs" />
@@ -210,10 +209,28 @@
     <Compile Include="Models\Report.cs">
       <DependentUpon>MTKDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ReportDate.cs">
+      <DependentUpon>MTKDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ReportMonth.cs">
+      <DependentUpon>MTKDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ReportQuarter.cs">
+      <DependentUpon>MTKDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ReportYear.cs">
+      <DependentUpon>MTKDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Sale.cs">
       <DependentUpon>MTKDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SaleItem.cs">
+      <DependentUpon>MTKDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>MTKDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
       <DependentUpon>MTKDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
@@ -311,7 +328,6 @@
     <Content Include="Views\Customers\Details.cshtml" />
     <Content Include="Views\Customers\Edit.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
-    <Content Include="Views\Reports\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Menu.cshtml" />
     <Content Include="Views\Home\Logout.cshtml" />
@@ -321,9 +337,6 @@
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\Categories\LowPermission.cshtml" />
-    <Content Include="Views\Reports\StoreReport.cshtml" />
-    <Content Include="Views\Reports\EmployeeReport.cshtml" />
-    <Content Include="Views\Reports\ProductReport.cshtml" />
     <Content Include="Views\Sales\Return.cshtml" />
     <Content Include="Views\Sales\TransactionLookup.cshtml" />
     <Content Include="Views\Sales\NewSale.cshtml" />
@@ -352,6 +365,11 @@
     <Content Include="Views\TestSaleItem\Details.cshtml" />
     <Content Include="Views\TestSaleItem\Edit.cshtml" />
     <Content Include="Views\TestSaleItem\Index.cshtml" />
+    <Content Include="Views\Reports\Create.cshtml" />
+    <Content Include="Views\Reports\Delete.cshtml" />
+    <Content Include="Views\Reports\Details.cshtml" />
+    <Content Include="Views\Reports\Edit.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

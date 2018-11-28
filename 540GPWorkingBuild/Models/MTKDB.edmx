@@ -90,13 +90,41 @@
         </EntityType>
         <EntityType Name="Report">
           <Key>
-            <PropertyRef Name="CalendarID" />
+            <PropertyRef Name="ReportID" />
           </Key>
-          <Property Name="CalendarID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Month" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Quarter" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Year" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReportMonthID" Type="int" Nullable="false" />
+          <Property Name="ReportQuarterID" Type="int" Nullable="false" />
+          <Property Name="ReportDateID" Type="int" Nullable="false" />
+          <Property Name="ReportYearID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReportDate">
+          <Key>
+            <PropertyRef Name="DateID" />
+          </Key>
+          <Property Name="DateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Date" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReportMonth">
+          <Key>
+            <PropertyRef Name="MonthID" />
+          </Key>
+          <Property Name="MonthID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Month" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReportQuarter">
+          <Key>
+            <PropertyRef Name="QuarterID" />
+          </Key>
+          <Property Name="QuarterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Quarter" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReportYear">
+          <Key>
+            <PropertyRef Name="YearID" />
+          </Key>
+          <Property Name="YearID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Year" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Sale">
           <Key>
@@ -199,6 +227,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Report_ReportDate">
+          <End Role="ReportDate" Type="Self.ReportDate" Multiplicity="1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReportDate">
+              <PropertyRef Name="DateID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="ReportDateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_ReportMonth">
+          <End Role="ReportMonth" Type="Self.ReportMonth" Multiplicity="1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReportMonth">
+              <PropertyRef Name="MonthID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="ReportMonthID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_ReportQuarter">
+          <End Role="ReportQuarter" Type="Self.ReportQuarter" Multiplicity="1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReportQuarter">
+              <PropertyRef Name="QuarterID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="ReportQuarterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_ReportYear">
+          <End Role="ReportYear" Type="Self.ReportYear" Multiplicity="1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReportYear">
+              <PropertyRef Name="YearID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="ReportYearID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Sale_Customer">
           <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
           <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
@@ -247,6 +323,37 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="MusciToolkitDBModelStoreContainer">
           <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
@@ -257,6 +364,10 @@
           <EntitySet Name="PurchaseOrder" EntityType="Self.PurchaseOrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PurchaseOrderItems" EntityType="Self.PurchaseOrderItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Report" EntityType="Self.Report" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReportDate" EntityType="Self.ReportDate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReportMonth" EntityType="Self.ReportMonth" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReportQuarter" EntityType="Self.ReportQuarter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReportYear" EntityType="Self.ReportYear" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sale" EntityType="Self.Sale" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SaleItems" EntityType="Self.SaleItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -283,6 +394,22 @@
           <AssociationSet Name="FK_PurchaseOrderItems_PurchaseOrder" Association="Self.FK_PurchaseOrderItems_PurchaseOrder">
             <End Role="PurchaseOrder" EntitySet="PurchaseOrder" />
             <End Role="PurchaseOrderItems" EntitySet="PurchaseOrderItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_ReportDate" Association="Self.FK_Report_ReportDate">
+            <End Role="ReportDate" EntitySet="ReportDate" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_ReportMonth" Association="Self.FK_Report_ReportMonth">
+            <End Role="ReportMonth" EntitySet="ReportMonth" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_ReportQuarter" Association="Self.FK_Report_ReportQuarter">
+            <End Role="ReportQuarter" EntitySet="ReportQuarter" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_ReportYear" Association="Self.FK_Report_ReportYear">
+            <End Role="ReportYear" EntitySet="ReportYear" />
+            <End Role="Report" EntitySet="Report" />
           </AssociationSet>
           <AssociationSet Name="FK_Sale_Customer" Association="Self.FK_Sale_Customer">
             <End Role="Customer" EntitySet="Customer" />
@@ -610,17 +737,162 @@
             <End Role="SaleItems" EntitySet="SaleItems" />
           </AssociationSet>
           <EntitySet Name="Reports" EntityType="MusciToolkitDBModel.Report" />
+          <EntitySet Name="ReportDates" EntityType="MusciToolkitDBModel.ReportDate" />
+          <EntitySet Name="ReportMonths" EntityType="MusciToolkitDBModel.ReportMonth" />
+          <EntitySet Name="ReportQuarters" EntityType="MusciToolkitDBModel.ReportQuarter" />
+          <EntitySet Name="ReportYears" EntityType="MusciToolkitDBModel.ReportYear" />
+          <AssociationSet Name="FK_Report_ReportDate" Association="MusciToolkitDBModel.FK_Report_ReportDate">
+            <End Role="ReportDate" EntitySet="ReportDates" />
+            <End Role="Report" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_ReportMonth" Association="MusciToolkitDBModel.FK_Report_ReportMonth">
+            <End Role="ReportMonth" EntitySet="ReportMonths" />
+            <End Role="Report" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_ReportQuarter" Association="MusciToolkitDBModel.FK_Report_ReportQuarter">
+            <End Role="ReportQuarter" EntitySet="ReportQuarters" />
+            <End Role="Report" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_ReportYear" Association="MusciToolkitDBModel.FK_Report_ReportYear">
+            <End Role="ReportYear" EntitySet="ReportYears" />
+            <End Role="Report" EntitySet="Reports" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(MusciToolkitDBModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(MusciToolkitDBModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
         <EntityType Name="Report">
           <Key>
-            <PropertyRef Name="CalendarID" />
+            <PropertyRef Name="ReportID" />
           </Key>
-          <Property Name="CalendarID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Month" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Quarter" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Year" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Date" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ReportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReportMonthID" Type="Int32" Nullable="false" />
+          <Property Name="ReportQuarterID" Type="Int32" Nullable="false" />
+          <Property Name="ReportDateID" Type="Int32" Nullable="false" />
+          <Property Name="ReportYearID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ReportDate" Relationship="MusciToolkitDBModel.FK_Report_ReportDate" FromRole="Report" ToRole="ReportDate" />
+          <NavigationProperty Name="ReportMonth" Relationship="MusciToolkitDBModel.FK_Report_ReportMonth" FromRole="Report" ToRole="ReportMonth" />
+          <NavigationProperty Name="ReportQuarter" Relationship="MusciToolkitDBModel.FK_Report_ReportQuarter" FromRole="Report" ToRole="ReportQuarter" />
+          <NavigationProperty Name="ReportYear" Relationship="MusciToolkitDBModel.FK_Report_ReportYear" FromRole="Report" ToRole="ReportYear" />
         </EntityType>
+        <EntityType Name="ReportDate">
+          <Key>
+            <PropertyRef Name="DateID" />
+          </Key>
+          <Property Name="DateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Reports" Relationship="MusciToolkitDBModel.FK_Report_ReportDate" FromRole="ReportDate" ToRole="Report" />
+        </EntityType>
+        <EntityType Name="ReportMonth">
+          <Key>
+            <PropertyRef Name="MonthID" />
+          </Key>
+          <Property Name="MonthID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Month" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Reports" Relationship="MusciToolkitDBModel.FK_Report_ReportMonth" FromRole="ReportMonth" ToRole="Report" />
+        </EntityType>
+        <EntityType Name="ReportQuarter">
+          <Key>
+            <PropertyRef Name="QuarterID" />
+          </Key>
+          <Property Name="QuarterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Quarter" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Reports" Relationship="MusciToolkitDBModel.FK_Report_ReportQuarter" FromRole="ReportQuarter" ToRole="Report" />
+        </EntityType>
+        <EntityType Name="ReportYear">
+          <Key>
+            <PropertyRef Name="YearID" />
+          </Key>
+          <Property Name="YearID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Year" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Reports" Relationship="MusciToolkitDBModel.FK_Report_ReportYear" FromRole="ReportYear" ToRole="Report" />
+        </EntityType>
+        <Association Name="FK_Report_ReportDate">
+          <End Type="MusciToolkitDBModel.ReportDate" Role="ReportDate" Multiplicity="1" />
+          <End Type="MusciToolkitDBModel.Report" Role="Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReportDate">
+              <PropertyRef Name="DateID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="ReportDateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_ReportMonth">
+          <End Type="MusciToolkitDBModel.ReportMonth" Role="ReportMonth" Multiplicity="1" />
+          <End Type="MusciToolkitDBModel.Report" Role="Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReportMonth">
+              <PropertyRef Name="MonthID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="ReportMonthID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_ReportQuarter">
+          <End Type="MusciToolkitDBModel.ReportQuarter" Role="ReportQuarter" Multiplicity="1" />
+          <End Type="MusciToolkitDBModel.Report" Role="Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReportQuarter">
+              <PropertyRef Name="QuarterID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="ReportQuarterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_ReportYear">
+          <End Type="MusciToolkitDBModel.ReportYear" Role="ReportYear" Multiplicity="1" />
+          <End Type="MusciToolkitDBModel.Report" Role="Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReportYear">
+              <PropertyRef Name="YearID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="ReportYearID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -753,14 +1025,70 @@
           <EntitySetMapping Name="Reports">
             <EntityTypeMapping TypeName="MusciToolkitDBModel.Report">
               <MappingFragment StoreEntitySet="Report">
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Year" ColumnName="Year" />
-                <ScalarProperty Name="Quarter" ColumnName="Quarter" />
-                <ScalarProperty Name="Month" ColumnName="Month" />
-                <ScalarProperty Name="CalendarID" ColumnName="CalendarID" />
+                <ScalarProperty Name="ReportYearID" ColumnName="ReportYearID" />
+                <ScalarProperty Name="ReportDateID" ColumnName="ReportDateID" />
+                <ScalarProperty Name="ReportQuarterID" ColumnName="ReportQuarterID" />
+                <ScalarProperty Name="ReportMonthID" ColumnName="ReportMonthID" />
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ReportDates">
+            <EntityTypeMapping TypeName="MusciToolkitDBModel.ReportDate">
+              <MappingFragment StoreEntitySet="ReportDate">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="DateID" ColumnName="DateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReportMonths">
+            <EntityTypeMapping TypeName="MusciToolkitDBModel.ReportMonth">
+              <MappingFragment StoreEntitySet="ReportMonth">
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="MonthID" ColumnName="MonthID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReportQuarters">
+            <EntityTypeMapping TypeName="MusciToolkitDBModel.ReportQuarter">
+              <MappingFragment StoreEntitySet="ReportQuarter">
+                <ScalarProperty Name="Quarter" ColumnName="Quarter" />
+                <ScalarProperty Name="QuarterID" ColumnName="QuarterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReportYears">
+            <EntityTypeMapping TypeName="MusciToolkitDBModel.ReportYear">
+              <MappingFragment StoreEntitySet="ReportYear">
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="YearID" ColumnName="YearID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="MusciToolkitDBModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="MusciToolkitDBModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="MusciToolkitDBModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="MusciToolkitDBModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MusciToolkitDBModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="MusciToolkitDBModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MusciToolkitDBModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="MusciToolkitDBModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="MusciToolkitDBModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
