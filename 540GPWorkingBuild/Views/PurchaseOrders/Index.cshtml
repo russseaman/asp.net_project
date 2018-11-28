@@ -4,29 +4,45 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>All Purchase Orders</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.OrderDate)
+            Order ID
+        </th>
+        <th>
+            Order Date
+        </th>
+        <th>
+            Total Price
+        </th>
+        <th>
+            Order Status
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
+    double price = ((_540GPWorkingBuild.Controllers.PurchaseOrdersController)this.ViewContext.Controller).getTotalPrice(item.PurchaseOrderID);
+    string status = ((_540GPWorkingBuild.Controllers.PurchaseOrdersController)this.ViewContext.Controller).getStatus(item.PurchaseOrderID);
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.OrderDate)
+            @Html.DisplayFor(modelItem => item.PurchaseOrderID)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PurchaseOrderID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PurchaseOrderID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PurchaseOrderID })
+            @Html.DisplayFor(modelItem => item.dateStr)
         </td>
+        <td>
+            @Html.Name(price.ToString())
+        </td>
+        <td>
+            @Html.Name(status)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.PurchaseOrderID })
+        </td>
+
     </tr>
 }
 
