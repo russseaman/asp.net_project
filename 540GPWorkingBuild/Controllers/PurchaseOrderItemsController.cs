@@ -50,7 +50,7 @@ namespace _540GPWorkingBuild.Controllers
         public ActionResult Create()
         {
             // Third param is shown in the drop down
-            ViewBag.ProductID = new SelectList(db.Inventories, "ProductID", "ProductID");
+            ViewBag.ProductID = new SelectList(db.Inventories, "ProductID", "dropdownStr");
             ViewBag.PurchaseOrderID = new SelectList(db.PurchaseOrders, "PurchaseOrderID", "PurchaseOrderID");
             return View();
         }

@@ -215,6 +215,28 @@ namespace _540GPWorkingBuild.Controllers
             return RedirectToAction("Index");
         }
 
+        // Returns total price of a purchase order
+        // given a purchase order ID
+        public double getTotalPrice(int id)
+        {
+            poWithItems x = getOrderWithItems(id, db);
+            return x.p.totalPrice;
+        }
+
+        public string getStatus(int id)
+        {
+            poWithItems x = getOrderWithItems(id, db);
+            if (!(x.itemList.Any()))
+            {
+                return "OPEN";
+            }
+            if (x.itemList.First().Received == 0)
+            {
+                return "OPEN";
+            }
+            return "CLOSED";
+        }
+
 
         /*
         public ActionResult updateItem(int q)
@@ -237,6 +259,63 @@ namespace _540GPWorkingBuild.Controllers
 
 
 
+        public ActionResult DebugSearch()
+        {
+            Session["searchdebug"] = "";
+            return RedirectToAction("Search");
+        }
+
+        /*
+        public ActionResult Search()
+        {
+            List<poWithItems> allPOsComplete = new List<poWithItems>();
+            /*
+             * Below is the code to show all PurcahseOrders upon entering the search page.
+            List<PurchaseOrder> allPOs = db.PurchaseOrders.ToList();
+            foreach (var item in allPOs)
+            {
+                int currID = item.PurchaseOrderID;
+                poWithItems currItem = getOrderWithItems(currID, db);
+                allPOsComplete.Add(currItem);
+            }
+            //pass the StudentList list object to the view.
+            
+            return View(allPOsComplete);
+        }*/
+
+
+        public ActionResult Search(string option, string search)
+        {
+            Session["searchdebug"] = search;
+            List<poWithItems> poListComplete = new List<poWithItems>();
+            List<PurchaseOrder> poList = db.PurchaseOrders.ToList();
+            foreach (var item in poList)
+            {
+                int currID = item.PurchaseOrderID;
+                poWithItems currItem = getOrderWithItems(currID, db);
+                poListComplete.Add(currItem);
+            }
+            //if a user choose the radio button option as Subject  
+            if (option == "ID")
+            {
+                //Index action method will return a view with a student records based on what a user specify the value in textbox  
+                return View(poListComplete.Where(x => x.p.PurchaseOrderID == Int32.Parse(search) || search == null).ToList());
+            }
+            else if (option == "Date")
+            {
+                return View(poListComplete.Where(x => x.p.dateStr.Equals(search) || search == null).ToList());
+            }
+            else if (option == "Status")
+            {
+                return View(poListComplete.Where(x => getStatus(x.p.PurchaseOrderID).Equals(search) || search == null).ToList());
+            }
+            else
+            {
+                // Return empty list / no search results
+                //return View(new List<poWithItems>());
+                return View(poListComplete);
+            }
+        }
 
         protected override void Dispose(bool disposing)
         {
