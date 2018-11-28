@@ -21,6 +21,17 @@ namespace _540GPWorkingBuild.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult StoreReport(FormCollection form)
+        {
+
+            string val = form["MyList"];
+
+            ViewBag.pleaseWork = val;
+
+            return View();
+        }
+
         public ActionResult EmployeeReport()
         {
 
@@ -111,9 +122,10 @@ namespace _540GPWorkingBuild.Controllers
         }
 
         [HttpPost]
-        public ActionResult ReturnReport()
+        public ActionResult ReturnReport(FormCollection collection)
         {
-            
+            string strDDLValue = Request.Form["DDlMonth"].ToString();
+            ViewBag.pleaseWork = strDDLValue;
             return View();
         }
     }

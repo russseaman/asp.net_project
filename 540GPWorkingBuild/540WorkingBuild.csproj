@@ -163,6 +163,8 @@
     <Compile Include="Controllers\PurchaseOrdersController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
+    <Compile Include="Controllers\TestSaleController.cs" />
+    <Compile Include="Controllers\TestSaleItemController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -337,6 +339,16 @@
     <Content Include="Views\PurchaseOrderItems\Debug.cshtml" />
     <Content Include="Views\PurchaseOrderItems\ReturnItem.cshtml" />
     <Content Include="Views\PurchaseOrders\Search.cshtml" />
+    <Content Include="Views\TestSale\Create.cshtml" />
+    <Content Include="Views\TestSale\Delete.cshtml" />
+    <Content Include="Views\TestSale\Details.cshtml" />
+    <Content Include="Views\TestSale\Edit.cshtml" />
+    <Content Include="Views\TestSale\Index.cshtml" />
+    <Content Include="Views\TestSaleItem\Create.cshtml" />
+    <Content Include="Views\TestSaleItem\Delete.cshtml" />
+    <Content Include="Views\TestSaleItem\Details.cshtml" />
+    <Content Include="Views\TestSaleItem\Edit.cshtml" />
+    <Content Include="Views\TestSaleItem\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
