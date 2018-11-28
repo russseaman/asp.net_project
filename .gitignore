@@ -258,3 +258,7 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+
+# git ignore
+540GPWorkingBuild/bin/540WorkingBuild.csproj
+540GPWorkingBuild/bin/540GPWorkingBuild.dll
