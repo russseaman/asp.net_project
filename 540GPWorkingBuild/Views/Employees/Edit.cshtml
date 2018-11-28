@@ -97,9 +97,10 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    <div>
+        <input type="button" class="btn btn-info" value="Back to List" onclick="location.href='@Url.Action("Index", new { id = Model.EmployeeID})'" />
+
+    </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

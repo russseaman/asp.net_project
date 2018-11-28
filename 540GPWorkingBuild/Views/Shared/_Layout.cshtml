@@ -19,14 +19,14 @@
                 @Html.ActionLink("Music Store Toolkit Menu", "Menu", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Sales", "Index", "Sales")</li>
-                    <li>@Html.ActionLink("Inventory", "Index", "Inventories")</li>
-                    <li>@Html.ActionLink("Customer", "Index", "Customers")</li>
-                    <li>@Html.ActionLink("Reports", "Index", "Reports")</li>
-                    <li>@Html.ActionLink("Employee", "Index", "Employees")</li>
-                    <li>@if (Session["UserID"] != null) { @Html.ActionLink("Sign Out", "Logout", "Home") }</li>
-                    <li>@if (Session["UserID"] == null) { @Html.ActionLink("Sign In", "Login", "Home") }</li>
+                <ul class="nav nav-pills">
+                    <li role="presentation" class="nav navbar-btn">@Html.ActionLink("Sales", "Index", "Sales")</li>
+                    <li role="presentation" class="nav navbar-btn">@Html.ActionLink("Inventory", "Index", "Inventories")</li>
+                    <li role="presentation" class="nav navbar-btn">@Html.ActionLink("Customer", "Index", "Customers")</li>
+                    <li role="presentation" class="nav navbar-btn">@Html.ActionLink("Reports", "Index", "Reports")</li>
+                    <li role="presentation">@Html.ActionLink("Employee", "Index", "Employees")</lirole="presentation">
+                    <li role="presentation">@if (Session["UserID"] != null) { @Html.ActionLink("Sign Out", "Logout", "Home") }</li>
+                    <li role="presentation">@if (Session["UserID"] == null) { @Html.ActionLink("Sign In", "Login", "Home") }</li>
                 </ul>
             </div>
         </div>

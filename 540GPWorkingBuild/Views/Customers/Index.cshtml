@@ -15,12 +15,12 @@
 
 <div class="panel panel-default">
     <div class="panel-heading"><h2>Customers</h2> <input type="button" class="btn btn-info" value="Create New" onclick="location.href='@Url.Action("Create")'" /></div>
-    <div class="panel-body">
-        <div class="panel-heading">
+        <div class="panel-body">
+
             <h3>Customer Lookup</h3>
             <p>Lookup a customer by inputing one of the search fields below:</p>
-        </div>
-        <div class="panel-body">
+    
+            <p>
 
                 @using (Html.BeginForm("Index", "Customers", FormMethod.Get))
                 {
@@ -35,11 +35,12 @@
                     @Html.RadioButton("option", "CustLastName")
                     <text>Customer Last Name</text>
                     @Html.TextBox("search")
-
+                    
                     <input type="submit" class="btn btn-info" name="submit" value="Search" />
                 }
-
-        </div>
+               
+            </p>
+            <input type="button" class="btn btn-info" value="Reset Search" onclick="location.href='@Url.Action("Index")'" />
     </div>
 
     <table class="table">
