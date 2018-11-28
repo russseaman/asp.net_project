@@ -298,8 +298,15 @@ namespace _540GPWorkingBuild.Controllers
             //if a user choose the radio button option as Subject  
             if (option == "ID")
             {
-                //Index action method will return a view with a student records based on what a user specify the value in textbox  
-                return View(poListComplete.Where(x => x.p.PurchaseOrderID == Int32.Parse(search) || search == null).ToList());
+                try
+                {
+                    //Index action method will return a view with a student records based on what a user specify the value in textbox  
+                    return View(poListComplete.Where(x => x.p.PurchaseOrderID == Int32.Parse(search) || search == null).ToList());
+                }
+                catch
+                {
+                    return View(new List<poWithItems>());
+                }
             }
             else if (option == "Date")
             {
@@ -313,7 +320,7 @@ namespace _540GPWorkingBuild.Controllers
             {
                 // Return empty list / no search results
                 //return View(new List<poWithItems>());
-                return View(poListComplete);
+                return View(new List<poWithItems>());
             }
         }
 
