@@ -337,6 +337,7 @@
     <Content Include="Views\SaleDetails\ReturnTransactionView.cshtml" />
     <Content Include="Views\SaleDetails\ReturnItemView.cshtml" />
     <Content Include="Views\Sales\TransactionLookup.cshtml" />
+    <Content Include="Views\SaleItems\CheckOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

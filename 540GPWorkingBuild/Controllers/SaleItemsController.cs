@@ -67,14 +67,18 @@ namespace _540GPWorkingBuild.Controllers
                {
                     SaleItem SI;
                     SI = saleItem;
-                    _540GPWorkingBuild.Models.Inventory inv;
+                    Inventory inv;
                     inv = db.Inventories.Find(SI.ProductID);
                     SI.Inventory = inv;
-                    _540GPWorkingBuild.Models.Sale s;
+                    Sale s;
                     s = db.Sales.Find(Int32.Parse(Session["Current SaleID"].ToString()));
                     SI.Sale = s;
                     SI.Returned = 0;
                     SI.SaleID = s.SaleID; // added
+                    //SI.TotalSI += SI.Quantity;
+                    //SI.TotalSIPrice = SI.Quantity * (double)inv.SalePrice;
+                    //SI.Sale.TotalSaleItems += SI.TotalSI;
+                    //SI.Sale.TotalSalePrice += SI.TotalSIPrice;
                     db.SaleItems.Add(SI);
                     db.SaveChanges();
                     return RedirectToAction("Create", new { id = s.SaleID.ToString() });
@@ -83,6 +87,27 @@ namespace _540GPWorkingBuild.Controllers
                ViewBag.ProductID = new SelectList(db.Inventories, "ProductID", "ProductID", saleItem.ProductID);
                ViewBag.SaleID = new SelectList(db.Sales, "SaleID", "SaleID", saleItem.SaleID);
                return View(saleItem);
+          }
+
+          public ActionResult CheckOut()
+          {
+               var allSaleItems = db.SaleItems.ToList();
+               foreach (SaleItem saleItem in allSaleItems)
+               {
+                    saleItem.TotalSIPrice += saleItem.Quantity * (double)saleItem.Inventory.SalePrice;
+                    saleItem.TotalSI += saleItem.Quantity;
+                    saleItem.Sale.TotalSalePrice += saleItem.TotalSIPrice;
+                    saleItem.Sale.TotalSaleItems += saleItem.TotalSI;
+               }
+               return View(allSaleItems);
+          }
+
+          public ActionResult Cancel(int? id)
+          {
+               var x = db.SaleItems.Find((int)id);
+               db.SaleItems.Remove(x);
+               db.SaveChanges();
+               return RedirectToAction("Create", new { id = Session["Current SaleID"].ToString() });
           }
 
           // GET: SaleItems/Edit/5
