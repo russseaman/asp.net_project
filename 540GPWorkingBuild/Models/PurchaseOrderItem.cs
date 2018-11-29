@@ -19,6 +19,7 @@ namespace _540GPWorkingBuild.Models
         public int Quantity { get; set; }
         public int Received { get; set; }
         public int PurchaseOrderID { get; set; }
+        public double totalPrice { get; set; }
     
         public virtual Inventory Inventory { get; set; }
         public virtual PurchaseOrder PurchaseOrder { get; set; }
