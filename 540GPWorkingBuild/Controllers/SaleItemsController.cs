@@ -39,10 +39,19 @@ namespace _540GPWorkingBuild.Controllers
           // GET: SaleItems/Create
           public ActionResult Create()
           {
+               var allSaleItems = db.SaleItems.ToList();
+
                ViewBag.ProductID = new SelectList(db.Inventories, "ProductID", "ProductID");
                ViewBag.SaleID = new SelectList(db.Sales, "SaleID", "SaleID");
 
-               var allSaleItems = db.SaleItems.ToList();
+               foreach (SaleItem saleItem in allSaleItems)
+               {
+                    saleItem.TotalSIPrice += saleItem.Quantity * (double)saleItem.Inventory.SalePrice;
+                    saleItem.TotalSI += saleItem.Quantity;
+                    saleItem.Sale.TotalSalePrice += saleItem.TotalSIPrice;
+                    saleItem.Sale.TotalSaleItems += saleItem.TotalSI;
+               }
+
                return View(allSaleItems);
           }
 
@@ -52,13 +61,23 @@ namespace _540GPWorkingBuild.Controllers
           // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
           [ValidateAntiForgeryToken]
           [HttpPost]
-          public ActionResult Create([Bind(Include = "SaleItemID,ProductID,Quantity,Returned,SaleID")] SaleItem saleItem)
+          public ActionResult Create(SaleItem saleItem)
           {
                if (ModelState.IsValid)
                {
-                    db.SaleItems.Add(saleItem);
+                    SaleItem SI;
+                    SI = saleItem;
+                    _540GPWorkingBuild.Models.Inventory inv;
+                    inv = db.Inventories.Find(SI.ProductID);
+                    SI.Inventory = inv;
+                    _540GPWorkingBuild.Models.Sale s;
+                    s = db.Sales.Find(Int32.Parse(Session["Current SaleID"].ToString()));
+                    SI.Sale = s;
+                    SI.Returned = 0;
+                    SI.SaleID = s.SaleID; // added
+                    db.SaleItems.Add(SI);
                     db.SaveChanges();
-                    return RedirectToAction("Create");
+                    return RedirectToAction("Create", new { id = s.SaleID.ToString() });
                }
 
                ViewBag.ProductID = new SelectList(db.Inventories, "ProductID", "ProductID", saleItem.ProductID);

@@ -181,6 +181,7 @@
     <Compile Include="Models\EmployeeRole.cs">
       <DependentUpon>MTKDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Models\Inventory.cs">
       <DependentUpon>MTKDB.tt</DependentUpon>
     </Compile>
@@ -215,7 +216,6 @@
       <DependentUpon>MTKDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\EmployeeRolesController.cs" />
     <Compile Include="Controllers\AddressesController.cs" />
     <Compile Include="ViewModels\SaleVM.cs" />
@@ -234,6 +234,7 @@
       <LastGenOutput>MTKDB.Context.cs</LastGenOutput>
       <DependentUpon>MTKDB.edmx</DependentUpon>
     </Content>
+    <Content Include="Models\MTKDB.edmx.sql" />
     <Content Include="Models\MTKDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MTKDB.edmx</DependentUpon>
@@ -276,11 +277,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Employees\Create.cshtml" />
-    <Content Include="Views\Employees\Delete.cshtml" />
-    <Content Include="Views\Employees\Details.cshtml" />
-    <Content Include="Views\Employees\Edit.cshtml" />
-    <Content Include="Views\Employees\Index.cshtml" />
     <Content Include="Views\EmployeeRoles\Create.cshtml" />
     <Content Include="Views\EmployeeRoles\Delete.cshtml" />
     <Content Include="Views\EmployeeRoles\Details.cshtml" />
@@ -324,6 +320,19 @@
     <Content Include="Views\Sales\NewSale.cshtml" />
     <Content Include="Views\Inventories\Products.cshtml" />
     <Content Include="Views\Inventories\ViewProducts.cshtml" />
+    <Content Include="Views\SaleItems\Create.cshtml" />
+    <Content Include="Views\SaleItems\Delete.cshtml" />
+    <Content Include="Views\SaleItems\Details.cshtml" />
+    <Content Include="Views\SaleItems\Edit.cshtml" />
+    <Content Include="Views\SaleItems\Index.cshtml" />
+    <Content Include="Views\SaleDetails\TransactionLookupView.cshtml" />
+    <Content Include="Views\SaleDetails\NewSaleView.cshtml" />
+    <Content Include="Views\SaleDetails\AddPurchaseView.cshtml" />
+    <Content Include="Views\SaleDetails\Index.cshtml" />
+    <Content Include="Views\SaleDetails\CheckoutView.cshtml" />
+    <Content Include="Views\SaleDetails\ReturnTransactionView.cshtml" />
+    <Content Include="Views\SaleDetails\ReturnItemView.cshtml" />
+    <Content Include="Views\Sales\TransactionLookup.cshtml" />
     <Content Include="Views\PurchaseOrders\Create.cshtml" />
     <Content Include="Views\PurchaseOrders\Delete.cshtml" />
     <Content Include="Views\PurchaseOrders\Details.cshtml" />
@@ -336,9 +345,16 @@
     <Content Include="Views\PurchaseOrderItems\Index.cshtml" />
     <Content Include="Views\PurchaseOrderItems\Debug.cshtml" />
     <Content Include="Views\PurchaseOrderItems\ReturnItem.cshtml" />
+    <Content Include="Views\PurchaseOrders\Search.cshtml" />
+    <Content Include="Views\Employees\Create.cshtml" />
+    <Content Include="Views\Employees\Delete.cshtml" />
+    <Content Include="Views\Employees\Details.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="DELETEME!!!\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

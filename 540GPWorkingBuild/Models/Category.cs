@@ -11,9 +11,8 @@ namespace _540GPWorkingBuild.Models
 {
     using System;
     using System.Collections.Generic;
-     using System.ComponentModel.DataAnnotations;
-
-     public partial class Category
+    
+    public partial class Category
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Category()
@@ -22,7 +21,6 @@ namespace _540GPWorkingBuild.Models
         }
     
         public int CategoryID { get; set; }
-        [Display(Name ="Category")]
         public string Category1 { get; set; }
         public int Active { get; set; }
     

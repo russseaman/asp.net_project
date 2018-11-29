@@ -1,0 +1,72 @@
+﻿@model IEnumerable<_540GPWorkingBuild.Controllers.SalesController.soWithItems>
+@{
+    ViewBag.Title = "TransactionLookup";
+}
+
+<h2>TransactionLookup</h2>
+
+<table class="table">
+     <tr>
+          <th>
+               Transaction ID
+          </th>
+          <th>
+               Customer ID
+          </th>
+          <th>
+               Employee ID
+          </th>
+          <th>
+               Sale Date
+          </th>
+          <th>
+               Total Items
+          </th>
+          <th>
+               Total Price
+          </th>
+          <th>
+               Status
+          </th>
+          <th></th>
+     </tr>
+
+     @foreach (var item in Model)
+     {
+          double price = ((_540GPWorkingBuild.Controllers.SalesController)this.ViewContext.Controller).getTotalSalePrice(item.s.SaleID);
+          int items = ((_540GPWorkingBuild.Controllers.SalesController)this.ViewContext.Controller).getTotalSaleItems(item.s.SaleID);
+          string status = ((_540GPWorkingBuild.Controllers.SalesController)this.ViewContext.Controller).getStatus(item.s.SaleID);
+          <tr>
+               <td>
+                    @Html.DisplayFor(modelItem => item.s.SaleID)
+               </td>
+               <td>
+                    @Html.DisplayFor(modelItem => item.s.CustomerID)
+               </td>
+               <td>
+                    @Html.DisplayFor(modelItem => item.s.EmployeeID)
+               </td>
+               <td>
+                    @Html.DisplayFor(modelItem => item.s.SaleDate)
+               </td>
+               <td>
+                    @Html.Name(items.ToString())
+               </td>
+               <td>
+                    $@Html.Name(price.ToString())
+               </td>
+               <td>
+                    @if (item.s.Status != 0)
+                    {@Html.DisplayName("RETURNED")}
+                    @if (item.s.Status == 0)
+                    {@Html.DisplayName("SOLD")}
+               </td>
+               <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.s.SaleID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.s.SaleID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.s.SaleID })
+               </td>
+          </tr>
+     }
+
+</table>
