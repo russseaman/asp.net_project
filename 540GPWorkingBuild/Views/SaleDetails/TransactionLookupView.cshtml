@@ -51,10 +51,10 @@
                     @Html.DisplayFor(modelItem => item.TotalSaleItems)
                </td>
                <td>
-                    @if (item.Returned == 0)
-                    {@Html.DisplayName("SOLD")}
                     @if (item.Returned != 0)
                     {@Html.DisplayName("RETURNED")}
+                    @if (item.Returned == 0)
+                    {@Html.DisplayName("SOLD")}
                </td>
                <td>
                     @Html.DisplayFor(modelItem => item.TotalSalePrice)

@@ -20,8 +20,8 @@ namespace _540GPWorkingBuild.ViewModels
           public System.DateTime SaleDate { get; set; } // Sale
           [Display(Name ="Items")]
           public int SIQuantity { get; set; } // SaleItem
-          [Display(Name = "Status")]
           public int SaleItemID { get; set; }
+          [Display(Name = "Status")]
           public int Returned { get; set; } // SaleItem
           public int ProductID { get; set; } // SaleItem
           public decimal SalePrice { get; set; } // Inventory
@@ -29,7 +29,9 @@ namespace _540GPWorkingBuild.ViewModels
           public string Name { get; set; } // Inventory
 
           public double TotalSIPrice { get; set; }
+          [Display(Name ="Total Price")]
           public double TotalSalePrice { get; set; }
+          [Display(Name ="Total Items")]
           public int TotalSaleItems { get; set; }
           public int TotalSI { get; set; }
 

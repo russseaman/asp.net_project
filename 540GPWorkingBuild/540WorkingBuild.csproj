@@ -320,6 +320,19 @@
     <Content Include="Views\Sales\NewSale.cshtml" />
     <Content Include="Views\Inventories\Products.cshtml" />
     <Content Include="Views\Inventories\ViewProducts.cshtml" />
+    <Content Include="Views\SaleItems\Create.cshtml" />
+    <Content Include="Views\SaleItems\Delete.cshtml" />
+    <Content Include="Views\SaleItems\Details.cshtml" />
+    <Content Include="Views\SaleItems\Edit.cshtml" />
+    <Content Include="Views\SaleItems\Index.cshtml" />
+    <Content Include="Views\SaleDetails\TransactionLookupView.cshtml" />
+    <Content Include="Views\SaleDetails\NewSaleView.cshtml" />
+    <Content Include="Views\SaleDetails\AddPurchaseView.cshtml" />
+    <Content Include="Views\SaleDetails\Index.cshtml" />
+    <Content Include="Views\SaleDetails\CheckoutView.cshtml" />
+    <Content Include="Views\SaleDetails\ReturnTransactionView.cshtml" />
+    <Content Include="Views\SaleDetails\ReturnItemView.cshtml" />
+    <Content Include="Views\Sales\TransactionLookup.cshtml" />
     <Content Include="Views\PurchaseOrders\Create.cshtml" />
     <Content Include="Views\PurchaseOrders\Delete.cshtml" />
     <Content Include="Views\PurchaseOrders\Details.cshtml" />
@@ -340,6 +353,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="DELETEME!!!\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
