@@ -85,7 +85,7 @@
                     @Html.DisplayFor(modelItem => item.TotalSIPrice)
                </td>
                <td>
-                    @Html.ActionLink("Remove from sale", "Cancel", new { id = item.Sale.SaleID}, null)
+                    @Html.ActionLink("Remove from sale", "Cancel", new { id = item.SaleItemID}, null)
                </td>
           </tr>
      }

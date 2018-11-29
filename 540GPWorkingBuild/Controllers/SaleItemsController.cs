@@ -168,7 +168,7 @@ namespace _540GPWorkingBuild.Controllers
                SaleItem saleItem = db.SaleItems.Find(id);
                db.SaleItems.Remove(saleItem);
                db.SaveChanges();
-               return RedirectToAction("Index");
+               return RedirectToAction("Create");
           }
 
           protected override void Dispose(bool disposing)
