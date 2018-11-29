@@ -1,0 +1,15 @@
+﻿@model IEnumerable<_540GPWorkingBuild.Models.Report>
+
+@{
+    ViewBag.Title = "Reports";
+}
+
+<h2>Reports</h2>
+<hr />
+<table class="table">
+
+    <p>@Html.ActionLink("Store Performance Reports", "StoreReport")</p>
+    <p>@Html.ActionLink("Employee Performance Reports", "EmployeeReport")</p>
+    <p>@Html.ActionLink("Product Performance Reports", "ProductReport")</p>
+
+</table>

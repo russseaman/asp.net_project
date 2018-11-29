@@ -1,0 +1,26 @@
+﻿@model _540GPWorkingBuild.Models.ReportQuarter
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ReportQuarter</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Quarter)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quarter)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.QuarterID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

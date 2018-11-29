@@ -1,0 +1,51 @@
+﻿@model IEnumerable<_540GPWorkingBuild.Models.Report>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ReportDate.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReportMonth.Month)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReportQuarter.Quarter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReportYear.Year)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReportDate.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReportMonth.Month)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReportQuarter.Quarter)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReportYear.Year)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ReportID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ReportID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ReportID })
+        </td>
+    </tr>
+}
+
+</table>
