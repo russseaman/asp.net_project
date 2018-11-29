@@ -345,7 +345,6 @@
     <Content Include="Views\PurchaseOrderItems\Index.cshtml" />
     <Content Include="Views\PurchaseOrderItems\Debug.cshtml" />
     <Content Include="Views\PurchaseOrderItems\ReturnItem.cshtml" />
-    <Content Include="Views\PurchaseOrders\Search.cshtml" />
     <Content Include="Views\Employees\Create.cshtml" />
     <Content Include="Views\Employees\Delete.cshtml" />
     <Content Include="Views\Employees\Details.cshtml" />

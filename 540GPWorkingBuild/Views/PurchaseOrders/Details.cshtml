@@ -117,5 +117,6 @@
 
 </table>
 <p>
-    @Html.ActionLink("View all purchase orders", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.p.PurchaseOrderID }) |
+    @Html.ActionLink("Back to List", "Index")
 </p>

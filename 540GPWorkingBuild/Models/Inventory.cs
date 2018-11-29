@@ -20,22 +20,15 @@ namespace _540GPWorkingBuild.Models
             this.PurchaseOrderItems = new HashSet<PurchaseOrderItem>();
             this.SaleItems = new HashSet<SaleItem>();
         }
-
+    
         public int ProductID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        [Required]
-        [Range(0, 9999999999999, ErrorMessage = "Net price must be a postive number.")]
-        [Display(Name = "Net Price")]
         public decimal NetPrice { get; set; }
-        [Required]
-        [Range(0, 9999999999999, ErrorMessage = "Sale price must be a postive number.")]
-        [Display(Name = "Sale Price")]
         public decimal SalePrice { get; set; }
         public int Quantity { get; set; }
         public int CategoryID { get; set; }
         public int Active { get; set; }
-        public string dropdownStr { get { return Name + " [ID: " + ProductID.ToString() + "]"; } }
     
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

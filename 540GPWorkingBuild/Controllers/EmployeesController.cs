@@ -20,15 +20,6 @@ namespace _540GPWorkingBuild.Models
             return View(employees.ToList());
         }
 
-        [HttpPost]
-        public JsonResult GetCustFirstName(String CustFirst)
-        {
-            var FirstNames = (from fn in db.Customers
-                              where fn.FirstName.StartsWith(CustFirst)
-                              select new { fn.FirstName, fn.CustomerID });
-            return Json(FirstNames, JsonRequestBehavior.AllowGet);
-        }
-
         // GET: Employees/Details/5
         public ActionResult Details(int? id)
         {
@@ -53,7 +44,7 @@ namespace _540GPWorkingBuild.Models
         }
 
         // POST: Employees/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -89,7 +80,7 @@ namespace _540GPWorkingBuild.Models
         }
 
         // POST: Employees/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
