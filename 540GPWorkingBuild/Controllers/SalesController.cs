@@ -14,6 +14,115 @@ namespace _540GPWorkingBuild.Controllers
      {
           private MusciToolkitDBEntities db = new MusciToolkitDBEntities();
 
+          public class soWithItems
+          {
+               public IEnumerable<SaleItem> itemList { get; private set; }
+               public Sale s { get; private set; }
+
+               public soWithItems(Sale x, IEnumerable<SaleItem> y)
+               {
+                    s = x;
+                    itemList = y;
+               }
+          }
+
+          public soWithItems getOrderWithItems(int givenID, MusciToolkitDBEntities dbInstance)
+          {
+               var ansSO = db.Sales.SingleOrDefault(x => x.SaleID == givenID);
+               var ansList = db.SaleItems.Where(x => x.SaleID == givenID);
+               int currLineItem = 0;
+               foreach (var each in ansList)
+               {
+                    double currLineCost = each.Quantity * (double)each.Inventory.SalePrice;
+                    currLineItem += each.Quantity;
+                    each.TotalSIPrice = currLineCost;
+                    each.TotalSI = currLineItem;
+                    each.Returned = 0;
+               }
+               db.SaveChanges();
+               var ans = new soWithItems(ansSO, ansList);
+               soTotalSet(ans);
+               db.SaveChanges();
+               return ans;
+          }
+
+          public void soTotalSet(soWithItems x)
+          {
+               var allItems = x.itemList;
+               double ans = 0;
+               int items = 0;
+               foreach (var line in allItems)
+               {
+                    ans += line.TotalSIPrice;
+                    items = line.TotalSI;
+               }
+               x.s.TotalSalePrice = ans;
+               x.s.TotalSaleItems = items;
+               x.s.Status = 0;
+               return;
+          }
+
+          public double getTotalSalePrice(int id)
+          {
+               soWithItems x = getOrderWithItems(id, db);
+               return x.s.TotalSalePrice;
+          }
+
+          public int getTotalSaleItems(int id)
+          {
+               soWithItems x = getOrderWithItems(id, db);
+               return x.s.TotalSaleItems;
+          }
+
+          public string getStatus(int id)
+          {
+               soWithItems x = getOrderWithItems(id, db);
+               return x.s.Status.ToString();
+          }
+
+          public ActionResult TransactionLookup()
+          {
+               List<soWithItems> soListComplete = new List<soWithItems>();
+               List<Sale> soList = db.Sales.ToList();
+
+               foreach (var item in soList)
+               {
+                    int currID = item.SaleID;
+                    soWithItems currItem = getOrderWithItems(currID, db);
+                    soListComplete.Add(currItem);
+               }
+
+               return View(soListComplete.OrderByDescending(x => x.s.SaleID).Take(15).ToList());
+          }
+
+          /*public ActionResult CheckOut()
+          {
+               List<soWithItems> cart = new List<soWithItems>();
+               List<SaleItem> saleItemList = db.SaleItems.ToList();
+
+               foreach (var item in saleItemList)
+               {
+                    int currID = item.Sale.SaleID;
+                    soWithItems currItem = getOrderWithItems(currID, db);
+                    cart.Add(currItem);
+               }
+
+               return View(cart);
+          }*/
+
+          public ActionResult Cancel(int? id)
+          {
+               soWithItems saleOrder = getOrderWithItems((int)id, db);
+               foreach (var item in saleOrder.itemList)
+               {
+                    db.SaleItems.Remove(item);
+               }
+               db.Sales.Remove(saleOrder.s);
+               db.SaveChanges();
+
+               return RedirectToAction("Index");
+          }
+
           // GET: Sales
           public ActionResult Index()
           {
@@ -56,13 +165,14 @@ namespace _540GPWorkingBuild.Controllers
           // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
           [ValidateAntiForgeryToken]
           [HttpPost]
-          public ActionResult NewSale([Bind(Include = "SaleID,CustomerID,EmployeeID,SaleDate")] Sale sale)
+          public ActionResult NewSale(Sale sale)
           {
                if (ModelState.IsValid)
                {
                     sale.SaleDate = DateTime.Now;
                     db.Sales.Add(sale);
                     db.SaveChanges();
+                    Session["Current CustomerID"] = sale.CustomerID;
                     Session["Current SaleID"] = sale.SaleID;
                     return RedirectToAction("Create", "SaleItems");
                }
