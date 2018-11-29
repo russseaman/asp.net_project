@@ -85,6 +85,6 @@
           @Html.ActionLink("Confirm Purchase", "TransactionLookup", "Sales")
      </div>
      <div style='text-align:right;'>
-          @Html.ActionLink("Cancel Purchase", "Index", "Sales")
+          @Html.ActionLink("Cancel Purchase", "Cancel", "Sales", new { id = Model.LastOrDefault().SaleID }, null)
      </div>
 </p>

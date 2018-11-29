@@ -110,6 +110,19 @@ namespace _540GPWorkingBuild.Controllers
                return View(cart);
           }*/
 
+          public ActionResult Cancel(int? id)
+          {
+               soWithItems saleOrder = getOrderWithItems((int)id, db);
+               foreach (var item in saleOrder.itemList)
+               {
+                    db.SaleItems.Remove(item);
+               }
+               db.Sales.Remove(saleOrder.s);
+               db.SaveChanges();
+
+               return RedirectToAction("Index");
+          }
+
           // GET: Sales
           public ActionResult Index()
           {
