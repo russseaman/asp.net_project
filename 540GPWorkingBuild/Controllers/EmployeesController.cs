@@ -6,9 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using _540GPWorkingBuild.Models;
 
-namespace _540GPWorkingBuild.Views
+namespace _540GPWorkingBuild.Models
 {
     public class EmployeesController : Controller
     {

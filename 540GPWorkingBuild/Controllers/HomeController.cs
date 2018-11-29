@@ -8,8 +8,6 @@ using System.Web.Mvc;
 namespace _540GPWorkingBuild.Controllers
 {
 
-
-
     public class HomeController : Controller
     {
 
@@ -31,7 +29,8 @@ namespace _540GPWorkingBuild.Controllers
 
             return View();
         }
-
+        
+ 
 
 
         public ActionResult Login()
@@ -90,14 +89,12 @@ namespace _540GPWorkingBuild.Controllers
             }
         }
 
-
         public ActionResult Logout()
         {
             Session["UserID"] = null;
             Session["UserRole"] = null;
             return View();
         }
-
     } // home controller
 
 } // namespace

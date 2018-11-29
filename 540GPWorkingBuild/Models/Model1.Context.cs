@@ -13,10 +13,10 @@ namespace _540GPWorkingBuild.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MusciToolkitDBEntities : DbContext
+    public partial class MusicToolKitDBEntities : DbContext
     {
-        public MusciToolkitDBEntities()
-            : base("name=MusciToolkitDBEntities")
+        public MusicToolKitDBEntities()
+            : base("name=MusicToolKitDBEntities")
         {
         }
     
@@ -35,6 +35,5 @@ namespace _540GPWorkingBuild.Models
         public virtual DbSet<PurchaseOrderItem> PurchaseOrderItems { get; set; }
         public virtual DbSet<Sale> Sales { get; set; }
         public virtual DbSet<SaleItem> SaleItems { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

@@ -159,9 +159,9 @@
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoriesController.cs" />
+    <Compile Include="Controllers\PurchaseOrderItemsController.cs" />
+    <Compile Include="Controllers\PurchaseOrdersController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
-    <Compile Include="Controllers\SaleDetailsController.cs" />
-    <Compile Include="Controllers\SaleItemsController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -181,6 +181,7 @@
     <Compile Include="Models\EmployeeRole.cs">
       <DependentUpon>MTKDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Models\Inventory.cs">
       <DependentUpon>MTKDB.tt</DependentUpon>
     </Compile>
@@ -215,7 +216,6 @@
       <DependentUpon>MTKDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\EmployeeRolesController.cs" />
     <Compile Include="Controllers\AddressesController.cs" />
     <Compile Include="ViewModels\SaleVM.cs" />
@@ -234,6 +234,7 @@
       <LastGenOutput>MTKDB.Context.cs</LastGenOutput>
       <DependentUpon>MTKDB.edmx</DependentUpon>
     </Content>
+    <Content Include="Models\MTKDB.edmx.sql" />
     <Content Include="Models\MTKDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MTKDB.edmx</DependentUpon>
@@ -262,9 +263,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -278,11 +277,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Employees\Create.cshtml" />
-    <Content Include="Views\Employees\Delete.cshtml" />
-    <Content Include="Views\Employees\Details.cshtml" />
-    <Content Include="Views\Employees\Edit.cshtml" />
-    <Content Include="Views\Employees\Index.cshtml" />
     <Content Include="Views\EmployeeRoles\Create.cshtml" />
     <Content Include="Views\EmployeeRoles\Delete.cshtml" />
     <Content Include="Views\EmployeeRoles\Details.cshtml" />
@@ -293,6 +287,7 @@
     <Content Include="Views\Addresses\Details.cshtml" />
     <Content Include="Views\Addresses\Edit.cshtml" />
     <Content Include="Views\Addresses\Index.cshtml" />
+    <Content Include="Views\Sales\Create.cshtml" />
     <Content Include="Views\Sales\Delete.cshtml" />
     <Content Include="Views\Sales\Details.cshtml" />
     <Content Include="Views\Sales\Edit.cshtml" />
@@ -321,6 +316,7 @@
     <Content Include="Views\Reports\EmployeeReport.cshtml" />
     <Content Include="Views\Reports\ProductReport.cshtml" />
     <Content Include="Views\Sales\Return.cshtml" />
+    <Content Include="Views\Sales\TransactionLookup.cshtml" />
     <Content Include="Views\Sales\NewSale.cshtml" />
     <Content Include="Views\Inventories\Products.cshtml" />
     <Content Include="Views\Inventories\ViewProducts.cshtml" />
@@ -337,6 +333,23 @@
     <Content Include="Views\SaleDetails\ReturnTransactionView.cshtml" />
     <Content Include="Views\SaleDetails\ReturnItemView.cshtml" />
     <Content Include="Views\Sales\TransactionLookup.cshtml" />
+    <Content Include="Views\PurchaseOrders\Create.cshtml" />
+    <Content Include="Views\PurchaseOrders\Delete.cshtml" />
+    <Content Include="Views\PurchaseOrders\Details.cshtml" />
+    <Content Include="Views\PurchaseOrders\Edit.cshtml" />
+    <Content Include="Views\PurchaseOrders\Index.cshtml" />
+    <Content Include="Views\PurchaseOrderItems\Create.cshtml" />
+    <Content Include="Views\PurchaseOrderItems\Delete.cshtml" />
+    <Content Include="Views\PurchaseOrderItems\Details.cshtml" />
+    <Content Include="Views\PurchaseOrderItems\Edit.cshtml" />
+    <Content Include="Views\PurchaseOrderItems\Index.cshtml" />
+    <Content Include="Views\PurchaseOrderItems\Debug.cshtml" />
+    <Content Include="Views\PurchaseOrderItems\ReturnItem.cshtml" />
+    <Content Include="Views\Employees\Create.cshtml" />
+    <Content Include="Views\Employees\Delete.cshtml" />
+    <Content Include="Views\Employees\Details.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

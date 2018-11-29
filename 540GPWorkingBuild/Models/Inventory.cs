@@ -11,8 +11,7 @@ namespace _540GPWorkingBuild.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Inventory
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,22 +22,11 @@ namespace _540GPWorkingBuild.Models
         }
     
         public int ProductID { get; set; }
-        [Required]
         public string Name { get; set; }
-        [Required]
         public string Description { get; set; }
-        [Required]
-        [Range(0, 9999999999999, ErrorMessage="Net price must be a postive number.")]
-        [Display(Name ="Net Price")]
         public decimal NetPrice { get; set; }
-        [Required]
-        [Range(0, 9999999999999, ErrorMessage = "Sale price must be a postive number.")]
-        [Display(Name ="Sale Price")]
         public decimal SalePrice { get; set; }
-        [Required]
-        [Range(0, 9999999999999, ErrorMessage = "Quantity must be a postive number.")]
         public int Quantity { get; set; }
-        [Required]
         public int CategoryID { get; set; }
         public int Active { get; set; }
     
@@ -46,7 +34,6 @@ namespace _540GPWorkingBuild.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PurchaseOrderItem> PurchaseOrderItems { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        [Display(Name ="Sale Items")]
         public virtual ICollection<SaleItem> SaleItems { get; set; }
     }
 }
