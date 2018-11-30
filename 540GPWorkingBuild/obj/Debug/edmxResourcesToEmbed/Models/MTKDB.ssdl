@@ -1,130 +1,77 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="MusciToolkitDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="MusciToolkitDBModelStoreContainer">
-    <EntitySet Name="Addresses" EntityType="MusciToolkitDBModel.Store.Addresses" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Categories" EntityType="MusciToolkitDBModel.Store.Categories" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Customers" EntityType="MusciToolkitDBModel.Store.Customers" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Employees" EntityType="MusciToolkitDBModel.Store.Employees" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="EmployeeRoles" EntityType="MusciToolkitDBModel.Store.EmployeeRoles" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Inventories" EntityType="MusciToolkitDBModel.Store.Inventories" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="PurchaseOrders" EntityType="MusciToolkitDBModel.Store.PurchaseOrders" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="PurchaseOrderItems" EntityType="MusciToolkitDBModel.Store.PurchaseOrderItems" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Sales" EntityType="MusciToolkitDBModel.Store.Sales" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="SaleItems" EntityType="MusciToolkitDBModel.Store.SaleItems" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="sysdiagrams" EntityType="MusciToolkitDBModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="FK_Customer_Address" Association="MusciToolkitDBModel.Store.FK_Customer_Address">
-      <End Role="Address" EntitySet="Addresses" />
-      <End Role="Customer" EntitySet="Customers" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Employee_Address" Association="MusciToolkitDBModel.Store.FK_Employee_Address">
-      <End Role="Address" EntitySet="Addresses" />
-      <End Role="Employee" EntitySet="Employees" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Inventory_Category" Association="MusciToolkitDBModel.Store.FK_Inventory_Category">
-      <End Role="Category" EntitySet="Categories" />
-      <End Role="Inventory" EntitySet="Inventories" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Sale_Customer" Association="MusciToolkitDBModel.Store.FK_Sale_Customer">
-      <End Role="Customer" EntitySet="Customers" />
-      <End Role="Sale" EntitySet="Sales" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Employee_EmployeeRole" Association="MusciToolkitDBModel.Store.FK_Employee_EmployeeRole">
-      <End Role="EmployeeRole" EntitySet="EmployeeRoles" />
-      <End Role="Employee" EntitySet="Employees" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Sale_Employee" Association="MusciToolkitDBModel.Store.FK_Sale_Employee">
-      <End Role="Employee" EntitySet="Employees" />
-      <End Role="Sale" EntitySet="Sales" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PurchaseOrderItems_Inventory" Association="MusciToolkitDBModel.Store.FK_PurchaseOrderItems_Inventory">
-      <End Role="Inventory" EntitySet="Inventories" />
-      <End Role="PurchaseOrderItems" EntitySet="PurchaseOrderItems" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SaleItems_Inventory" Association="MusciToolkitDBModel.Store.FK_SaleItems_Inventory">
-      <End Role="Inventory" EntitySet="Inventories" />
-      <End Role="SaleItems" EntitySet="SaleItems" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PurchaseOrderItems_PurchaseOrder" Association="MusciToolkitDBModel.Store.FK_PurchaseOrderItems_PurchaseOrder">
-      <End Role="PurchaseOrder" EntitySet="PurchaseOrders" />
-      <End Role="PurchaseOrderItems" EntitySet="PurchaseOrderItems" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SaleItems_Sale" Association="MusciToolkitDBModel.Store.FK_SaleItems_Sale">
-      <End Role="Sale" EntitySet="Sales" />
-      <End Role="SaleItems" EntitySet="SaleItems" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="Addresses">
+<Schema Namespace="MusciToolkitDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Address">
     <Key>
       <PropertyRef Name="AddressID" />
     </Key>
     <Property Name="AddressID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="StreetAddress" Type="varchar" Nullable="false" MaxLength="100" />
-    <Property Name="AptNumber" Type="varchar" Nullable="true" MaxLength="20" />
-    <Property Name="City" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="State" Type="varchar" Nullable="false" MaxLength="25" />
-    <Property Name="ZipCode" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="StreetAddress" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="AptNumber" Type="varchar" MaxLength="20" />
+    <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="State" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="ZipCode" Type="varchar" MaxLength="10" Nullable="false" />
   </EntityType>
-  <EntityType Name="Categories">
+  <EntityType Name="Category">
     <Key>
       <PropertyRef Name="CategoryID" />
     </Key>
     <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Category1" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Category" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Active" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="Customers">
+  <EntityType Name="Customer">
     <Key>
       <PropertyRef Name="CustomerID" />
     </Key>
     <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="AddressID" Type="int" Nullable="false" />
-    <Property Name="Email" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="PhoneNum" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PhoneNum" Type="varchar" MaxLength="15" Nullable="false" />
     <Property Name="Active" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="Employees">
+  <EntityType Name="Employee">
     <Key>
       <PropertyRef Name="EmployeeID" />
     </Key>
     <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="HireDate" Type="datetime" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="HireDate" Type="date" Nullable="false" />
     <Property Name="RoleID" Type="int" Nullable="false" />
-    <Property Name="PhoneNum" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="PhoneNum" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="AddressID" Type="int" Nullable="false" />
-    <Property Name="Email" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Active" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="EmployeeRoles">
+  <EntityType Name="EmployeeRole">
     <Key>
       <PropertyRef Name="RoleID" />
     </Key>
     <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="EmpRole" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="EmpRole" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
-  <EntityType Name="Inventories">
+  <EntityType Name="Inventory">
     <Key>
       <PropertyRef Name="ProductID" />
     </Key>
     <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="Description" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="NetPrice" Type="decimal" Nullable="false" Precision="18" Scale="2" />
-    <Property Name="SalePrice" Type="decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="NetPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="SalePrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
     <Property Name="Quantity" Type="int" Nullable="false" />
     <Property Name="CategoryID" Type="int" Nullable="false" />
     <Property Name="Active" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="PurchaseOrders">
+  <EntityType Name="PurchaseOrder">
     <Key>
       <PropertyRef Name="PurchaseOrderID" />
     </Key>
     <Property Name="PurchaseOrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="OrderDate" Type="datetime" Nullable="false" />
+    <Property Name="OrderDate" Type="date" Nullable="false" />
   </EntityType>
   <EntityType Name="PurchaseOrderItems">
     <Key>
@@ -136,14 +83,14 @@
     <Property Name="Received" Type="int" Nullable="false" />
     <Property Name="PurchaseOrderID" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="Sales">
+  <EntityType Name="Sale">
     <Key>
       <PropertyRef Name="SaleID" />
     </Key>
     <Property Name="SaleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="CustomerID" Type="int" Nullable="true" />
+    <Property Name="CustomerID" Type="int" />
     <Property Name="EmployeeID" Type="int" Nullable="false" />
-    <Property Name="SaleDate" Type="datetime" Nullable="false" />
+    <Property Name="SaleDate" Type="date" Nullable="false" />
   </EntityType>
   <EntityType Name="SaleItems">
     <Key>
@@ -159,15 +106,15 @@
     <Key>
       <PropertyRef Name="diagram_id" />
     </Key>
-    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="principal_id" Type="int" Nullable="false" />
     <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" Nullable="true" />
-    <Property Name="definition" Type="varbinary(max)" Nullable="true" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <Association Name="FK_Customer_Address">
-    <End Role="Address" Type="MusciToolkitDBModel.Store.Addresses" Multiplicity="1" />
-    <End Role="Customer" Type="MusciToolkitDBModel.Store.Customers" Multiplicity="*" />
+    <End Role="Address" Type="Self.Address" Multiplicity="1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Address">
         <PropertyRef Name="AddressID" />
@@ -178,8 +125,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Employee_Address">
-    <End Role="Address" Type="MusciToolkitDBModel.Store.Addresses" Multiplicity="1" />
-    <End Role="Employee" Type="MusciToolkitDBModel.Store.Employees" Multiplicity="*" />
+    <End Role="Address" Type="Self.Address" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Address">
         <PropertyRef Name="AddressID" />
@@ -189,33 +136,9 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Inventory_Category">
-    <End Role="Category" Type="MusciToolkitDBModel.Store.Categories" Multiplicity="1" />
-    <End Role="Inventory" Type="MusciToolkitDBModel.Store.Inventories" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Category">
-        <PropertyRef Name="CategoryID" />
-      </Principal>
-      <Dependent Role="Inventory">
-        <PropertyRef Name="CategoryID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Sale_Customer">
-    <End Role="Customer" Type="MusciToolkitDBModel.Store.Customers" Multiplicity="0..1" />
-    <End Role="Sale" Type="MusciToolkitDBModel.Store.Sales" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Customer">
-        <PropertyRef Name="CustomerID" />
-      </Principal>
-      <Dependent Role="Sale">
-        <PropertyRef Name="CustomerID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Employee_EmployeeRole">
-    <End Role="EmployeeRole" Type="MusciToolkitDBModel.Store.EmployeeRoles" Multiplicity="1" />
-    <End Role="Employee" Type="MusciToolkitDBModel.Store.Employees" Multiplicity="*" />
+    <End Role="EmployeeRole" Type="Self.EmployeeRole" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="EmployeeRole">
         <PropertyRef Name="RoleID" />
@@ -225,21 +148,21 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Sale_Employee">
-    <End Role="Employee" Type="MusciToolkitDBModel.Store.Employees" Multiplicity="1" />
-    <End Role="Sale" Type="MusciToolkitDBModel.Store.Sales" Multiplicity="*" />
+  <Association Name="FK_Inventory_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Employee">
-        <PropertyRef Name="EmployeeID" />
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryID" />
       </Principal>
-      <Dependent Role="Sale">
-        <PropertyRef Name="EmployeeID" />
+      <Dependent Role="Inventory">
+        <PropertyRef Name="CategoryID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PurchaseOrderItems_Inventory">
-    <End Role="Inventory" Type="MusciToolkitDBModel.Store.Inventories" Multiplicity="1" />
-    <End Role="PurchaseOrderItems" Type="MusciToolkitDBModel.Store.PurchaseOrderItems" Multiplicity="*" />
+    <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+    <End Role="PurchaseOrderItems" Type="Self.PurchaseOrderItems" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Inventory">
         <PropertyRef Name="ProductID" />
@@ -249,21 +172,9 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_SaleItems_Inventory">
-    <End Role="Inventory" Type="MusciToolkitDBModel.Store.Inventories" Multiplicity="1" />
-    <End Role="SaleItems" Type="MusciToolkitDBModel.Store.SaleItems" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Inventory">
-        <PropertyRef Name="ProductID" />
-      </Principal>
-      <Dependent Role="SaleItems">
-        <PropertyRef Name="ProductID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_PurchaseOrderItems_PurchaseOrder">
-    <End Role="PurchaseOrder" Type="MusciToolkitDBModel.Store.PurchaseOrders" Multiplicity="1" />
-    <End Role="PurchaseOrderItems" Type="MusciToolkitDBModel.Store.PurchaseOrderItems" Multiplicity="*" />
+    <End Role="PurchaseOrder" Type="Self.PurchaseOrder" Multiplicity="1" />
+    <End Role="PurchaseOrderItems" Type="Self.PurchaseOrderItems" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PurchaseOrder">
         <PropertyRef Name="PurchaseOrderID" />
@@ -273,9 +184,45 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Sale_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Sale">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sale_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="Sale">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleItems_Inventory">
+    <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+    <End Role="SaleItems" Type="Self.SaleItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inventory">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="SaleItems">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_SaleItems_Sale">
-    <End Role="Sale" Type="MusciToolkitDBModel.Store.Sales" Multiplicity="1" />
-    <End Role="SaleItems" Type="MusciToolkitDBModel.Store.SaleItems" Multiplicity="*" />
+    <End Role="Sale" Type="Self.Sale" Multiplicity="1" />
+    <End Role="SaleItems" Type="Self.SaleItems" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Sale">
         <PropertyRef Name="SaleID" />
@@ -285,4 +232,57 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityContainer Name="MusciToolkitDBModelStoreContainer">
+    <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeRole" EntityType="Self.EmployeeRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PurchaseOrder" EntityType="Self.PurchaseOrder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PurchaseOrderItems" EntityType="Self.PurchaseOrderItems" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sale" EntityType="Self.Sale" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SaleItems" EntityType="Self.SaleItems" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Customer_Address" Association="Self.FK_Customer_Address">
+      <End Role="Address" EntitySet="Address" />
+      <End Role="Customer" EntitySet="Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Address" Association="Self.FK_Employee_Address">
+      <End Role="Address" EntitySet="Address" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_EmployeeRole" Association="Self.FK_Employee_EmployeeRole">
+      <End Role="EmployeeRole" EntitySet="EmployeeRole" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inventory_Category" Association="Self.FK_Inventory_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Inventory" EntitySet="Inventory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchaseOrderItems_Inventory" Association="Self.FK_PurchaseOrderItems_Inventory">
+      <End Role="Inventory" EntitySet="Inventory" />
+      <End Role="PurchaseOrderItems" EntitySet="PurchaseOrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchaseOrderItems_PurchaseOrder" Association="Self.FK_PurchaseOrderItems_PurchaseOrder">
+      <End Role="PurchaseOrder" EntitySet="PurchaseOrder" />
+      <End Role="PurchaseOrderItems" EntitySet="PurchaseOrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sale_Customer" Association="Self.FK_Sale_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Sale" EntitySet="Sale" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sale_Employee" Association="Self.FK_Sale_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Sale" EntitySet="Sale" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleItems_Inventory" Association="Self.FK_SaleItems_Inventory">
+      <End Role="Inventory" EntitySet="Inventory" />
+      <End Role="SaleItems" EntitySet="SaleItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleItems_Sale" Association="Self.FK_SaleItems_Sale">
+      <End Role="Sale" EntitySet="Sale" />
+      <End Role="SaleItems" EntitySet="SaleItems" />
+    </AssociationSet>
+  </EntityContainer>
 </Schema>

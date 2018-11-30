@@ -2,8 +2,8 @@
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="MusciToolkitDBModelStoreContainer" CdmEntityContainer="MusciToolkitDBEntities">
     <EntitySetMapping Name="Addresses">
-      <EntityTypeMapping TypeName="IsTypeOf(MusciToolkitDBModel.Address)">
-        <MappingFragment StoreEntitySet="Addresses">
+      <EntityTypeMapping TypeName="MusciToolkitDBModel.Address">
+        <MappingFragment StoreEntitySet="Address">
           <ScalarProperty Name="AddressID" ColumnName="AddressID" />
           <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
           <ScalarProperty Name="AptNumber" ColumnName="AptNumber" />
@@ -14,17 +14,17 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Categories">
-      <EntityTypeMapping TypeName="IsTypeOf(MusciToolkitDBModel.Category)">
-        <MappingFragment StoreEntitySet="Categories">
+      <EntityTypeMapping TypeName="MusciToolkitDBModel.Category">
+        <MappingFragment StoreEntitySet="Category">
           <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-          <ScalarProperty Name="Category1" ColumnName="Category1" />
+          <ScalarProperty Name="Category1" ColumnName="Category" />
           <ScalarProperty Name="Active" ColumnName="Active" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Customers">
-      <EntityTypeMapping TypeName="IsTypeOf(MusciToolkitDBModel.Customer)">
-        <MappingFragment StoreEntitySet="Customers">
+      <EntityTypeMapping TypeName="MusciToolkitDBModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
           <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -36,8 +36,8 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Employees">
-      <EntityTypeMapping TypeName="IsTypeOf(MusciToolkitDBModel.Employee)">
-        <MappingFragment StoreEntitySet="Employees">
+      <EntityTypeMapping TypeName="MusciToolkitDBModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -52,16 +52,16 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="EmployeeRoles">
-      <EntityTypeMapping TypeName="IsTypeOf(MusciToolkitDBModel.EmployeeRole)">
-        <MappingFragment StoreEntitySet="EmployeeRoles">
+      <EntityTypeMapping TypeName="MusciToolkitDBModel.EmployeeRole">
+        <MappingFragment StoreEntitySet="EmployeeRole">
           <ScalarProperty Name="RoleID" ColumnName="RoleID" />
           <ScalarProperty Name="EmpRole" ColumnName="EmpRole" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Inventories">
-      <EntityTypeMapping TypeName="IsTypeOf(MusciToolkitDBModel.Inventory)">
-        <MappingFragment StoreEntitySet="Inventories">
+      <EntityTypeMapping TypeName="MusciToolkitDBModel.Inventory">
+        <MappingFragment StoreEntitySet="Inventory">
           <ScalarProperty Name="ProductID" ColumnName="ProductID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
@@ -74,15 +74,15 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PurchaseOrders">
-      <EntityTypeMapping TypeName="IsTypeOf(MusciToolkitDBModel.PurchaseOrder)">
-        <MappingFragment StoreEntitySet="PurchaseOrders">
+      <EntityTypeMapping TypeName="MusciToolkitDBModel.PurchaseOrder">
+        <MappingFragment StoreEntitySet="PurchaseOrder">
           <ScalarProperty Name="PurchaseOrderID" ColumnName="PurchaseOrderID" />
           <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PurchaseOrderItems">
-      <EntityTypeMapping TypeName="IsTypeOf(MusciToolkitDBModel.PurchaseOrderItem)">
+      <EntityTypeMapping TypeName="MusciToolkitDBModel.PurchaseOrderItem">
         <MappingFragment StoreEntitySet="PurchaseOrderItems">
           <ScalarProperty Name="POItemID" ColumnName="POItemID" />
           <ScalarProperty Name="ProductID" ColumnName="ProductID" />
@@ -93,8 +93,8 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Sales">
-      <EntityTypeMapping TypeName="IsTypeOf(MusciToolkitDBModel.Sale)">
-        <MappingFragment StoreEntitySet="Sales">
+      <EntityTypeMapping TypeName="MusciToolkitDBModel.Sale">
+        <MappingFragment StoreEntitySet="Sale">
           <ScalarProperty Name="SaleID" ColumnName="SaleID" />
           <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
@@ -103,7 +103,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SaleItems">
-      <EntityTypeMapping TypeName="IsTypeOf(MusciToolkitDBModel.SaleItem)">
+      <EntityTypeMapping TypeName="MusciToolkitDBModel.SaleItem">
         <MappingFragment StoreEntitySet="SaleItems">
           <ScalarProperty Name="SaleItemID" ColumnName="SaleItemID" />
           <ScalarProperty Name="ProductID" ColumnName="ProductID" />
@@ -114,11 +114,11 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="IsTypeOf(MusciToolkitDBModel.sysdiagram)">
+      <EntityTypeMapping TypeName="MusciToolkitDBModel.sysdiagram">
         <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
           <ScalarProperty Name="version" ColumnName="version" />
           <ScalarProperty Name="definition" ColumnName="definition" />
         </MappingFragment>
