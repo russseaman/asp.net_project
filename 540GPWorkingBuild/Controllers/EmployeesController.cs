@@ -7,26 +7,38 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
-namespace _540GPWorkingBuild.Models
+namespace _540GPWorkingBuild.Controllers
 {
     public class EmployeesController : Controller
     {
         private MusciToolkitDBEntities db = new MusciToolkitDBEntities();
 
         // GET: Employees
-        public ActionResult Index()
+        public ActionResult Index(string option, string search)
         {
-            var employees = db.Employees.Include(e => e.Address).Include(e => e.EmployeeRole);
-            return View(employees.ToList());
-        }
+            var Employees = db.Employees.Include(e => e.Address).Include(e => e.EmployeeRole);
+            List<Employee> EmpList = db.Employees.Include(e => e.Address).ToList();
 
-        [HttpPost]
-        public JsonResult GetCustFirstName(String CustFirst)
-        {
-            var FirstNames = (from fn in db.Customers
-                              where fn.FirstName.StartsWith(CustFirst)
-                              select new { fn.FirstName, fn.CustomerID });
-            return Json(FirstNames, JsonRequestBehavior.AllowGet);
+            if (option == "EmployeeID")
+            {
+                return View(db.Employees.Where(i => i.EmployeeID.ToString() == search || search == null).ToList());
+            }
+            else if (option == "EmployeePhone")
+            {
+                return View(db.Employees.Where(i => i.PhoneNum.ToString() == search || search == null).ToList());
+            }
+            else if (option == "EmpFirstName")
+            {
+                return View(db.Employees.Where(i => i.FirstName.ToString() == search || search == null).ToList());
+            }
+            else if (option == "EmpLastName")
+            {
+                return View(db.Employees.Where(i => i.LastName.ToString() == search || search == null).ToList());
+            }
+            else
+            {
+                return View(Employees.ToList());
+            }
         }
 
         // GET: Employees/Details/5
@@ -53,7 +65,7 @@ namespace _540GPWorkingBuild.Models
         }
 
         // POST: Employees/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -89,7 +101,7 @@ namespace _540GPWorkingBuild.Models
         }
 
         // POST: Employees/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]

@@ -95,6 +95,34 @@ namespace _540GPWorkingBuild.Controllers
                return View(soListComplete.OrderByDescending(x => x.s.SaleID).Take(15).ToList());
           }
 
+          /*public ActionResult CheckOut()
+          {
+               List<soWithItems> cart = new List<soWithItems>();
+               List<SaleItem> saleItemList = db.SaleItems.ToList();
+
+               foreach (var item in saleItemList)
+               {
+                    int currID = item.Sale.SaleID;
+                    soWithItems currItem = getOrderWithItems(currID, db);
+                    cart.Add(currItem);
+               }
+
+               return View(cart);
+          }*/
+
+          public ActionResult Cancel(int? id)
+          {
+               soWithItems saleOrder = getOrderWithItems((int)id, db);
+               foreach (var item in saleOrder.itemList)
+               {
+                    db.SaleItems.Remove(item);
+               }
+               db.Sales.Remove(saleOrder.s);
+               db.SaveChanges();
+
+               return RedirectToAction("Index");
+          }
+
           // GET: Sales
           public ActionResult Index()
           {

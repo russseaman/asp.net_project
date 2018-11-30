@@ -85,7 +85,7 @@
                     @Html.DisplayFor(modelItem => item.TotalSIPrice)
                </td>
                <td>
-                    @Html.ActionLink("Remove from sale", "Delete", new { id = item.SaleID })
+                    @Html.ActionLink("Remove from sale", "Cancel", new { id = item.SaleItemID}, null)
                </td>
           </tr>
      }
@@ -121,7 +121,7 @@
 
 <div style="text-align:left;">
      @Html.ActionLink("Back To Customer/Employee Lookup", "NewSale", "Sales")
-     <span style="float:right;">@Html.ActionLink("Checkout", "TransactionLookup", "Sales")</span>
+     <span style="float:right;">@Html.ActionLink("Checkout", "CheckOut")</span>
 </div>
 
 @section Scripts {
