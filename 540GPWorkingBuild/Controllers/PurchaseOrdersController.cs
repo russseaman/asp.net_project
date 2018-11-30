@@ -62,7 +62,7 @@ namespace _540GPWorkingBuild.Controllers
         }
 
 
-        
+
 
         // GET: PurchaseOrders
         public ActionResult Index()
@@ -91,12 +91,12 @@ namespace _540GPWorkingBuild.Controllers
         public ActionResult Create()
         {
             PurchaseOrder p = new PurchaseOrder();
-    
+
             return Create(p);
         }
 
         // POST: PurchaseOrders/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -129,7 +129,7 @@ namespace _540GPWorkingBuild.Controllers
         }
 
         // POST: PurchaseOrders/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -215,28 +215,6 @@ namespace _540GPWorkingBuild.Controllers
             return RedirectToAction("Index");
         }
 
-        // Returns total price of a purchase order
-        // given a purchase order ID
-        public double getTotalPrice(int id)
-        {
-            poWithItems x = getOrderWithItems(id, db);
-            return x.p.totalPrice;
-        }
-
-        public string getStatus(int id)
-        {
-            poWithItems x = getOrderWithItems(id, db);
-            if (!(x.itemList.Any()))
-            {
-                return "OPEN";
-            }
-            if (x.itemList.First().Received == 0)
-            {
-                return "OPEN";
-            }
-            return "CLOSED";
-        }
-
 
         /*
         public ActionResult updateItem(int q)
@@ -279,7 +257,7 @@ namespace _540GPWorkingBuild.Controllers
                 allPOsComplete.Add(currItem);
             }
             //pass the StudentList list object to the view.
-            
+
             return View(allPOsComplete);
         }*/
 
@@ -295,10 +273,10 @@ namespace _540GPWorkingBuild.Controllers
                 poWithItems currItem = getOrderWithItems(currID, db);
                 poListComplete.Add(currItem);
             }
-            //if a user choose the radio button option as Subject  
+            //if a user choose the radio button option as Subject
             if (option == "ID")
             {
-                //Index action method will return a view with a student records based on what a user specify the value in textbox  
+                //Index action method will return a view with a student records based on what a user specify the value in textbox
                 return View(poListComplete.Where(x => x.p.PurchaseOrderID == Int32.Parse(search) || search == null).ToList());
             }
             else if (option == "Date")
